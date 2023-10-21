@@ -1,0 +1,68 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: monospace, "Courier New", Courier;
+}
+
+#authPageContainer {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#authPageContainer #authSelectorContainer {
+  position: absolute;
+  width: 80%;
+  height: 7vh;
+  top: 10vh;
+  display: flex;
+  justify-content: space-between;
+}
+#authPageContainer #authSelectorContainer .singleAuthSelector {
+  display: inline-block;
+  height: 98%;
+  width: 45%;
+  position: relative;
+}
+#authPageContainer #authSelectorContainer .singleAuthSelector button {
+  font-family: monospace, "Courier New", Courier;
+  height: 100%;
+  width: 100%;
+}
+#authPageContainer #authSelectorContainer #logInButtonSpan {
+  left: -10%;
+}
+#authPageContainer #authSelectorContainer #signUpButtonSpan {
+  left: 10%;
+}
+#authPageContainer .formDiv {
+  position: absolute;
+  top: 25vh;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+#authPageContainer .formDiv .form {
+  width: 80%;
+}
+#authPageContainer .formDiv .form .card {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  gap: 2em;
+}
+#authPageContainer .formDiv .form .card button {
+  display: block;
+  background-color: aquamarine;
+  color: navy;
+  font-family: monospace;
+}
+#authPageContainer .formDiv .form .card #formLinks {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2em;
+}/*# sourceMappingURL=index.css.map */
