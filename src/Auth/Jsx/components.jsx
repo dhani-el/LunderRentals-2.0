@@ -9,7 +9,7 @@ import formType from "../constant";
 export function Login(){
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
-    const dispatch = useAppDispatch();
+    // const dispatch = useAppDispatch();
 
 
     function handleInputChange(e, setFunc){
@@ -35,7 +35,7 @@ export function Login(){
         console.log((username != null && passcode != null) ? indicateUserLoggedIn() : "invalid login details");
     }
     function indicateUserLoggedIn(){
-        dispatch(setUserLoggedin({isUserLoggedIn:true,username:userName}));
+        // dispatch(setUserLoggedin({isUserLoggedIn:true,username:userName}));
         console.log('user logged in');
     }
 
