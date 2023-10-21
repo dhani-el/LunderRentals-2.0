@@ -1,7 +1,7 @@
 import { useSearchParams,useParams } from "react-router-dom";
 import { Search } from "@mui/icons-material";
 import { CarImage,CarDescription, CarPrice } from "./components";
-import { useAppSelector } from "../../Store/store";
+// import { useAppSelector } from "../../Store/store";
 
 const location ={
     address:"5,Mufutau Shobola, Ogba Lagos,Nigeria",

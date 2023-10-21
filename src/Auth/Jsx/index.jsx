@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import {Login, SignUp, AuthSelector} from './component';
+import {Login, SignUp, AuthSelector} from './components';
 import formType from '../constant';
 import '../Styles/index.css';
 

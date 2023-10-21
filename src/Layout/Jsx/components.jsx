@@ -4,7 +4,7 @@ import {User} from 'react-feather';
 import ViewList from '@mui/icons-material/ViewList';
 import {Close} from '@mui/icons-material';
 import {motion} from 'framer-motion';
-import { useAppSelector } from '../../Store/store';
+// import { useAppSelector } from '../../Store/store';
 import { Link, useLocation } from 'react-router-dom';
 import LogoImage from '/one.png';
 
@@ -12,7 +12,8 @@ import LogoImage from '/one.png';
 
 
 export function Header(){
-    const loginData = useAppSelector(state => state.Authentication);
+    // const loginData = useAppSelector(state => state.Authentication);
+    const loginData = false
     console.log(loginData.isUserLoggedIn);
     
     return <div id = "header">

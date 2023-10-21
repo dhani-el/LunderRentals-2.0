@@ -1,6 +1,6 @@
 import {useState,useEffect} from 'react'
 import { SearchComponent, Brands,Cars} from "./components";
-import { useAppSelector } from "../../Store/store";
+// import { useAppSelector } from "../../Store/store";
 
 
 export default function Rent(){
