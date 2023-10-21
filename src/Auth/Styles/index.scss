@@ -1,0 +1,79 @@
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:  monospace, 'Courier New', Courier;
+}
+
+
+
+#authPageContainer{
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    #authSelectorContainer{
+        position: absolute;
+        width: 80%;
+        height: 7vh;
+        top: 10vh;
+        display: flex;
+        justify-content: space-between;
+        .singleAuthSelector{
+                display: inline-block;
+                height: 98%;
+                width: 45%;
+                position: relative;
+            button{
+                font-family: monospace,'Courier New', Courier;
+                height: 100%;
+                width: 100%;
+            }
+
+        }
+        #logInButtonSpan{
+                left: -10%;
+            }
+        #signUpButtonSpan{
+                left: 10%;
+            }
+
+    }
+
+    .formDiv{
+        position: absolute;
+        top: 25vh;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        .form{
+            width: 80%;
+            .card{
+                display: flex;
+                flex-direction: column;
+                padding: 1em;
+                gap: 2em;
+                button{
+                    display: block;
+                    background-color: aquamarine;
+                    color: navy;
+                    font-family: monospace;
+                }
+                #formLinks{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 0.2em;
+                }
+            }
+        }
+    }
+}
+
+@media (orientation:'landscape') {
+    
+}
