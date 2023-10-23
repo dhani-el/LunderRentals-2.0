@@ -1,0 +1,201 @@
+
+
+#searchComponentContainer{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2em;
+    #searchComponentCard{
+        width: 80%;
+        display: flex;
+        padding: 1em;
+        justify-content: space-between;
+        #searchComponentTextContainer{
+            width: 90%;
+            h2{
+                display: inline;
+            }
+            p{
+                display: inline;
+            }
+        }
+        #searchBar{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            gap: 1em;
+            fieldset{
+                border-color: black;
+            }
+            .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input{
+                padding: 0.4em;
+                width: 80%;
+                outline-color: purple;
+            }
+            .css-1u3bzj6-MuiFormControl-root-MuiTextField-root{
+                width: 90%;
+            }
+        }
+    }
+}
+
+#brandsContainer{
+    width: 100%;
+    height:10vh;
+    margin-top: 1.5em;
+    margin-bottom: 1em;
+    #brandsSwiperContainer{
+        height: 100%;
+        #slideR{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            #allBrandsComponent{
+                height: 10vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                p{
+                    color: black;
+                    font-size: 2em;
+                    font-weight: 900;
+                }
+            }
+        }
+        #abrandDiv{
+            height: 10vh;
+            width: 25vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 1em;
+            img{
+                height: auto;
+                width: 25vw;
+            }
+        }
+    }
+}
+
+#carsContainer{
+    min-height: 70vh;
+    margin-bottom: 2em;
+    h3{
+        margin-bottom: 1.5em;
+    }
+    #listOfCars{
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2.2vh;
+        #keyDivs{
+            width: 95%;
+        }
+        #Acar{
+
+            .aCarCard{
+                border-radius: 1em;
+                #firstDiv{
+                    width: 100vw;
+                    height: 5vh;
+                    display: flex;
+                    justify-content: space-around;
+                    margin-bottom: 0.5em;
+                    img{
+                        width: auto;
+                        height: 100%;
+                    }
+                    #textDiv{
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-end;
+                        h3{
+                            margin-bottom: 0;
+                        }
+                        p{
+                            color: gray;
+                        }
+                    }
+                }
+                #secondDiv{
+                    display: flex;
+                    justify-content: space-between;
+                    padding-left: 1.5em;
+                    align-items: flex-end;
+                    #priceSpan{
+                        display: flex;
+                        #price{
+                            font-weight: 900;
+                            margin-bottom: 0.5em;
+                        }
+                        #price + p{
+                            color: gray;
+                        }
+                    }
+                    a{
+                        display: block;
+                        width: 55%;
+                        text-decoration: none;
+                        color: navy;
+                        #detailsSpan{
+                            background-color: aquamarine;
+                            padding: 0.8em;
+                            border-top-left-radius: 0.5em;
+                            border-bottom-right-radius: 0.5em;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (orientation : 'landscape'){
+    #brandsContainer{
+            height: auto;
+        #brandsSwiperContainer{
+            height: auto;
+            margin-bottom: 2em;
+            #abrandDiv{
+                height: 100%;
+                width: 10vw;
+                img{
+                    width: 100%;
+                    height:100%;
+                }
+            }
+        }
+    }
+
+    #carsContainer{
+        h3{
+            padding-left: 2em;
+        }
+        #listOfCars{
+            flex-direction: row;
+            flex-wrap: wrap;
+            
+            #keyDivs{
+                width: 42%;
+                #Acar{
+                    .aCarCard{
+                        background-color: rgb(240, 240, 240);
+                        #firstDiv{
+                            width: 100%;
+                            height: 10vh;
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+}
