@@ -2,7 +2,7 @@
 import Home from './Home/Jsx';
 import Auth from './Auth/Jsx';
 import Rent from './Rent/Jsx';
-import SingleCar from './SingleCar/Jsx';
+import SingleCar from './Single/Jsx';
 import Layout from './Layout/Jsx';
 import ComingSoon from './Soon';
 
