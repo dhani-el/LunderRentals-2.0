@@ -80,6 +80,7 @@
 #carsContainer {
   min-height: 70vh;
   margin-bottom: 2em;
+  color: black;
 }
 #carsContainer h3 {
   margin-bottom: 1.5em;
