@@ -32,7 +32,7 @@ const carSchema = new mongoose.Schema({
         required: true,
     },
     features:{
-        type:[{icon:string, description:string}],
+        type:[{icon: String, description: String}],
         required:true
     },
     
