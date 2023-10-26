@@ -1,7 +1,9 @@
 
 
 #cartBackground{
+    position: relative;
     min-height: 100vh;
+    width: 100vw;
     color: black;
     h2{
         text-align: center;
@@ -10,6 +12,85 @@
         color: rgb(4, 194, 130);
         span{
             color: rgb(4, 194, 130);
+        }
+    }
+    #mostContent{
+        display: flex;
+        width: 100%;
+        gap: 2.5em;
+        #cartContent{
+            width: 70%;
+        }
+        #paymentBarMainDiv{
+            position: absolute;
+            right: 0px;
+            top: 0px;
+            width: 25%;
+            height: 100% ;
+            display: flex;
+            flex-direction: column;
+            background-color:aquamarine;
+            color: white;
+            box-shadow: 5em 5em 7em 7em black ;
+            #atmCardBackground{
+                background: url("/card3.jpg");
+                background-size: 100%;
+                width: 25vw;
+                height: 15vw;
+                border-radius: 0.8em;
+                margin-top: 4em;
+                margin-bottom: 3.5em;
+                position: relative;
+                left: -16%;
+                box-shadow: 0.5em 0.5em 3em 0.2em rgb(40, 40, 40) ;
+                img{
+                    width: 25%;
+                }
+                p{
+                    color: white;
+                }
+                #masterCardText{
+                    color: white;
+                    font-size: 1em;
+                    padding-left: 0.5em;
+                }
+                #cardNumberDiv{
+                    display: flex;
+                    width: 100%;
+                    gap: 1.5em;
+                    padding-top: 1.5em;
+                    justify-content: center;
+                }
+                #nameAndExpiry{
+                    display: flex;
+                    padding: 2em 1.5em;
+                    justify-content: space-between;
+                }
+            }
+            #paymentForm{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 2.5em;
+                input{
+                    color: navy;
+                }
+                #majorRow{
+                    display: flex;
+                    padding: 0 1.5em;
+                    #minorRow{
+                        display: flex;
+                        gap: 0.4em;
+                        #dash{
+                            position: relative;
+                            border-left: 0.06em navy solid;
+                            rotate: 15deg;
+                            height: 60%;
+                            bottom: -45%;
+                        }
+                    }
+                }
+            }
         }
     }
 }
@@ -46,6 +127,16 @@
             text-align: center;
             font-size: 1.2em;
             font-weight: 500;
+        }
+        #color{
+            width: calc(100% / 3);
+            display: flex;
+            justify-content: center;
+            div{
+                width: 2em;
+                height: 2em;
+                border-radius: 1em;
+            }
         }
     }
     #cartItemImage{
