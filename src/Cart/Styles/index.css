@@ -19,11 +19,11 @@
   gap: 2.5em;
 }
 #cartBackground #mostContent #cartContent {
-  width: 70%;
+  width: 100%;
 }
 #cartBackground #mostContent #paymentBarMainDiv {
   position: absolute;
-  right: 0px;
+  right: -125%;
   top: 0px;
   width: 25%;
   height: 100%;
@@ -91,6 +91,22 @@
   rotate: 15deg;
   height: 60%;
   bottom: -45%;
+}
+#cartBackground #mostContent #paymentBarMainDiv button {
+  background-color: navy;
+  color: aquamarine;
+  font-weight: 700;
+  position: absolute;
+  top: 82vh;
+  width: 70%;
+  margin: 0 15%;
+  padding: 1em;
+}
+#cartBackground #mostContent #paymentBarMainDiv.open {
+  right: 0%;
+}
+#cartBackground #mostContent #cartContent.checkout {
+  width: 70%;
 }
 
 #listHeader {

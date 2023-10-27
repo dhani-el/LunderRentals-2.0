@@ -19,11 +19,11 @@
         width: 100%;
         gap: 2.5em;
         #cartContent{
-            width: 70%;
+            width: 100%;
         }
         #paymentBarMainDiv{
             position: absolute;
-            right: 0px;
+            right: -125%;
             top: 0px;
             width: 25%;
             height: 100% ;
@@ -91,6 +91,22 @@
                     }
                 }
             }
+            button{
+                background-color: navy;
+                color: aquamarine;
+                font-weight: 700;
+                position: absolute;
+                top: 82vh;
+                width: 70%;
+                margin: 0 15%;
+                padding: 1em;
+            }
+        }
+        #paymentBarMainDiv.open{
+            right: 0%;
+        }
+        #cartContent.checkout{
+            width: 70%;
         }
     }
 }

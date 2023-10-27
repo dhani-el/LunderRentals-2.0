@@ -1,3 +1,4 @@
+import { forwardRef } from "react";
 import { Close } from "@mui/icons-material";
 import productImage from "/imageOne.png";
 import { Button, TextField } from "@mui/material";
@@ -45,23 +46,24 @@ function Colour({color}){
     </div>
 }
 
-export function OrderSummary({summaryDetails}){
+export function OrderSummary({summaryDetails,clickHandler}){
     return <div id="summaryContainer" >
         <h3>Order Summary</h3>
         <div>Cars : {summaryDetails.count}</div>
         <div>Tax : {summaryDetails.tax}%</div>
         <div>Shipping : {summaryDetails.shipping}</div>
         <div>Total : {summaryDetails.total} N</div>
-        <Button variant="contained" >Checkout</Button>
+        <Button variant="contained" onClick={clickHandler} >Checkout</Button>
     </div>
 }
 
-export function PaymentBar(){
-    return <div id="paymentBarMainDiv">
-        <AtmCard/>
-        <PaymentForm/>
-    </div>
-}
+export const PaymentBar = forwardRef(function(ref,props){
+        return <div id="paymentBarMainDiv" ref={props} >
+                    <AtmCard/>
+                    <PaymentForm/>
+                    <Button variant="contained" >PAY</Button>
+                </div>
+})
 
 function AtmCard(){
     return <div id="atmCardBackground">
