@@ -1,4 +1,5 @@
 import { forwardRef } from "react";
+import { motion } from "framer-motion";
 import { Close } from "@mui/icons-material";
 import productImage from "/imageOne.png";
 import { Button, TextField } from "@mui/material";
@@ -83,7 +84,7 @@ function AtmCard(){
 }
 
 function PaymentForm(){
-    return <div id="paymentForm">
+    return <motion.div id="paymentForm">
         <TextField id="cardHolder" label="Card Name" variant="standard" type="text" sx={{width:"75%"}} />
         <TextField id="cardNumber" label="Card Number" variant="standard" type="number" sx={{width:"75%"}}  />
         <div id="majorRow">
@@ -94,5 +95,5 @@ function PaymentForm(){
             </div>
             <TextField label="cvv" variant="standard" type="number"  sx={{width:"35%"}}/>
         </div>
-    </div>
+    </motion.div>
 }
