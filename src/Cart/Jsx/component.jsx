@@ -58,16 +58,37 @@ export function OrderSummary({summaryDetails,clickHandler}){
     </div>
 }
 
-export const PaymentBar = forwardRef(function(ref,props){
-        return <div id="paymentBarMainDiv" ref={props} >
-                    <AtmCard/>
+export const PaymentBar = forwardRef(function(props,ref){
+    const paymentAnimation = {
+        initial:{
+            translateX:"125vw"
+        },
+        animation:{
+            translateX:"75vw",
+            duration:"4s"
+        }
+    }
+        return <motion.div id="paymentBarMainDiv" ref={ref} variants={paymentAnimation} initial="initial" animate= {props.slide ? "animation" : "initial"}>
+                    <Button id="cancel" onClick={props.handleClose} >Cancel</Button>
+                    <AtmCard slide={props.slide} />
                     <PaymentForm/>
-                    <Button variant="contained" >PAY</Button>
-                </div>
+                    <Button variant="contained" id="pay"  >PAY</Button>
+                </motion.div>
 })
 
-function AtmCard(){
-    return <div id="atmCardBackground">
+function AtmCard({slide}){
+
+    const atmAnimation = {
+        initial:{
+            translateX:"1em"
+        },
+        animation:{
+            translateX:"-5em",
+            duration:"4s",
+        }
+    }
+
+    return <motion.div id="atmCardBackground" variants={atmAnimation} initial = "initial" animate = {slide ? "animation" : "initial"}  >
         <img src={MasterCard}/>
         <p id="masterCardText">Mastercard</p>
         <div id="cardNumberDiv">
@@ -80,11 +101,14 @@ function AtmCard(){
         <p id="holderName">John Doe</p>
         <p id="expiry">09/23</p>
         </div>
-    </div>
+    </motion.div>
 }
 
 function PaymentForm(){
-    return <motion.div id="paymentForm">
+
+
+
+    return <div id="paymentForm" >
         <TextField id="cardHolder" label="Card Name" variant="standard" type="text" sx={{width:"75%"}} />
         <TextField id="cardNumber" label="Card Number" variant="standard" type="number" sx={{width:"75%"}}  />
         <div id="majorRow">
@@ -95,5 +119,5 @@ function PaymentForm(){
             </div>
             <TextField label="cvv" variant="standard" type="number"  sx={{width:"35%"}}/>
         </div>
-    </motion.div>
+    </div>
 }
