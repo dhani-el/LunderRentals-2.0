@@ -11,7 +11,6 @@ import LogoImage from '/one.png';
 
 
 export function Header(){
-    // const loginData = useAppSelector(state => state.Authentication);
     const loginData = false
     console.log(loginData.isUserLoggedIn);
     

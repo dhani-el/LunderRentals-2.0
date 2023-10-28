@@ -117,9 +117,11 @@ function Car({car}){
                     <span id='priceSpan'>
                         <p id='price' >{car.price}</p><p >/day</p>
                     </span>
-                    <Link to={`/rent/${car.brand}?model=${car.name}`}><span id='detailsSpan'>
-                       DETAILS
-                    </span></Link>
+                    <Link to={`/rent/${car.brand}?model=${car.name}`}>
+                        <span id='detailsSpan'>
+                            ADD TO CART
+                        </span>
+                    </Link>
                     </div>
                 </Card>
     </div>
@@ -130,4 +132,10 @@ function NoCars({brand}){
     return <div id='noCarsDiv'>
                 <h2>{`No ${brand} cars available currently`} </h2>
             </div>
+}
+
+function CartIndicator({isAdded}){
+    return <div>
+        {isAdded ? <><span id='spinner'></span> <p>Adding to Cart</p></> : <><span id='plus'></span> <p>Added to Cart</p></>}
+    </div>
 }
