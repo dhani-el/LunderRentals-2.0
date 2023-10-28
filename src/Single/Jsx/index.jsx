@@ -47,6 +47,7 @@ export default function SingleCar(){
             <CarImage image={data?.data.image} logo={data?.data.logo} title={data?.data.name} year={data?.data.year}/>
             <CarDescription  carFeatures={features} location={location} list={data?.data.featureDescription} />
             <CarPrice price="N120k"/>
+
             <Link to={"/payment"}>
                 <Button>PAY NOW</Button>
             </Link>

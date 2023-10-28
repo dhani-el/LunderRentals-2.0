@@ -1,5 +1,6 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Place,Streetview } from '@mui/icons-material';
+import { Link } from 'react-router-dom';
 import '../Styles/index.css'
 
 
@@ -72,6 +73,6 @@ function CarLocation({meters,address}){
 export function CarPrice({price}){
     return  <div id='priceComponent'>
                 <div id='pricePDiv'><p>{price}</p><p>/day</p></div>
-                <span>Add to Cart</span>
+                <span><Link to="/payment">Add to Cart</Link></span>
             </div>
 }

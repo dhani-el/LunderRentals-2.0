@@ -7,6 +7,7 @@ import Layout from './Layout/Jsx';
 import ComingSoon from './ComingSoon/Jsx';
 import Cart from './Cart/Jsx';
 import Checkout from './Checkout/Jsx';
+import SinglePayment from './SinglePayment/Jsx';
 
 import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 
@@ -40,6 +41,10 @@ const route  = createBrowserRouter([
         {
           path:'/checkout',
           element:<Checkout/>
+        },
+        {
+          path:'/payment',
+          element:<SinglePayment/>
         },
         {
           path:'*',
