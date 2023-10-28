@@ -5,10 +5,11 @@ import { useQueryClient } from '@tanstack/react-query';
 
 export default function Rent(){
         const [brand,setBrand] = useState('');
-        console.log("render or rerender");
+        const queryClient  =  useQueryClient();
         useEffect(function(){
                 console.log(`the current brand is :${brand}`);
         });
+
 
     return <div id='rentContainer'>
                 <SearchComponent/>

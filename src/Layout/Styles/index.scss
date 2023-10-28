@@ -55,6 +55,21 @@
             height: auto;
         }
     }
+    #cartLinkMainDiv{
+        position: relative;
+        #noOfItems{
+            position: absolute;
+            right: -0.1em;
+            top: -1em;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        #cartIcon{
+            color: white;
+            font-size: 2em;
+        }
+    }
+
 }
 
 #footerContainer{
@@ -93,6 +108,7 @@
         justify-content: space-between;
         #authenticator{
             display: flex;
+            gap: 1em;
             #userDiv{
                 display: flex;
                 flex-direction: column;

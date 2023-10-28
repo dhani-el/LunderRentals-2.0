@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import { useState} from 'react';
 import { TextField, Card } from "@mui/material";
 import { Search, Close } from "@mui/icons-material";
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -104,6 +104,18 @@ export function Cars({brand}){
 }
 
 function Car({car}){
+
+    function useAddToCartClick(carId){
+        const {isFetching} = useQuery({
+            queryKey:["addToCart"],
+            queryFn:function(){
+                Axios.post("/cart", carId,{
+                    withCredentials:true
+                });
+            }
+        });
+    }
+
     return <div id='Acar'>
                 <Card className='aCarCard' >
                     <div id='firstDiv'>
@@ -117,7 +129,7 @@ function Car({car}){
                     <span id='priceSpan'>
                         <p id='price' >{car.price}</p><p >/day</p>
                     </span>
-                    <Link to={`/rent/${car.brand}?model=${car.name}`}>
+                    <Link to={`/cart`}>
                         <span id='detailsSpan'>
                             ADD TO CART
                         </span>
@@ -126,7 +138,6 @@ function Car({car}){
                 </Card>
     </div>
 }
-
 
 function NoCars({brand}){
     return <div id='noCarsDiv'>
