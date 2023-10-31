@@ -2,7 +2,7 @@ import {useState} from 'react';
 import { Button } from "@mui/material";
 import {User} from 'react-feather';
 import ViewList from '@mui/icons-material/ViewList';
-import {Close} from '@mui/icons-material';
+import {Close,ShoppingBag} from '@mui/icons-material';
 import {motion} from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
 import LogoImage from '/one.png';
@@ -11,7 +11,6 @@ import LogoImage from '/one.png';
 
 
 export function Header(){
-    // const loginData = useAppSelector(state => state.Authentication);
     const loginData = false
     console.log(loginData.isUserLoggedIn);
     
@@ -40,7 +39,9 @@ function NavBar(){
 }
 
 function Authenticator({loggedIn,username}){
+    const location = useLocation().pathname;
     return <div id="authenticator" >
+        {location === "/cart" || <CartLink numberOfItems={3}/>}
         {loggedIn ? <UserComponent name={username} /> : <AuthButton/> }
     </div>
 }
@@ -55,7 +56,6 @@ function UserComponent({user}){
 function AuthButton(){
     return <div id="authButtonDiv">
                 <Link to='/auth'><Button variant="outlined" id="loginButton">LOG IN</Button> </Link>
-                <Link to='/auth'><Button variant="outlined" id="signupButton">SIGN UP</Button> </Link>
     </div>
 }
 
@@ -110,5 +110,14 @@ export function Footer(){
         <div id='boilerPlateContent' >
 
         </div>
+    </div>
+}
+
+function CartLink({numberOfItems}){
+    return <div id='cartLinkMainDiv'>
+        <p id='noOfItems'>{numberOfItems}</p>
+        <Link to="/cart">
+            <ShoppingBag id="cartIcon"/>
+        </Link>
     </div>
 }

@@ -72,6 +72,6 @@ function CarLocation({meters,address}){
 export function CarPrice({price}){
     return  <div id='priceComponent'>
                 <div id='pricePDiv'><p>{price}</p><p>/day</p></div>
-                <span>Book now</span>
+                <span>Add to Cart</span>
             </div>
 }

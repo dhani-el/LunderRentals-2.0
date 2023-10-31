@@ -18,12 +18,11 @@
         display: flex;
         width: 100%;
         gap: 2.5em;
-        #cartContent{
-            width: 100%;
-        }
+        // #cartContent{
+        //     width: 100%;
+        // }
         #paymentBarMainDiv{
             position: absolute;
-            right: -125%;
             top: 0px;
             width: 25%;
             height: 100% ;
@@ -41,7 +40,6 @@
                 margin-top: 4em;
                 margin-bottom: 3.5em;
                 position: relative;
-                left: -16%;
                 box-shadow: 0.5em 0.5em 3em 0.2em rgb(40, 40, 40) ;
                 img{
                     width: 25%;
@@ -91,7 +89,7 @@
                     }
                 }
             }
-            button{
+            #pay{
                 background-color: navy;
                 color: aquamarine;
                 font-weight: 700;
@@ -101,12 +99,12 @@
                 margin: 0 15%;
                 padding: 1em;
             }
-        }
-        #paymentBarMainDiv.open{
-            right: 0%;
-        }
-        #cartContent.checkout{
-            width: 70%;
+            #cancel{
+                text-align: left;
+                width: min-content;
+                margin-top: 1em;
+                font-weight: 900;
+            }
         }
     }
 }

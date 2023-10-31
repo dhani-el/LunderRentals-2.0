@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import { useState} from 'react';
 import { TextField, Card } from "@mui/material";
 import { Search, Close } from "@mui/icons-material";
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -104,6 +104,18 @@ export function Cars({brand}){
 }
 
 function Car({car}){
+
+    function useAddToCartClick(carId){
+        const {isFetching} = useQuery({
+            queryKey:["addToCart"],
+            queryFn:function(){
+                Axios.post("/cart", carId,{
+                    withCredentials:true
+                });
+            }
+        });
+    }
+
     return <div id='Acar'>
                 <Card className='aCarCard' >
                     <div id='firstDiv'>
@@ -117,17 +129,24 @@ function Car({car}){
                     <span id='priceSpan'>
                         <p id='price' >{car.price}</p><p >/day</p>
                     </span>
-                    <Link to={`/rent/${car.brand}?model=${car.name}`}><span id='detailsSpan'>
-                       DETAILS
-                    </span></Link>
+                    <Link to={`/cart`}>
+                        <span id='detailsSpan'>
+                            ADD TO CART
+                        </span>
+                    </Link>
                     </div>
                 </Card>
     </div>
 }
 
-
 function NoCars({brand}){
     return <div id='noCarsDiv'>
                 <h2>{`No ${brand} cars available currently`} </h2>
             </div>
+}
+
+function CartIndicator({isAdded}){
+    return <div>
+        {isAdded ? <><span id='spinner'></span> <p>Adding to Cart</p></> : <><span id='plus'></span> <p>Added to Cart</p></>}
+    </div>
 }
