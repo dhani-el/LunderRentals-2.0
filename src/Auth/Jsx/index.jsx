@@ -6,7 +6,7 @@ import '../Styles/index.css';
 
 export default function Auth(){
 
-    const [form , setForm] = useState(formType.SIGNUP);
+    const [form , setForm] = useState(formType.Login);
 
     return <div id="authPageContainer">
         <AuthSelector setFormFunction={setForm} form={form} />
