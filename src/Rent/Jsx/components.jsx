@@ -9,7 +9,7 @@ import Axios from 'axios';
 import 'swiper/css';
 import '../Styles/index.css';
 
-
+const baseUrl = "http://localhost:3000"
 
 export function SearchComponent(){
     const [openSearchBar, setOpenSearchBar] = useState(false);
@@ -40,7 +40,7 @@ export function Brands({handleBrandChange}){
     const isLandscape = useMediaQuery({query:'(orientation:landscape)'});
     const {data} = useQuery({
         queryKey:["brandsQuery"],
-        queryFn: ()=> Axios.get("/data/api/brands").then(function(response){return response}),
+        queryFn: ()=> Axios.get(`${baseUrl}/data/api/brands`).then(function(response){return response}),
     });
 
     function handleStateChange(brandName){
@@ -86,7 +86,7 @@ export function Cars({brand}){
     const [initialRender,setInitialRender] = useState(true);
   const {data, isFetching} = useQuery({
         queryKey:["carData"],
-        queryFn : ()=>  Axios.get(`data/api/cars/${brand}`, { withCredentials:true})
+        queryFn : ()=>  Axios.get(`${baseUrl}data/api/cars/${brand}`, { withCredentials:true})
                         .then(function(result){ setInitialRender(false); return result}),
         enabled: initialRender,
     });
