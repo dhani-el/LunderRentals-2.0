@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const Parser = require("body-parser");
 const port = process.env.PORT || 3000;
 const path = require("path");
+const cors = require("cors");
 
 const DataRoute = require("./Routes");
 
@@ -22,6 +23,7 @@ app.use(Parser.urlencoded({extended:false}));
 app.use(Parser.json());
 app.use("/data/api",DataRoute);
 app.use(express.static(path.join(__dirname,"../dist")));
+app.use(cors({origin:"http://localhost:5173/"}));
 
 app.get("*",function(req,res){
     res.sendFile(path.join(__dirname,"../dist/index.html"));
