@@ -1,7 +1,8 @@
-import { useSearchParams,useParams } from "react-router-dom";
+import {useQuery} from "@tanstack/react-query";
+import axios from "axios"
 import { Search } from "@mui/icons-material";
 import { CarImage,CarDescription, CarPrice } from "./components";
-// import { useAppSelector } from "../../Store/store";
+import {useSearchParams,} from 'react-router-dom';
 
 const location ={
     address:"5,Mufutau Shobola, Ogba Lagos,Nigeria",
@@ -32,17 +33,18 @@ const features = [
 ]
 
 export default function SingleCar(){
-    const [searchParams, setSearchParams] = useSearchParams();
+    const searchParams = useSearchParams()[0];
     const model = searchParams.get('model');
-    const {brand}  = useParams();
-    const Selector = useAppSelector(function(state){ return state.CarData.Cars[brand]});
-    const data  = Selector.data;
-    const logo =  Selector.logo;
-    const info  = data.filter((adata)=> adata.model == model )[0]
+    const {data} = useQuery({
+        queryKey:["singleData"],
+        queryFn: async function(){
+            return axios.get(`/data/api/car/${model}`);
+        }
+    })
     
     return <div id="singleCarContainer">
-            <CarImage image={info.image} logo={logo} title={info.model} year={info.year}/>
-            <CarDescription  carFeatures={features} location={location}/>
+            <CarImage image={data?.data.image} logo={data?.data.logo} title={data?.data.name} year={data?.data.year}/>
+            <CarDescription  carFeatures={features} location={location} list={data?.data.featureDescription} />
             <CarPrice price="N120k"/>
     </div>
 }
