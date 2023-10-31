@@ -1,0 +1,184 @@
+#cartBackground {
+  position: relative;
+  min-height: 100vh;
+  width: 100vw;
+  color: black;
+}
+#cartBackground h2 {
+  text-align: center;
+  padding-bottom: 3.2em;
+  padding-top: 1em;
+  color: rgb(4, 194, 130);
+}
+#cartBackground h2 span {
+  color: rgb(4, 194, 130);
+}
+#cartBackground #mostContent {
+  display: flex;
+  width: 100%;
+  gap: 2.5em;
+}
+#cartBackground #mostContent #cartContent {
+  width: 100%;
+}
+#cartBackground #mostContent #paymentBarMainDiv {
+  position: absolute;
+  right: -125%;
+  top: 0px;
+  width: 25%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: aquamarine;
+  color: white;
+  box-shadow: 5em 5em 7em 7em black;
+}
+#cartBackground #mostContent #paymentBarMainDiv #atmCardBackground {
+  background: url("/card3.jpg");
+  background-size: 100%;
+  width: 25vw;
+  height: 15vw;
+  border-radius: 0.8em;
+  margin-top: 4em;
+  margin-bottom: 3.5em;
+  position: relative;
+  left: -16%;
+  box-shadow: 0.5em 0.5em 3em 0.2em rgb(40, 40, 40);
+}
+#cartBackground #mostContent #paymentBarMainDiv #atmCardBackground img {
+  width: 25%;
+}
+#cartBackground #mostContent #paymentBarMainDiv #atmCardBackground p {
+  color: white;
+}
+#cartBackground #mostContent #paymentBarMainDiv #atmCardBackground #masterCardText {
+  color: white;
+  font-size: 1em;
+  padding-left: 0.5em;
+}
+#cartBackground #mostContent #paymentBarMainDiv #atmCardBackground #cardNumberDiv {
+  display: flex;
+  width: 100%;
+  gap: 1.5em;
+  padding-top: 1.5em;
+  justify-content: center;
+}
+#cartBackground #mostContent #paymentBarMainDiv #atmCardBackground #nameAndExpiry {
+  display: flex;
+  padding: 2em 1.5em;
+  justify-content: space-between;
+}
+#cartBackground #mostContent #paymentBarMainDiv #paymentForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5em;
+}
+#cartBackground #mostContent #paymentBarMainDiv #paymentForm input {
+  color: navy;
+}
+#cartBackground #mostContent #paymentBarMainDiv #paymentForm #majorRow {
+  display: flex;
+  padding: 0 1.5em;
+}
+#cartBackground #mostContent #paymentBarMainDiv #paymentForm #majorRow #minorRow {
+  display: flex;
+  gap: 0.4em;
+}
+#cartBackground #mostContent #paymentBarMainDiv #paymentForm #majorRow #minorRow #dash {
+  position: relative;
+  border-left: 0.06em navy solid;
+  rotate: 15deg;
+  height: 60%;
+  bottom: -45%;
+}
+#cartBackground #mostContent #paymentBarMainDiv button {
+  background-color: navy;
+  color: aquamarine;
+  font-weight: 700;
+  position: absolute;
+  top: 82vh;
+  width: 70%;
+  margin: 0 15%;
+  padding: 1em;
+}
+#cartBackground #mostContent #paymentBarMainDiv.open {
+  right: 0%;
+}
+#cartBackground #mostContent #cartContent.checkout {
+  width: 70%;
+}
+
+#listHeader {
+  display: flex;
+  color: black;
+  width: 100%;
+  font-weight: 900;
+  padding: 0em 1.5em;
+  padding-bottom: 2em;
+}
+#listHeader p {
+  display: block;
+  width: 20%;
+  text-align: center;
+}
+
+#singleCartItemCard {
+  display: flex;
+  color: navy;
+  width: 100%;
+  align-items: center;
+  padding: 1em 1.5em;
+  border-bottom: 0.02em aquamarine solid;
+  border-top: 0.02em aquamarine solid;
+}
+#singleCartItemCard #itemDetails {
+  display: flex;
+  width: 60%;
+  justify-content: space-between;
+}
+#singleCartItemCard #itemDetails p {
+  width: 33.3333333333%;
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: 500;
+}
+#singleCartItemCard #itemDetails #color {
+  width: 33.3333333333%;
+  display: flex;
+  justify-content: center;
+}
+#singleCartItemCard #itemDetails #color div {
+  width: 2em;
+  height: 2em;
+  border-radius: 1em;
+}
+#singleCartItemCard #cartItemImage {
+  width: 20%;
+  height: auto;
+}
+#singleCartItemCard #cartItemImage img {
+  width: 100%;
+  height: 100%;
+}
+#singleCartItemCard #closeIcon {
+  width: 20%;
+  text-align: center;
+}
+
+#summaryContainer {
+  width: 100%;
+  display: flex;
+  padding-right: 2em;
+  flex-direction: column;
+  align-items: end;
+  padding-bottom: 4em;
+  gap: 0.3em;
+}
+#summaryContainer button {
+  margin-top: 2em;
+  background-color: aquamarine;
+  color: navy;
+  font-weight: 700;
+  width: 10%;
+}/*# sourceMappingURL=index.css.map */

@@ -5,7 +5,7 @@ import Rent from './Rent/Jsx';
 import SingleCar from './Single/Jsx';
 import Layout from './Layout/Jsx';
 import ComingSoon from './ComingSoon/Jsx';
-import Upload from './util';
+import Cart from './Cart/Jsx';
 
 import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 
@@ -33,8 +33,8 @@ const route  = createBrowserRouter([
           element:<SingleCar/>
         },
         {
-          path:'/upload',
-          element:<Upload/>
+          path:'/cart',
+          element:<Cart/>
         },
         {
           path:'*',
