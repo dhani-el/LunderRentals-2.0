@@ -106,12 +106,11 @@ export function Cars({brand}){
 function Car({car}){
 
     function useAddToCartClick(carId){
+        console.log(carId);
         const {isFetching} = useQuery({
             queryKey:["addToCart"],
             queryFn:function(){
-                Axios.post("/cart", carId,{
-                    withCredentials:true
-                });
+                Axios.post(`${baseUrl}cart`, carId);
             }
         });
     }
@@ -129,11 +128,11 @@ function Car({car}){
                     <span id='priceSpan'>
                         <p id='price' >{car.price}</p><p >/day</p>
                     </span>
-                    <Link to={`/cart`}>
-                        <span id='detailsSpan'>
+                    {/* <Link to={`/cart`}> */}
+                        <span id='detailsSpan' onClick={e =>{e.stopPropagation(); useAddToCartClick(car._id) }} >
                             ADD TO CART
                         </span>
-                    </Link>
+                    {/* </Link> */}
                     </div>
                 </Card>
     </div>
