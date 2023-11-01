@@ -3,6 +3,7 @@ const route = express.Router();
 const {upload,randomName,fromS3,deleteFromS3, toS3} = require('../Utils/ImageUtils');
 const CAR_DB = require("../Schemas/CarsSchema");
 const BRAND_DB = require("../Schemas/BrandSchema");
+const USERDB = require("../Schemas/userSchema");
 
 
 
@@ -45,6 +46,25 @@ route.get("/car/:name", async function(req,res){
     data.image = await fromS3(data.image);
     res.json(data);
 });
+
+route.get("/cart", async function(req,res){
+    try {
+        const cartItems = await USERDB.findOne({name:"daniel ukuhor"}).populate("cart").select("cart");
+        res.send(cartItems);
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+route.post("/cart",  async function(req,res){
+    try{
+       const newCart =  await USERDB.findOneAndUpdate({name:req.user.name},
+        {"$push":{"cart":req.body.cartItem}},{new:true}).select("cart");
+       res.send(newCart);
+    }catch(error){
+        return console.log(error);
+    }
+})
 
 route.post("/brand", upload.single("image"), async function(req,res){
     const logoName  = randomName();
@@ -99,5 +119,14 @@ route.delete('/car/:carImage',async function(req,res){
     res.send("brand deleted");
 })
 
+route.delete("/cart", async function(req,res){
+    try{
+        const newCart =  await USERDB.findOneAndUpdate({name:req.user.name},
+         {"$pull":{"cart":req.body.cartItem}},{new:true}).select("cart");
+        res.send(newCart);
+     }catch(error){
+         return console.log(error);
+     }
+})
 
 module.exports = route

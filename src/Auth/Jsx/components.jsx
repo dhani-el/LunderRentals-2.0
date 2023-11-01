@@ -9,25 +9,28 @@ import { useQuery,useQueryClient } from "@tanstack/react-query";
 const baseUrl = "http://localhost:3000/"
 
 export function Login(){
+    const Qclient = useQueryClient();
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
     const [shouldSend, setShouldSend] = useState(false);
-    const Qclient = useQueryClient();
     const payload = {username : userName, password: password}
+    
     const {isFetching,data} = useQuery({
         queryKey:["login"],
         queryFn: ()=> axios.post(`${baseUrl}auth/login`,payload)
             .then(function(response){
                 setShouldSend(false);
-                console.log(response);
-                return response;
+                console.log(response.data);
+                return response.data;
+            }).then(function(user){
+                SaveLoggedInUser(user)
+                return user
             })
         ,
         enabled: shouldSend,
         retry:0,
         refetchOnWindowFocus:false,
     });
-
     function handleInputChange(e, setFunc){
         if(e != null){
             setFunc(e.target.value);
@@ -45,15 +48,16 @@ export function Login(){
         })
         return fieldHealth.length
     }
-
     function logUserIn(){
         setShouldSend(true);
         Qclient.refetchQueries({queryKey:["login"],exact:true})
     }
+    function SaveLoggedInUser(user){
+        document.cookie = `user=${user};expires=${new Date(Date.now() + 1000*60*60)}`
+    }
     function indicateUserLoggedIn(){
         console.log('user logged in');
     }
-
 
     return <motion.div className="formDiv" id="logInForm" >
                 <Box component='form' className="form"  >
