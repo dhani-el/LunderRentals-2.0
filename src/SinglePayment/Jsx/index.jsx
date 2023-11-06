@@ -19,7 +19,7 @@ export default function SinglePayment(){
     return <div id="singlePaymentContainer">
         <div id="centerer">
            {!isFetching && <CarImage image={data.data?.image} brand={data.data?.brand} model={data.data?.name} />}
-            <Payment/>
+            <Payment amount={data.data?.price} />
         </div>
     </div>
 }

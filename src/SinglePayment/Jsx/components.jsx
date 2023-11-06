@@ -11,7 +11,7 @@ export function CarImage({image,brand,model}){
     </div>
 }
 
-export function Payment(){
+export function Payment({amount}){
     return <div id="paymentContainer">
                 <h3>PAYMENT DETAILS</h3>
                 <div id="allInputContainer">
@@ -23,7 +23,7 @@ export function Payment(){
                     </div>
                     <span>
                     <p>PAYMENT AMOUNT:</p>
-                    <p id="amountP"> N 45,000</p>
+                    <p id="amountP"> {amount ? `N ${amount}` : "free"}</p>
                     </span>
                 </div>
                 <Button variant="contained" >PAY</Button>
