@@ -40,7 +40,9 @@ export default function SingleCar(){
         queryKey:["singleData"],
         queryFn: async function(){
             return axios.get(`/data/api/car/${model}`);
-        }
+        },
+        refetchOnWindowFocus:false,
+        retry:0,
     })
     
     return <div id="singleCarContainer">
