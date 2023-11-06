@@ -115,7 +115,7 @@ export function Footer(){
 
 function CartLink({numberOfItems}){
     return <div id='cartLinkMainDiv'>
-        <p id='noOfItems'>{numberOfItems}</p>
+        {/* <p id='noOfItems'>{numberOfItems}</p> */}
         <Link to="/cart">
             <ShoppingBag id="cartIcon"/>
         </Link>
