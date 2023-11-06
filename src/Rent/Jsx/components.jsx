@@ -2,14 +2,13 @@ import { useState} from 'react';
 import { TextField, Card } from "@mui/material";
 import { Search, Close } from "@mui/icons-material";
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 import { useQuery,useQueryClient } from '@tanstack/react-query';
 import Axios from 'axios';
 import 'swiper/css';
 import '../Styles/index.css';
 
-// axios.defaults.withCredentials = true;
 
 const baseUrl = "http://localhost:3000/"
 
@@ -109,6 +108,7 @@ export function Cars({brand}){
 
 function Car({car}){
     const [isQueryEnabled, setIsQueryEnabled] = useState(false);
+    const navigate = useNavigate();
     const {isFetching} = useQuery({
         queryKey:["addToCartRent"],
         queryFn:()=> Axios.post(`${baseUrl}data/api/cart`, {cartItem:car._id},{withCredentials:true}).then(function(response){
@@ -124,8 +124,8 @@ function Car({car}){
         setIsQueryEnabled(true);
     }
 
-    return <div id='Acar'>
-                <Card className='aCarCard' >
+    return <div id='Acar' onClick={()=>{navigate(`${car.brand}?model=${car.name}`)}} >
+                <Card className='aCarCard'  >
                     <div id='firstDiv'>
                         <img src={car.image} /> 
                     <div id='textDiv'>
@@ -137,7 +137,7 @@ function Car({car}){
                     <span id='priceSpan'>
                         <p id='price' >{car.price}</p><p >/day</p>
                     </span>
-                        <span id='detailsSpan' onClick={e =>{e.stopPropagation(); useAddToCartClick() }} >
+                        <span id='detailsSpan' onClickCapture={e =>{e.stopPropagation(); useAddToCartClick() }} >
                             ADD TO CART
                         </span>
                     </div>
