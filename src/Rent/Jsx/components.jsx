@@ -124,7 +124,7 @@ function Car({car}){
         setIsQueryEnabled(true);
     }
 
-    return <div id='Acar' onClick={()=>{navigate(`${car.brand}?model=${car.name}`)}} >
+    return <div id='Acar' onClick={()=>{navigate(`${car.brand}?id=${car._id}`)}} >
                 <Card className='aCarCard'  >
                     <div id='firstDiv'>
                         <img src={car.image} /> 

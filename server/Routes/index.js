@@ -42,8 +42,8 @@ route.get("/cars/:brand", async function(req,res){
     res.json(data);
 });
 
-route.get("/car/:name", async function(req,res){
-    const data = await CAR_DB.findOne().where("name").equals(req.params.name);
+route.get("/car/:id", async function(req,res){
+    const data = await CAR_DB.findOne({_id:req.params.id})
     data.image = await fromS3(data.image);
     res.json(data);
 });

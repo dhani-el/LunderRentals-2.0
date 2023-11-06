@@ -33,13 +33,15 @@ const features = [
     },
 ]
 
+const baseUrl = "http://localhost:3000/"
+
 export default function SingleCar(){
     const searchParams = useSearchParams()[0];
-    const model = searchParams.get('model');
+    const id = searchParams.get('id');
     const {data} = useQuery({
         queryKey:["singleData"],
         queryFn: async function(){
-            return axios.get(`/data/api/car/${model}`);
+            return axios.get(`${baseUrl}data/api/car/${id}`);
         },
         refetchOnWindowFocus:false,
         retry:0,
@@ -50,7 +52,7 @@ export default function SingleCar(){
             <CarDescription  carFeatures={features} location={location} list={data?.data.featureDescription} />
             <CarPrice price="N120k"/>
 
-            <Link to={"/payment"}>
+            <Link to={"/payment/"}>
                 <Button>PAY NOW</Button>
             </Link>
     </div>
