@@ -87,7 +87,8 @@ export function CarPrice({price,id}){
             return response
         }),
         enabled:isQueryEnabled,
-        refetchOnWindowFocus:false
+        refetchOnWindowFocus:false,
+        retry:0,
     })
 
     function HandleAddtoCartClick(){
