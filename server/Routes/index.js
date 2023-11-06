@@ -65,7 +65,7 @@ route.post("/cart",  async function(req,res){
     try{
         console.log(req.body);
        const newCart =  await USERDB.findOneAndUpdate({name:req.user._doc.name},
-        {$push:{"cart":req.body.cartItem}},{new:true});
+        {$push:{"cart":req.body.cartItem}},{new:true}).select("cart");
         console.log("this is the result of the new cart",newCart);
        res.send(newCart);
        return
