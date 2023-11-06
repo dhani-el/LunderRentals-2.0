@@ -1,10 +1,14 @@
-import { forwardRef } from "react";
+import { forwardRef, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 import { motion } from "framer-motion";
 import { Close } from "@mui/icons-material";
 import productImage from "/imageOne.png";
 import { Button, TextField } from "@mui/material";
-import MasterCard from "/masterCard.png"
+import MasterCard from "/masterCard.png";
 
+
+const baseUrl = "http://localhost:3000/"
 
 export function ListOfCartItems({cartItems}){
     return <div id="cartItemsCard" >
@@ -26,6 +30,24 @@ function ListHeader(){
 }
 
 function SingleCartItem({itemDetails}){
+    const [removeItem, setRemoveItem] = useState(false);
+    const {data,isFetching} = useQuery({
+        queryKey:["removeCartItem"],
+        queryFn: async ()=> await axios.delete(`${baseUrl}data/api/cart/${itemDetails._id}`, {withCredentials:true})
+        .then(function(response){
+            setRemoveItem(false);
+            return response
+        }),
+        enabled:removeItem,
+        retry:0,
+        refetchOnWindowFocus:false,
+    })
+
+    function handleRemoveCartItem(){
+        console.log("an item is about to be removed");
+        setRemoveItem(true);
+    }
+
     return <div id="singleCartItemCard">
             <div id="cartItemImage">
                 <img src= {itemDetails.image} />
@@ -35,7 +57,7 @@ function SingleCartItem({itemDetails}){
                 <Colour color={itemDetails.color} />
                 <p>N {itemDetails.price}</p>
             </div>
-            <Close id = "closeIcon" />
+            <Close id = "closeIcon" onClick={function(){handleRemoveCartItem()}}/>
     </div>
 }
 

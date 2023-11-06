@@ -127,10 +127,11 @@ route.delete('/car/:carImage',async function(req,res){
     res.send("brand deleted");
 })
 
-route.delete("/cart", async function(req,res){
+route.delete("/cart/:id", async function(req,res){
     try{
-        const newCart =  await USERDB.findOneAndUpdate({name:req.user.name},
-         {"$pull":{"cart":req.body.cartItem}},{new:true}).select("cart");
+        console.log("id",req.params.id);
+        const newCart =  await USERDB.findOneAndUpdate({name:req.user._doc.name},
+         {$pull:{"cart":req.params.id}},{new:true});
         res.send(newCart);
      }catch(error){
          return console.log(error);
