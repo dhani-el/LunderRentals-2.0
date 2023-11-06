@@ -1,0 +1,84 @@
+#singlePaymentContainer {
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(220, 220, 220);
+}
+#singlePaymentContainer #centerer {
+  width: 90%;
+  height: 80vh;
+  position: relative;
+  left: 5%;
+}
+#singlePaymentContainer #centerer #carImageDiv {
+  width: 50%;
+  height: 70%;
+  background-color: aquamarine;
+  border-radius: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: absolute;
+  left: 5%;
+  top: 15%;
+  box-shadow: 0.2em 0.2em 1.5em 0.5em rgb(17, 17, 17);
+}
+#singlePaymentContainer #centerer #carImageDiv img {
+  width: inherit;
+  height: auto;
+}
+#singlePaymentContainer #centerer #carImageDiv #metaData {
+  position: absolute;
+  color: navy;
+  font-weight: 900;
+  font-size: 2em;
+  top: 70%;
+}
+#singlePaymentContainer #centerer #paymentContainer {
+  background-color: grey;
+  position: absolute;
+  border-radius: 1em;
+  right: 20%;
+  top: 5%;
+  width: 35%;
+  height: 90%;
+  padding-left: 2.5em;
+  padding-top: 2.5em;
+  box-shadow: 0.2em 0.2em 1.5em 0.5em rgb(17, 17, 17);
+}
+#singlePaymentContainer #centerer #paymentContainer h3 {
+  margin-bottom: 2em;
+}
+#singlePaymentContainer #centerer #paymentContainer #allInputContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+#singlePaymentContainer #centerer #paymentContainer #allInputContainer input {
+  color: white;
+  font-weight: 700;
+}
+#singlePaymentContainer #centerer #paymentContainer #allInputContainer span {
+  display: flex;
+  gap: 0.5em;
+}
+#singlePaymentContainer #centerer #paymentContainer #allInputContainer span p {
+  padding-top: 1.5em;
+}
+#singlePaymentContainer #centerer #paymentContainer #allInputContainer span #amountP {
+  padding-left: 0.4em;
+  color: navy;
+  font-weight: 700;
+}
+#singlePaymentContainer #centerer #paymentContainer button {
+  width: 70%;
+  margin: 4em 15%;
+  font-size: 1em;
+  background-color: aquamarine;
+  color: navy;
+  font-weight: 700;
+}/*# sourceMappingURL=index.css.map */

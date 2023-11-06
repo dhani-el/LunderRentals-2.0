@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Place,Streetview } from '@mui/icons-material';
+import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import '../Styles/index.css'
