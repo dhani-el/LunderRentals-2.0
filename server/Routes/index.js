@@ -50,7 +50,7 @@ route.get("/car/:id", async function(req,res){
 
 route.get("/cart", async function(req,res){
     try {
-        const cartItems = await USERDB.findOne({name:"daniel ukuhor"}).populate("cart").select("cart");
+        const cartItems = await USERDB.findOne({name:req.user._doc.name}).populate("cart").select("cart");
         res.send(cartItems);
     } catch (error) {
         console.log(error);
@@ -58,9 +58,7 @@ route.get("/cart", async function(req,res){
 });
 
 route.post("/cart",  async function(req,res){
-    console.log(req.user);
     console.log(req.isAuthenticated(),"user is authorised");
-    console.log("session ",req.sessionID);
     if(req.user != null){
     try{
         console.log(req.body);

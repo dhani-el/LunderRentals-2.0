@@ -28,7 +28,7 @@ function ListHeader(){
 function SingleCartItem({itemDetails}){
     return <div id="singleCartItemCard">
             <div id="cartItemImage">
-                <img src= {productImage} />
+                <img src= {itemDetails.image} />
             </div>
             <div id="itemDetails">
                 <p>{itemDetails.name}</p>
