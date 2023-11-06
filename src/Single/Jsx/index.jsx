@@ -38,10 +38,10 @@ const baseUrl = "http://localhost:3000/"
 export default function SingleCar(){
     const searchParams = useSearchParams()[0];
     const id = searchParams.get('id');
-    const {data} = useQuery({
+    const {data, isFetching} = useQuery({
         queryKey:["singleData"],
         queryFn: async function(){
-            return axios.get(`${baseUrl}data/api/car/${id}`);
+            return await axios.get(`${baseUrl}data/api/car/${id}`);
         },
         refetchOnWindowFocus:false,
         retry:0,
@@ -52,8 +52,6 @@ export default function SingleCar(){
             <CarDescription  carFeatures={features} location={location} list={data?.data.featureDescription} />
             <CarPrice price="N120k"/>
 
-            <Link to={"/payment/"}>
-                <Button>PAY NOW</Button>
-            </Link>
+            {!isFetching ? <Link to={`/payment/${data.data._id}`}>    <Button>PAY NOW</Button>    </Link> : <Button>PAY NOW</Button> }
     </div>
 }

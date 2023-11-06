@@ -1,12 +1,12 @@
 import { Button, TextField } from "@mui/material";
 import TestImage from "/imageOne.png";
 
-export function CarImage(){
+export function CarImage({image,brand,model}){
     return <div id="carImageDiv">
-        <img src={TestImage} />
+        <img src={image} />
         <div id="metaData">
-            <p id="brand">LAMBORGHINI</p>
-            <p id="model">"AVENTADOR"</p>
+            <p id="brand">{brand}</p>
+            <p id="model">"{model}"</p>
         </div>
     </div>
 }
