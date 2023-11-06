@@ -1,8 +1,12 @@
+import { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Place,Streetview } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
 import '../Styles/index.css'
 
+const baseUrl = "http://localhost:3000/"
 
 export function CarImage({image,logo,title,year}){
     return <div id="carImageDiv">
@@ -70,9 +74,29 @@ function CarLocation({meters,address}){
     </div>
 }
 
-export function CarPrice({price}){
+export function CarPrice({price,id}){
+    const [isQueryEnabled, setIsQueryEnabled] = useState(false);
+    const {data} = useQuery({
+        queryKey:["addtocart"],
+        queryFn:()=> axios.post(`${baseUrl}data/api/cart`,{cartItem:id},{
+            headers:{
+                'Content-Type':'multipart/form-data,'
+            },
+            withCredentials:true,
+        }).then(function(response){
+            setIsQueryEnabled(false);
+            return response
+        }),
+        enabled:isQueryEnabled,
+        refetchOnWindowFocus:false,
+        retry:0,
+    })
+
+    function HandleAddtoCartClick(){
+        setIsQueryEnabled(true)
+    }
     return  <div id='priceComponent'>
                 <div id='pricePDiv'><p>{price}</p><p>/day</p></div>
-                <span><Link to="/payment">Add to Cart</Link></span>
+                <span onClick={()=> HandleAddtoCartClick()} >Add to Cart</span>
             </div>
 }
