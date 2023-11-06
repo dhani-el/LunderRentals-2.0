@@ -1,37 +1,25 @@
 require("dotenv").config();
 const express = require("express");
 const route  = express.Router();
-const LocalStrategy = require("passport-local").Strategy;
 const passport = require("passport");
 const USERDB = require("../Schemas/userSchema");
 
-
-passport.use(new LocalStrategy(async function _verify(username, password,done){
-    const user = await USERDB.findOne({name:username});
-
-    if(!user) {
-        console.log("no user");
-        return done(null, false, {message:"user with this username does not exist"});
-    }
-    else if (user.password !== password) {
-        console.log("wrong password");
-        return done(null, false, {message:"password is wrong"});
-    }
-    else return done(null, user)
-}));
-
 passport.serializeUser(function(user,done){
-    return done(null, user.name);
+    console.log("this is the serialized function and this is the value of user",user)
+    return done(null, {...user});
 });
 
-passport.deserializeUser(async function(username,done){
-    const user = await USERDB.findOne({name:username});
-    return done(null,user);
+passport.deserializeUser( function(username,done){
+    console.log("this is the deserialized function and this is the value of username ",username)
+    
+    // const user = await USERDB.findOne({name:username});
+    return done(null,username);
 });
 
 route.post("/login",  passport.authenticate('local',{failureRedirect:"/login"}), function(req, res){
  
     console.log(req.user,"and this");
+    console.log(req.isAuthenticated(),"user is auth");
     res.send(req.user.name);
 });
 

@@ -25,6 +25,7 @@ route.get("/brand/:brand", async function(req,res){
 });
 
 route.get("/cars", async function(req,res){
+    console.log(req.sessionID,"cookies");
     const data = await CAR_DB.find().select('-address -meters -featureDescription -featureIcon');
     for(const info of data){
         info.image = await fromS3(info.image);
@@ -57,13 +58,22 @@ route.get("/cart", async function(req,res){
 });
 
 route.post("/cart",  async function(req,res){
+    console.log(req.user);
+    console.log(req.isAuthenticated(),"user is authorised");
+    console.log("session ",req.sessionID);
+    if(req.user != null){
     try{
-       const newCart =  await USERDB.findOneAndUpdate({name:req.user.name},
-        {"$push":{"cart":req.body.cartItem}},{new:true}).select("cart");
+        console.log(req.body);
+       const newCart =  await USERDB.findOneAndUpdate({name:req.user._doc.name},
+        {$push:{"cart":req.body.cartItem}},{new:true});
+        console.log("this is the result of the new cart",newCart);
        res.send(newCart);
+       return
     }catch(error){
-        return console.log(error);
+     console.log(error);
     }
+}
+res.send("please login to add to cart")
 })
 
 route.post("/brand", upload.single("image"), async function(req,res){

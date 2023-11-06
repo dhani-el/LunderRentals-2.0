@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const Parser = require("body-parser");
+const cookieParser = require("cookie-parser")
 const port = process.env.PORT || 3000;
 const path = require("path");
 const Cors = require("cors");
@@ -10,8 +11,7 @@ const passport  = require("passport");
 const session = require("express-session");
 const MongoStore  = require("connect-mongo");
 
-const DataRoute = require("./Routes");
-const AuthRoute = require("./Routes/auth");
+require("./Utils/authUtils");
 
 mongoose.set('strictQuery', false);
 mongoose.connect(process.env.DATABASE_URL);
@@ -22,20 +22,23 @@ db.once('open', function(){
 });
 
 
+app.use(Cors({origin:["http://localhost:5173"],
+    methods:['GET','POST','PUT','DELETE'],
+    allowedHeaders:["Content-Type","Authorization"],
+    credentials:true,}));
 
-app.use(Cors({origin:["http://localhost:5173"],methods:["GET","POST"]}));
 app.use(Parser.urlencoded({extended:false}));
 app.use(Parser.json());
 app.use(express.static(path.join(__dirname,"../dist")));
+app.use(cookieParser());
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized:false,
+    saveUninitialized:true,
     cookie:{
-        sameSite:'none',
-        secure : true,
-        httpOnly: false,
-        credentials:"include",
+        secure : false,
+        sameSite:'lax',
+         maxAge: 1000 * 60 * 60 * 60 * 24 * 2,
     },
     store: MongoStore.create({
         mongoUrl : process.env.DATABASE_URL,
@@ -44,9 +47,15 @@ app.use(session({
         touchAfter: 24 * 3600
     })
 }));
+
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(passport.authenticate("session"));
+
+
+
+const DataRoute = require("./Routes");
+const AuthRoute = require("./Routes/auth");
+
 app.use("/data/api",DataRoute);
 app.use("/auth",AuthRoute);
 

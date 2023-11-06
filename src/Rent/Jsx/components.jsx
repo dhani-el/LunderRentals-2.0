@@ -9,6 +9,8 @@ import Axios from 'axios';
 import 'swiper/css';
 import '../Styles/index.css';
 
+// axios.defaults.withCredentials = true;
+
 const baseUrl = "http://localhost:3000/"
 
 export function SearchComponent(){
@@ -41,6 +43,8 @@ export function Brands({handleBrandChange}){
     const {data} = useQuery({
         queryKey:["brandsQuery"],
         queryFn: ()=> Axios.get(`${baseUrl}data/api/brands`).then(function(response){return response}),
+        refetchOnWindowFocus:false,
+        retry:0
     });
 
     function handleStateChange(brandName){
@@ -104,15 +108,20 @@ export function Cars({brand}){
 }
 
 function Car({car}){
-
-    function useAddToCartClick(carId){
-        console.log(carId);
-        const {isFetching} = useQuery({
-            queryKey:["addToCart"],
-            queryFn:function(){
-                Axios.post(`${baseUrl}cart`, carId);
-            }
-        });
+    const [isQueryEnabled, setIsQueryEnabled] = useState(false);
+    const {isFetching} = useQuery({
+        queryKey:["addToCartRent"],
+        queryFn:()=> Axios.post(`${baseUrl}data/api/cart`, {cartItem:car._id},{withCredentials:true}).then(function(response){
+                setIsQueryEnabled(false);
+                return response
+            })
+        ,
+        enabled: isQueryEnabled,
+        refetchOnWindowFocus:false,
+        retry:0
+    });
+    function useAddToCartClick(){
+        setIsQueryEnabled(true);
     }
 
     return <div id='Acar'>
@@ -128,11 +137,9 @@ function Car({car}){
                     <span id='priceSpan'>
                         <p id='price' >{car.price}</p><p >/day</p>
                     </span>
-                    {/* <Link to={`/cart`}> */}
-                        <span id='detailsSpan' onClick={e =>{e.stopPropagation(); useAddToCartClick(car._id) }} >
+                        <span id='detailsSpan' onClick={e =>{e.stopPropagation(); useAddToCartClick() }} >
                             ADD TO CART
                         </span>
-                    {/* </Link> */}
                     </div>
                 </Card>
     </div>

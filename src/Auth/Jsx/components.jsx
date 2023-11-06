@@ -17,7 +17,9 @@ export function Login(){
     
     const {isFetching,data} = useQuery({
         queryKey:["login"],
-        queryFn: ()=> axios.post(`${baseUrl}auth/login`,payload)
+        queryFn: ()=> axios.post(`${baseUrl}auth/login`,payload, {
+            withCredentials:true,
+        })
             .then(function(response){
                 setShouldSend(false);
                 console.log(response.data);
@@ -31,11 +33,14 @@ export function Login(){
         retry:0,
         refetchOnWindowFocus:false,
     });
+
+
     function handleInputChange(e, setFunc){
         if(e != null){
             setFunc(e.target.value);
         }
     }
+
     function handleLoginClick(){
         if (checkFields([userName,password]) > 0) {
             return
@@ -49,11 +54,14 @@ export function Login(){
         return fieldHealth.length
     }
     function logUserIn(){
-        setShouldSend(true);
-        Qclient.refetchQueries({queryKey:["login"],exact:true})
+        // setShouldSend(true);
+        // Qclient.refetchQueries({queryKey:["login"],exact:true})
+        axios.post(`${baseUrl}auth/login`,payload, {
+            withCredentials:true,
+        })
     }
     function SaveLoggedInUser(user){
-        document.cookie = `user=${user};expires=${new Date(Date.now() + 1000*60*60)}`
+        // document.cookie = `user=${user};expires=${new Date(Date.now() + 1000*60*60)}`
     }
     function indicateUserLoggedIn(){
         console.log('user logged in');

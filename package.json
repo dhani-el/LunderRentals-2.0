@@ -10,8 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.14.3",
@@ -23,7 +21,10 @@
     "@tanstack/react-query-devtools": "^4.33.0",
     "@types/three": "^0.155.0",
     "axios": "^1.5.0",
+    "express-session": "^1.17.3",
     "framer-motion": "^10.16.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-feather": "^2.0.10",
     "react-redux": "^8.1.2",
     "react-responsive": "^9.0.2",
