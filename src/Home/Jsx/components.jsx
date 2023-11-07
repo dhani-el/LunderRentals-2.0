@@ -7,6 +7,7 @@ import { OrbitControls, MeshReflectorMaterial, PerspectiveCamera } from '@react-
 import {LinearEncoding, RepeatWrapping, TextureLoader} from 'three';
 import { useMediaQuery } from 'react-responsive';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import splashImage from "/one.png";
 
 
@@ -124,8 +125,38 @@ export function Ground(){
             </mesh>
 }
 
-export function SplashScreen(){
-    return <div id='mainSplashDiv'>
-                <img src={splashImage} alt='lunder rentals splash screen image' />
-            </div>
+export function SplashScreen({displaySplash}){
+const animations = {
+    main:{
+        initial : {
+            opacity:1,
+            zindex:20,
+            duration:'2s'
+        },
+        animationOn:{
+            opacity:1,
+            zindex:20,
+        },
+        animationOff:{
+            opacity:0,
+            zindex:0,
+            duration:'2s'
+        }
+    },
+    image:{
+        initial:{
+            scaleX:1.0,
+            scaleY:1.0,
+            duration:'1s'
+        },
+        animation:{
+            scaleX:1.2,
+            scaleY:1.2,
+            duration:'1s'
+        }
+    }
+}
+    return <motion.div id='mainSplashDiv' variants={animations.main} initial="initial" animate={displaySplash ? "animationOn" : "animationOff"} >
+                <motion.img src={splashImage} alt='lunder rentals splash screen image' variants={animations.image} initial="initial" animate={displaySplash ?"animation" : "initial"} />
+            </motion.div>
 }

@@ -18,7 +18,7 @@ export default function Home(){
                     <CallToAction/>
                 </div>
                 <Modelo setModelReady={setRemoveSplash}/>
-                {!removeSplash && <SplashScreen/>}
+                <SplashScreen displaySplash={!removeSplash} />
             </div>
 }
 
