@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef} from 'react';
+import { useEffect, useLayoutEffect, useRef, useState} from 'react';
 import { Button } from "@mui/material";
 import Swipe from "@mui/icons-material/Swipe";
 import { Canvas, useLoader} from '@react-three/fiber';
@@ -76,8 +76,10 @@ export function HomeCarModel({setModelReady}){
     const Scene = useLoader(GLTFLoader,'/lambo.glb');
 
     useLayoutEffect(function(){
+        console.log("inside layout effect #1");
         setModelReady(true);
-    });
+    },[]);
+
     return <>
                 <OrbitControls target={[0,0.35,0]}  maxPolarAngle={1.45} enablePan = {false} enableZoom = {false} />
                 <PerspectiveCamera makeDefault fov={50} position={[3,2,5]} />
@@ -125,13 +127,13 @@ export function Ground(){
             </mesh>
 }
 
-export function SplashScreen({displaySplash}){
-const animations = {
-    main:{
-        initial : {
+export function SplashScreen({displaySplash,progress}){
+    const animations = {
+        main:{
+          initial : {
             opacity:1,
             zindex:20,
-            duration:'2s'
+            duration:'2s',
         },
         animationOn:{
             opacity:1,
@@ -140,7 +142,8 @@ const animations = {
         animationOff:{
             opacity:0,
             zindex:0,
-            duration:'2s'
+            duration:'2s',
+            display:"none",
         }
     },
     image:{
@@ -158,5 +161,7 @@ const animations = {
 }
     return <motion.div id='mainSplashDiv' variants={animations.main} initial="initial" animate={displaySplash ? "animationOn" : "animationOff"} >
                 <motion.img src={splashImage} alt='lunder rentals splash screen image' variants={animations.image} initial="initial" animate={displaySplash ?"animation" : "initial"} />
+                {/* <ProgressBar/> */}
             </motion.div>
 }
+
