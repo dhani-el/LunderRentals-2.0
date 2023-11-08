@@ -7,6 +7,7 @@ import { OrbitControls, MeshReflectorMaterial, PerspectiveCamera } from '@react-
 import {LinearEncoding, RepeatWrapping, TextureLoader} from 'three';
 import { useMediaQuery } from 'react-responsive';
 import { Link } from 'react-router-dom';
+import LoadingBar from "react-top-loading-bar"
 import { motion } from 'framer-motion';
 import splashImage from "/one.png";
 
@@ -127,7 +128,7 @@ export function Ground(){
             </mesh>
 }
 
-export function SplashScreen({displaySplash,progress}){
+export function SplashScreen({displaySplash}){
     const animations = {
         main:{
           initial : {
@@ -159,9 +160,24 @@ export function SplashScreen({displaySplash,progress}){
         }
     }
 }
+    const LoadingBarRef = useRef(null);
+
+    useEffect(function(){
+        if (LoadingBarRef === null) {
+            return     
+        }
+        LoadingBarRef.current.continuousStart()
+    });
+
+    useEffect(function(){
+        if ( displaySplash === false) {
+           LoadingBarRef.current.complete();
+        }
+    }, []);
+
     return <motion.div id='mainSplashDiv' variants={animations.main} initial="initial" animate={displaySplash ? "animationOn" : "animationOff"} >
                 <motion.img src={splashImage} alt='lunder rentals splash screen image' variants={animations.image} initial="initial" animate={displaySplash ?"animation" : "initial"} />
-                {/* <ProgressBar/> */}
+                <LoadingBar ref={LoadingBarRef} color='aquamarine' height="2em" />
             </motion.div>
 }
 

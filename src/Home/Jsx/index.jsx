@@ -13,7 +13,6 @@ export default function Home(){
     },[]);
 
     return <div id = "bodyDiv">
-                  <ProgressBar/>
                 <div id='abslouteContentContainer'>
                     <div id='top'>
                     {isLandScape && <AchivementText/>}
@@ -27,27 +26,4 @@ export default function Home(){
                 <SplashScreen displaySplash={!removeSplash}  />
       
             </div>
-}
-
-function ProgressBar(){
-    const [progressValue, setProgressBar] = useState(0);
-
-    useEffect(function(){
-        let  timeoutId
-        if (progressValue >= 90) {
-            return
-        }
-        timeoutId = setTimeout(() => {
-            setProgressBar(initial => initial + 10)
-            console.log(progressValue);
-        }, 2000);
-
-
-        return ()=>{
-            clearTimeout(timeoutId);
-        }
-    })
-    return <div style={{zIndex:50, color:"white", position:"absolute"}} >
-        <p>{progressValue}/100</p>
-    </div>
 }
