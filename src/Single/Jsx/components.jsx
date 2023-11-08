@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Place,Streetview } from '@mui/icons-material';
-import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
+import IconPack from '../../util';
 import '../Styles/index.css'
 
 const baseUrl = "http://localhost:3000/"
@@ -44,7 +44,7 @@ function Features({features}){
                 <Swiper spaceBetween={10} slidesPerView={2.4} id='swipeRR'>
                     {features.map(function(feature){
                         return <SwiperSlide id='SwipeRslide'>
-                            <Feature Icon={feature.Icon} featureValue={feature.featureValue} optFeature={(feature.optFeature?feature.optFeature:null)} />
+                            <Feature Icon={feature.icon} featureValue={feature.description} optFeature={(feature.optFeature?feature.optFeature:null)} />
                         </SwiperSlide>
                     })}
                 </Swiper>
@@ -53,12 +53,18 @@ function Features({features}){
 
 function Feature({Icon,featureValue,optFeature}){
     return <div id='singleFeature'>
-                <Icon id ="icon" />
+                <Fragment id = "icon" >
+                    <Iconverter iconString={Icon} />
+                </Fragment>
                 <span id='featureValueSpan'>
                     <p id='text'>{featureValue}{optFeature && <span>{optFeature}</span>}</p>
-                    
                 </span>
             </div>
+}
+
+function Iconverter({iconString}){
+    const Icon = IconPack[iconString] == null ? IconPack.default : IconPack[iconString];
+    return Icon 
 }
 
 function CarLocation({meters,address}){
