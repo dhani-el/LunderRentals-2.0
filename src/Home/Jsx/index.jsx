@@ -5,16 +5,16 @@ import '../Styles/index.css';
 
 export default function Home(){
     const isLandScape  = useMediaQuery({query: '(orientation:landscape)'});
-    return <div id = "bodyDiv">
-                <div id='abslouteContentContainer'>
-                    <div id='top'>
-                    {isLandScape && <AchivementText/>}
-                        <LargeText/>
-                        {!isLandScape && <AchivementText/>}
-                        <Paragraph/>
+        return <div id = "bodyDiv">
+                    <div id='abslouteContentContainer'>
+                        <div id='top'>
+                        {isLandScape && <AchivementText/>}
+                            <LargeText/>
+                            {!isLandScape && <AchivementText/>}
+                            <Paragraph/>
+                        </div>
+                        <CallToAction/>
                     </div>
-                    <CallToAction/>
+                    <Modelo/>
                 </div>
-                <Modelo/>
-            </div>
 }

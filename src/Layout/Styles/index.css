@@ -18,6 +18,11 @@
 #header #navBar {
   display: none;
 }
+#header #authNmenuDiv {
+  display: flex;
+  align-items: center;
+  gap: 1.5em;
+}
 #header #authButtonDiv {
   display: none;
 }

@@ -17,8 +17,10 @@ export function Header(){
     return <div id = "header">
              <Logo/>
              <NavBar/>
+             <div id='authNmenuDiv'>
              <Authenticator loggedIn = {loginData.isUserLoggedIn} username={loginData.username} />
              <Menu/>
+             </div>
         </div>
 }
 
