@@ -79,23 +79,21 @@
 }
 #footerContainer #logo {
   width: 8em;
-  margin-left: 2em;
+  margin-left: 0.5em;
 }
 #footerContainer #logo img {
   width: 100%;
   height: auto;
-  opacity: 0.4;
+  opacity: 0.2;
 }
 #footerContainer #quickLinks {
-  display: flex;
+  display: grid;
   width: 100%;
   height: 70%;
-  flex-wrap: wrap;
-  align-items: center;
-  padding: 2em;
+  grid-template-columns: 1fr 1fr;
+  padding-top: 2em;
 }
 #footerContainer #quickLinks a {
-  width: 30vw;
   color: rgb(170, 170, 170);
   text-decoration: none;
   text-align: center;
@@ -151,5 +149,8 @@
   }
   #header #menu {
     display: none;
+  }
+  #footerContainer #quickLinks {
+    grid-template-columns: repeat(3, 1fr);
   }
 }/*# sourceMappingURL=index.css.map */
