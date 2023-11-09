@@ -76,7 +76,7 @@ body {
 }
 #bodyDiv #abslouteContentContainer #callToActionDiv {
   display: flex;
-  width: 100%;
+  width: 100vw;
   align-items: center;
   justify-content: center;
 }
@@ -87,10 +87,6 @@ body {
   font-family: "Courier New", Courier, monospace;
   position: absolute;
   top: 80vh;
-}
-#bodyDiv #abslouteContentContainer #callToActionDiv button a {
-  text-decoration: none;
-  color: black;
 }
 #bodyDiv #abslouteContentContainer #callToActionDiv button * {
   padding: none;
