@@ -38,7 +38,7 @@ const route  = createBrowserRouter([
           element:<Cart/>
         },
         {
-          path:'/payment',
+          path:'/payment/:id',
           element:<SinglePayment/>
         },
         {

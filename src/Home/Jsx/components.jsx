@@ -6,8 +6,8 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { OrbitControls, MeshReflectorMaterial, PerspectiveCamera } from '@react-three/drei';
 import {LinearEncoding, RepeatWrapping, TextureLoader} from 'three';
 import { useMediaQuery } from 'react-responsive';
-import { Link } from 'react-router-dom';
 import LoadingBar from "react-top-loading-bar"
+import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import splashImage from "/one.png";
 
@@ -41,8 +41,9 @@ export function Paragraph(){
 }
 
 export function CallToAction(){
+    const navigate = useNavigate()
     return <div id='callToActionDiv' >
-           <Link to='/rent' > <Button variant='contained' ><p>RENT NOW</p></Button></Link>
+            <Button variant='contained' onClick={()=> navigate("/rent")}  ><p>RENT NOW</p></Button>
         </div>
 }
 

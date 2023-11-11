@@ -87,20 +87,15 @@
 }
 #carsContainer #listOfCars {
   width: 100vw;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 2.2vh;
-}
-#carsContainer #listOfCars #keyDivs {
-  width: 95%;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3vh;
+  padding: 0em 1em;
 }
 #carsContainer #listOfCars #Acar .aCarCard {
   border-radius: 1em;
 }
 #carsContainer #listOfCars #Acar .aCarCard #firstDiv {
-  width: 100vw;
   height: 5vh;
   display: flex;
   justify-content: space-around;
@@ -137,13 +132,7 @@
 #carsContainer #listOfCars #Acar .aCarCard #secondDiv #priceSpan #price + p {
   color: gray;
 }
-#carsContainer #listOfCars #Acar .aCarCard #secondDiv a {
-  display: block;
-  width: 55%;
-  text-decoration: none;
-  color: navy;
-}
-#carsContainer #listOfCars #Acar .aCarCard #secondDiv a #detailsSpan {
+#carsContainer #listOfCars #Acar .aCarCard #secondDiv #detailsSpan {
   background-color: aquamarine;
   padding: 0.8em;
   border-top-left-radius: 0.5em;
@@ -151,9 +140,37 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: 55%;
+  color: navy;
 }
 
+@media (orientation: portrait) and (max-width: 300px) {
+  #carsContainer #listOfCars {
+    padding: 0.2em;
+  }
+  #carsContainer #listOfCars #keyDivs #Acar .aCarCard {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6em;
+  }
+  #carsContainer #listOfCars #keyDivs #Acar .aCarCard #secondDiv #priceSpan p {
+    font-size: 0.8em;
+  }
+  #carsContainer #listOfCars #keyDivs #Acar .aCarCard #secondDiv #detailsSpan {
+    padding: 0.2em;
+    font-size: 0.8em;
+  }
+}
+@media (orientation: portrait) and (min-width: 800px) {
+  #carsContainer #listOfCars {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (orientation: portrait) and (min-width: 1500px) {
+  #carsContainer #listOfCars {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
 @media (orientation: landscape) {
   #brandsContainer {
     height: auto;
@@ -174,11 +191,7 @@
     padding-left: 2em;
   }
   #carsContainer #listOfCars {
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
-  #carsContainer #listOfCars #keyDivs {
-    width: 42%;
+    grid-template-columns: 1fr 1fr;
   }
   #carsContainer #listOfCars #keyDivs #Acar .aCarCard {
     background-color: rgb(240, 240, 240);
@@ -186,5 +199,10 @@
   #carsContainer #listOfCars #keyDivs #Acar .aCarCard #firstDiv {
     width: 100%;
     height: 10vh;
+  }
+}
+@media (orientation: landscape) and (min-width: 1500px) {
+  #carsContainer #listOfCars {
+    grid-template-columns: repeat(3, 1fr);
   }
 }/*# sourceMappingURL=index.css.map */
