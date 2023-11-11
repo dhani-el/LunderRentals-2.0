@@ -21,14 +21,14 @@
 }
 
 body {
-  height: 100%;
+  min-height: 100%;
   color: white;
   font-family: monospace;
 }
 
 #bodyDiv {
   position: relative;
-  height: 90vh;
+  min-height: 100vh;
 }
 #bodyDiv #abslouteContentContainer {
   display: flex;
@@ -76,7 +76,7 @@ body {
 }
 #bodyDiv #abslouteContentContainer #callToActionDiv {
   display: flex;
-  width: 100%;
+  width: 100vw;
   align-items: center;
   justify-content: center;
 }
@@ -87,10 +87,6 @@ body {
   font-family: "Courier New", Courier, monospace;
   position: absolute;
   top: 80vh;
-}
-#bodyDiv #abslouteContentContainer #callToActionDiv button a {
-  text-decoration: none;
-  color: black;
 }
 #bodyDiv #abslouteContentContainer #callToActionDiv button * {
   padding: none;
@@ -129,6 +125,58 @@ body {
   height: auto;
 }
 
+@media (orientation: portrait) and (max-width: 300px) {
+  #bodyDiv #abslouteContentContainer #top #LargeTextDiv p {
+    font-size: 1.6em;
+  }
+  #bodyDiv #abslouteContentContainer #top #acheivementDivContainer {
+    gap: 3em;
+  }
+  #bodyDiv #abslouteContentContainer #top #acheivementDivContainer .singleAchivement .number {
+    font-size: 1.4em;
+  }
+  #bodyDiv #abslouteContentContainer #top #acheivementDivContainer .singleAchivement .number + p {
+    font-size: 0.6em;
+  }
+  #bodyDiv #abslouteContentContainer #top #paragraph {
+    padding: 0.5em;
+    font-size: 0.8em;
+  }
+  #bodyDiv #abslouteContentContainer #callToActionDiv button {
+    font-size: 0.5em;
+  }
+}
+@media (orientation: portrait) and (min-width: 600px) {
+  #bodyDiv #abslouteContentContainer #top #paragraph {
+    padding: 2em;
+    font-size: 1.2em;
+  }
+}
+@media (orientation: portrait) and (min-width: 800px) {
+  #bodyDiv #abslouteContentContainer #top #paragraph {
+    padding: 0em 3em;
+    font-size: 2em;
+  }
+  #bodyDiv #abslouteContentContainer #top #acheivementDivContainer {
+    gap: 15vw;
+  }
+  #bodyDiv #abslouteContentContainer #top #acheivementDivContainer .singleAchivement .number + p {
+    font-size: 1.2em;
+  }
+  #bodyDiv #abslouteContentContainer #top #acheivementDivContainer .singleAchivement .number {
+    font-size: 3.5em;
+  }
+  #bodyDiv #abslouteContentContainer #top #LargeTextDiv {
+    width: 60%;
+  }
+  #bodyDiv #abslouteContentContainer #top #LargeTextDiv p {
+    font-size: 4.5em;
+  }
+  #bodyDiv #abslouteContentContainer #callToActionDiv button {
+    font-size: 1.6em;
+    top: 75vh;
+  }
+}
 @media (orientation: landscape) {
   #bodyDiv #abslouteContentContainer {
     position: relative;

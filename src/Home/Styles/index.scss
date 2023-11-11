@@ -21,14 +21,14 @@
 }
 
 body{
-    height: 100%;
+    min-height: 100%;
     color: white;
     font-family:  monospace;
 }
 
 #bodyDiv{
     position: relative;
-    height: 90vh;
+    min-height: 100vh;
     #abslouteContentContainer{
         display: flex;
         flex-direction: column;
@@ -39,7 +39,7 @@ body{
             display: flex;
             align-items: center;
             flex-direction: column;
-        #acheivementDivContainer{
+            #acheivementDivContainer{
             display: flex;
             align-items: center;
             justify-content: center;
@@ -55,8 +55,8 @@ body{
                     color: rgb(171, 167, 167);
                 }
             }
-        }
-        #LargeTextDiv{
+            }
+            #LargeTextDiv{
             width: 100%;
             text-align: center;
             position: absolute;
@@ -66,17 +66,17 @@ body{
                 font-weight: 700;
                 text-align: center;
             }
-        }
-        #paragraph{
+            }
+            #paragraph{
             text-align: center;
             padding: 1em;
             position: absolute;
             top: 58vh;
+            }
         }
-    }
     #callToActionDiv{
         display: flex;
-        width: 100%;
+        width: 100vw;
         align-items: center;
         justify-content: center;
         button{
@@ -86,10 +86,6 @@ body{
             font-family: 'Courier New', Courier, monospace;
             position: absolute;
             top: 80vh;
-            a{
-                text-decoration: none;
-                color:black
-            }
         }
         button * {
             padding: none;
@@ -132,6 +128,89 @@ body{
     }
 }
 
+@media (orientation:'portrait') and (max-width:'300px') {
+    #bodyDiv{
+        #abslouteContentContainer{
+            #top{
+                #LargeTextDiv{
+                    p{
+                        font-size: 1.6em;
+                    }
+                }
+                #acheivementDivContainer{
+                    gap: 3em;
+                    .singleAchivement{
+                        .number{
+                            font-size: 1.4em;
+                        }
+                        .number + p{
+                            font-size: 0.6em;
+                        }
+                    }
+                }
+               #paragraph{
+                padding: 0.5em;
+                font-size: 0.8em;
+               } 
+            }
+            #callToActionDiv{
+                button{
+                    font-size: 0.5em;
+                }
+            }
+        }
+    }
+}
+
+@media (orientation:'portrait') and (min-width:'600px') {
+    #bodyDiv{
+        #abslouteContentContainer{
+            #top{
+               #paragraph{
+                padding: 2em;
+                font-size: 1.2em;
+               } 
+            }
+        }
+    }
+}
+
+@media (orientation:'portrait') and (min-width:'800px') {
+    #bodyDiv{
+        #abslouteContentContainer{
+            #top{
+               #paragraph{
+                padding:0em 3em;
+                font-size: 2em;
+               } 
+               #acheivementDivContainer{
+                gap: 15vw;
+                .singleAchivement{
+                    .number + p{
+                        font-size: 1.2em;
+                    }
+                    .number{
+                        font-size: 3.5em;
+                    }
+                }
+               }
+               #LargeTextDiv{
+                width: 60%;
+                p{
+                    font-size: 4.5em;
+                }
+
+               }
+            }
+            #callToActionDiv{
+                button{
+                    font-size: 1.6em;
+                    top: 75vh;
+                }
+           }
+        }
+    }
+}
 
 @media (orientation:'landscape'){
 

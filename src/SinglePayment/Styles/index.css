@@ -7,23 +7,25 @@
   background-color: rgb(220, 220, 220);
 }
 #singlePaymentContainer #centerer {
-  width: 90%;
-  height: 80vh;
+  width: 95%;
   position: relative;
-  left: 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 2em;
 }
 #singlePaymentContainer #centerer #carImageDiv {
-  width: 50%;
-  height: 70%;
+  width: 90%;
+  height: 40vh;
   background-color: aquamarine;
   border-radius: 1em;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  position: absolute;
-  left: 5%;
-  top: 15%;
+  position: relative;
+  top: 2vh;
   box-shadow: 0.2em 0.2em 1.5em 0.5em rgb(17, 17, 17);
 }
 #singlePaymentContainer #centerer #carImageDiv img {
@@ -31,21 +33,19 @@
   height: auto;
 }
 #singlePaymentContainer #centerer #carImageDiv #metaData {
-  position: absolute;
+  position: relative;
   color: navy;
   font-weight: 900;
   font-size: 2em;
-  top: 70%;
 }
 #singlePaymentContainer #centerer #paymentContainer {
   background-color: grey;
-  position: absolute;
+  position: relative;
   border-radius: 1em;
-  right: 20%;
-  top: 5%;
-  width: 35%;
+  top: -5vh;
+  width: 80%;
   height: 90%;
-  padding-left: 2.5em;
+  padding: 0em 2em;
   padding-top: 2.5em;
   box-shadow: 0.2em 0.2em 1.5em 0.5em rgb(17, 17, 17);
 }
@@ -58,9 +58,18 @@
   flex-direction: column;
   gap: 2em;
 }
+#singlePaymentContainer #centerer #paymentContainer #allInputContainer .css-v4u5dn-MuiInputBase-root-MuiInput-root:after {
+  border-bottom-color: white;
+}
+#singlePaymentContainer #centerer #paymentContainer #allInputContainer .css-v4u5dn-MuiInputBase-root-MuiInput-root:before {
+  border-bottom-color: white;
+}
 #singlePaymentContainer #centerer #paymentContainer #allInputContainer input {
   color: white;
   font-weight: 700;
+}
+#singlePaymentContainer #centerer #paymentContainer #allInputContainer div label {
+  color: white;
 }
 #singlePaymentContainer #centerer #paymentContainer #allInputContainer span {
   display: flex;
@@ -71,8 +80,11 @@
 }
 #singlePaymentContainer #centerer #paymentContainer #allInputContainer span #amountP {
   padding-left: 0.4em;
-  color: navy;
   font-weight: 700;
+}
+#singlePaymentContainer #centerer #paymentContainer #allInputContainer #cvvExpiryDiv {
+  display: flex;
+  gap: 2vw;
 }
 #singlePaymentContainer #centerer #paymentContainer button {
   width: 70%;
@@ -81,4 +93,110 @@
   background-color: aquamarine;
   color: navy;
   font-weight: 700;
+}
+
+@media (orientation: portrait) and (min-width: 700px) {
+  #singlePaymentContainer #centerer #paymentContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: -2vh;
+  }
+  #singlePaymentContainer #centerer #paymentContainer h3 {
+    font-size: 1.5em;
+    margin-bottom: 1em;
+    align-self: flex-start;
+  }
+  #singlePaymentContainer #centerer #paymentContainer #allInputContainer .css-w3s1g-MuiFormControl-root-MuiTextField-root {
+    width: 100%;
+  }
+  #singlePaymentContainer #centerer #paymentContainer #allInputContainer #cvvExpiryDiv {
+    align-items: center;
+    justify-content: space-around;
+  }
+  #singlePaymentContainer #centerer #paymentContainer #allInputContainer label {
+    font-size: 1.2em;
+  }
+  #singlePaymentContainer #centerer #paymentContainer #allInputContainer input {
+    font-size: 1.5em;
+    padding-top: 1em;
+  }
+  #singlePaymentContainer #centerer #paymentContainer #allInputContainer span p {
+    font-size: 1.4em;
+  }
+  #singlePaymentContainer #centerer #paymentContainer button {
+    font-size: 1.4em;
+    margin: 1em;
+  }
+}
+@media (orientation: portrait) and (min-width: 800px) {
+  #singlePaymentContainer #centerer #carImageDiv #metaData {
+    font-size: 3em;
+  }
+  #singlePaymentContainer #centerer #paymentContainer {
+    width: 70%;
+  }
+  #singlePaymentContainer #centerer #paymentContainer h3 {
+    font-size: 2.5em;
+    margin-bottom: 1em;
+    align-self: flex-start;
+  }
+  #singlePaymentContainer #centerer #paymentContainer #allInputContainer .css-w3s1g-MuiFormControl-root-MuiTextField-root {
+    width: 100%;
+  }
+  #singlePaymentContainer #centerer #paymentContainer #allInputContainer #cvvExpiryDiv {
+    align-items: center;
+    justify-content: space-around;
+  }
+  #singlePaymentContainer #centerer #paymentContainer #allInputContainer label {
+    font-size: 2.2em;
+  }
+  #singlePaymentContainer #centerer #paymentContainer #allInputContainer input {
+    font-size: 2.5em;
+    padding-top: 1em;
+  }
+  #singlePaymentContainer #centerer #paymentContainer #allInputContainer span p {
+    font-size: 2.4em;
+  }
+  #singlePaymentContainer #centerer #paymentContainer button {
+    font-size: 2.4em;
+    margin: 1em;
+  }
+}
+@media (orientation: landscape) {
+  #singlePaymentContainer #centerer {
+    width: 90%;
+    height: 80vh;
+    left: 5%;
+    flex-direction: row;
+    padding-top: 0em;
+  }
+  #singlePaymentContainer #centerer #carImageDiv {
+    width: 50%;
+    height: 70%;
+    position: absolute;
+    left: 5%;
+    top: 15%;
+  }
+  #singlePaymentContainer #centerer #carImageDiv #metaData {
+    position: absolute;
+    top: 70%;
+  }
+  #singlePaymentContainer #centerer #paymentContainer {
+    position: absolute;
+    right: 20%;
+    top: 5%;
+    width: 35%;
+    padding-left: 2.5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+  #singlePaymentContainer #centerer #paymentContainer h3 {
+    margin-bottom: 0em;
+  }
+  #singlePaymentContainer #centerer #paymentContainer button {
+    margin: 0em 0%;
+  }
 }/*# sourceMappingURL=index.css.map */

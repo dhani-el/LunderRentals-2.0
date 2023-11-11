@@ -88,20 +88,14 @@
     }
     #listOfCars{
         width: 100vw;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 2.2vh;
-        #keyDivs{
-            width: 95%;
-        }
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 3vh;
+        padding: 0em 1em;
         #Acar{
-
             .aCarCard{
                 border-radius: 1em;
                 #firstDiv{
-                    width: 100vw;
                     height: 5vh;
                     display: flex;
                     justify-content: space-around;
@@ -137,11 +131,7 @@
                             color: gray;
                         }
                     }
-                    a{
-                        display: block;
-                        width: 55%;
-                        text-decoration: none;
-                        color: navy;
+
                         #detailsSpan{
                             background-color: aquamarine;
                             padding: 0.8em;
@@ -150,11 +140,57 @@
                             display: flex;
                             align-items: center;
                             justify-content: center;
-                            width: 100%;
+                            width: 55%;
+                            color: navy;
+                        }
+
+                }
+            }
+        }
+    }
+}
+
+@media (orientation : 'portrait') and (max-width:"300px"){
+    #carsContainer{
+        #listOfCars{
+            padding: 0.2em;
+            #keyDivs{
+                #Acar{
+                    .aCarCard{
+                        display: flex;
+                        flex-direction: column;
+                        gap: 0.6em;
+                        #secondDiv{
+                            #priceSpan{
+                                p{
+                                    font-size: 0.8em;
+                                }
+                            }
+                            #detailsSpan{
+                                padding: 0.2em;
+                                font-size: 0.8em;
+                            }
                         }
                     }
                 }
             }
+        }
+    }
+}
+
+@media (orientation : 'portrait') and (min-width:"800px") {
+    #carsContainer{
+        #listOfCars{
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+}
+
+@media (orientation : 'portrait') and (min-width:"1500px"){
+    #carsContainer{
+        
+        #listOfCars{
+            grid-template-columns: repeat(3,1fr);
         }
     }
 }
@@ -181,11 +217,8 @@
             padding-left: 2em;
         }
         #listOfCars{
-            flex-direction: row;
-            flex-wrap: wrap;
-            
+            grid-template-columns: 1fr 1fr;
             #keyDivs{
-                width: 42%;
                 #Acar{
                     .aCarCard{
                         background-color: rgb(240, 240, 240);
@@ -197,6 +230,15 @@
 
                 }
             }
+        }
+    }
+}
+
+@media (orientation : 'landscape') and (min-width:"1500px"){
+    #carsContainer{
+
+        #listOfCars{
+            grid-template-columns: repeat(3,1fr);
         }
     }
 }

@@ -20,6 +20,11 @@
     #navBar{
         display: none;
     }
+    #authNmenuDiv{
+        display: flex;
+        align-items: center;
+        gap: 1.5em;
+    }
     #authButtonDiv{
             display: none;
     }
@@ -79,23 +84,21 @@
     background-color: rgb(28, 28, 28);
     #logo{
         width: 8em;
-        margin-left: 2em;
+        margin-left: 0.5em;
         img{
             width: 100%;
             height: auto;
-            opacity: 0.4;
+            opacity: 0.2;
         }
     }
-        #quickLinks{
-            display: flex;
+    #quickLinks{
+            display: grid;
             width: 100%;
             height: 70%;
-            flex-wrap: wrap;
-            align-items: center;
-            padding: 2em;
+            grid-template-columns: 1fr 1fr;
+            padding-top: 2em;
 
             a{
-                width: 30vw;
                 color: rgb(170, 170, 170);
                 text-decoration: none;
                 text-align: center;
@@ -154,4 +157,10 @@
             display:none;
         }
     }
+    #footerContainer{
+        #quickLinks{
+            grid-template-columns: repeat(3,1fr);
+        }
+    }
+    
 }

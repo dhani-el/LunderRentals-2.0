@@ -70,9 +70,9 @@ export function Login(){
     return <motion.div className="formDiv" id="logInForm" >
                 <Box component='form' className="form"  >
                     <Card className="card" >
-                        <TextField label = "Username or Email" type="text" required autoComplete="false" onChange={(e)=>handleInputChange(e,setUserName)}   />
-                        <TextField label = "Password" type="password" required autoComplete="false" onChange={(e)=>handleInputChange(e,setPassword)} />
-                        <Button variant="contained" onClick={handleLoginClick} >Log In</Button>
+                        <TextField label = "Username or Email" variant="standard" type="text" required autoComplete="false" onChange={(e)=>handleInputChange(e,setUserName)}   />
+                        <TextField label = "Password" variant="standard" type="password" required autoComplete="false" onChange={(e)=>handleInputChange(e,setPassword)} />
+                        <div><Button variant="contained" onClick={handleLoginClick} >Log In</Button></div>
                         <div id="formLinks">
                             <p>Forgot Password?</p>
                             <p>| don't have an account?</p>
@@ -136,13 +136,13 @@ export function SignUp(){
     return <motion.div className="formDiv" id="signUpForm" >
                 <Box component='form' className="form" >
                     <Card className="card" >
-                        <TextField label = "FirstName" type = 'text' required onChange={(e)=>{console.log("change");setFirstName((init)=>e.target.value)}}  />
-                        <TextField label = "LastName"  type = 'text' required  onChange={(e)=>setLastname((init)=>e.target.value)} />
-                        <TextField label = "Email" type = "email" required  onChange={(e)=>setEmail((init)=>e.target.value)} />
-                        <TextField label = "Password"  type = "password" required  onChange={(e)=>setPassword((init)=>e.target.value)} />
-                        <Button variant="contained" onClick={function(){
+                        <TextField label = "FirstName" variant="standard" type = 'text' required onChange={(e)=>{console.log("change");setFirstName((init)=>e.target.value)}}  />
+                        <TextField label = "LastName" variant="standard"  type = 'text' required  onChange={(e)=>setLastname((init)=>e.target.value)} />
+                        <TextField label = "Email" variant="standard" type = "email" required  onChange={(e)=>setEmail((init)=>e.target.value)} />
+                        <TextField label = "Password"  variant="standard" type = "password" required  onChange={(e)=>setPassword((init)=>e.target.value)} />
+                        <div><Button variant="contained" onClick={function(){
                             handleSignUpClick()
-                        }}>Sign Up</Button>
+                        }}>Sign Up</Button></div>
                         <div id="formLinks">
                             <p>Have an account?</p>
                             <p>Log in</p>

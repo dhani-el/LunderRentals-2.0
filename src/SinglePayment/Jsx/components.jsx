@@ -17,13 +17,15 @@ export function Payment({amount}){
                 <div id="allInputContainer">
                     <TextField label = "Card Holder's Name" variant="standard" sx={{width:"80%"}} />
                     <TextField label = "Card Number"    variant="standard" sx={{width:"80%"}} />
-                    <div>
+                    <div id="cvvExpiryDiv" >
                         <TextField label = "Card Expiry"    variant="standard" sx={{width:"50%"}} />
                         <TextField label = "CVV"    variant="standard" sx={{width:"30%"}} />
                     </div>
                     <span>
+
                     <p>PAYMENT AMOUNT:</p>
                     <p id="amountP"> {amount ? `N ${amount}` : "free"}</p>
+
                     </span>
                 </div>
                 <Button variant="contained" >PAY</Button>

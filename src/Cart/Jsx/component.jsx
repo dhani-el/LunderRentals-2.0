@@ -6,6 +6,8 @@ import { Close } from "@mui/icons-material";
 import productImage from "/imageOne.png";
 import { Button, TextField } from "@mui/material";
 import MasterCard from "/masterCard.png";
+import { useMediaQuery } from "react-responsive";
+
 
 
 const baseUrl = "http://localhost:3000/"
@@ -55,7 +57,7 @@ function SingleCartItem({itemDetails}){
             <div id="itemDetails">
                 <p>{itemDetails.name}</p>
                 <Colour color={itemDetails.color} />
-                <p>N {itemDetails.price}</p>
+                <p>{itemDetails.price}</p>
             </div>
             <Close id = "closeIcon" onClick={function(){handleRemoveCartItem()}}/>
     </div>
@@ -81,16 +83,28 @@ export function OrderSummary({summaryDetails,clickHandler}){
 }
 
 export const PaymentBar = forwardRef(function(props,ref){
+    const isLandScape  = useMediaQuery({query: '(orientation:landscape)'});
     const paymentAnimation = {
-        initial:{
-            translateX:"125vw"
+        landscape:{
+            initial:{
+                translateX:"125vw"
+            },
+            animation:{
+                translateX:"75vw",
+                duration:"4s"
+            }
         },
-        animation:{
-            translateX:"75vw",
-            duration:"4s"
+        portrait:{
+            initial:{
+                translateX:"100vw"
+            },
+            animation:{
+                translateX:"0vw",
+                duration:"4s"
+            }
         }
     }
-        return <motion.div id="paymentBarMainDiv" ref={ref} variants={paymentAnimation} initial="initial" animate= {props.slide ? "animation" : "initial"}>
+        return <motion.div id="paymentBarMainDiv" ref={ref} variants={isLandScape? paymentAnimation.landscape : paymentAnimation.portrait} initial="initial" animate= {props.slide ? "animation" : "initial"}>
                     <Button id="cancel" onClick={props.handleClose} >Cancel</Button>
                     <AtmCard slide={props.slide} />
                     <PaymentForm/>
@@ -99,18 +113,28 @@ export const PaymentBar = forwardRef(function(props,ref){
 })
 
 function AtmCard({slide}){
-
+    const isLandScape  = useMediaQuery({query: '(orientation:landscape)'});
     const atmAnimation = {
-        initial:{
-            translateX:"1em"
+        landscape:{
+            initial:{
+                translateX:"1em"
+            },
+            animation:{
+                translateX:"-5em",
+                duration:"4s",
+            }
         },
-        animation:{
-            translateX:"-5em",
-            duration:"4s",
+        portrait:{
+            initial:{
+                translateX:"7em"
+            },
+            animation:{
+                translateX:"2em",
+            }
         }
     }
 
-    return <motion.div id="atmCardBackground" variants={atmAnimation} initial = "initial" animate = {slide ? "animation" : "initial"}  >
+    return <motion.div id="atmCardBackground" variants={isLandScape ? atmAnimation.landscape : atmAnimation.portrait} initial = "initial" animate = {slide ? "animation" : "initial"}  >
         <img src={MasterCard}/>
         <p id="masterCardText">Mastercard</p>
         <div id="cardNumberDiv">
