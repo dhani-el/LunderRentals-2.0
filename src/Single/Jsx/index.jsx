@@ -49,8 +49,8 @@ export default function SingleCar(){
     
     return <div id="singleCarContainer">
             <CarImage image={data?.data.image} logo={data?.data.logo} title={data?.data.name} year={data?.data.year}/>
-            <CarDescription  carFeatures={features} location={location} list={data?.data.featureDescription} />
-            <CarPrice price="N120k"/>
+            <CarDescription  carFeatures={data?.data.features} location={{address:data?.data.address, meters:data?.data.meters}} list={data?.data.featureDescription} />
+            <CarPrice price={data?.data.price}/>
 
             {!isFetching ? <Link to={`/payment/${data.data._id}`}>    <Button>PAY NOW</Button>    </Link> : <Button>PAY NOW</Button> }
     </div>
