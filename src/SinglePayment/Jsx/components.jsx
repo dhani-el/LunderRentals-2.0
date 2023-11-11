@@ -1,17 +1,17 @@
 import { Button, TextField } from "@mui/material";
 import TestImage from "/imageOne.png";
 
-export function CarImage(){
+export function CarImage({image,brand,model}){
     return <div id="carImageDiv">
-        <img src={TestImage} />
+        <img src={image} />
         <div id="metaData">
-            <p id="brand">LAMBORGHINI</p>
-            <p id="model">"AVENTADOR"</p>
+            <p id="brand">{brand}</p>
+            <p id="model">"{model}"</p>
         </div>
     </div>
 }
 
-export function Payment(){
+export function Payment({amount}){
     return <div id="paymentContainer">
                 <h3>PAYMENT DETAILS</h3>
                 <div id="allInputContainer">
@@ -22,8 +22,10 @@ export function Payment(){
                         <TextField label = "CVV"    variant="standard" sx={{width:"30%"}} />
                     </div>
                     <span>
-                    <p>AMOUNT:</p>
-                    <p id="amountP">45,000</p>
+
+                    <p>PAYMENT AMOUNT:</p>
+                    <p id="amountP"> {amount ? `N ${amount}` : "free"}</p>
+
                     </span>
                 </div>
                 <Button variant="contained" >PAY</Button>

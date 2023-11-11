@@ -1,20 +1,29 @@
 import { useMediaQuery } from 'react-responsive';
-import { Paragraph, AchivementText, LargeText, CallToAction, Modelo} from './components';
+import { Paragraph, AchivementText, LargeText, CallToAction, Modelo, SplashScreen} from './components';
 import '../Styles/index.css';
+import { useEffect,  useState } from 'react';
 
 
 export default function Home(){
     const isLandScape  = useMediaQuery({query: '(orientation:landscape)'});
-        return <div id = "bodyDiv">
-                    <div id='abslouteContentContainer'>
-                        <div id='top'>
-                        {isLandScape && <AchivementText/>}
-                            <LargeText/>
-                            {!isLandScape && <AchivementText/>}
-                            <Paragraph/>
-                        </div>
-                        <CallToAction/>
+    const [removeSplash, setRemoveSplash] = useState(false);
+
+    useEffect(function(){
+        console.log("stageOne");
+    },[]);
+
+    return <div id = "bodyDiv">
+                <div id='abslouteContentContainer'>
+                    <div id='top'>
+                    {isLandScape && <AchivementText/>}
+                        <LargeText/>
+                        {!isLandScape && <AchivementText/>}
+                        <Paragraph/>
                     </div>
-                    <Modelo/>
+                    <CallToAction/>
                 </div>
+                <Modelo setModelReady={setRemoveSplash}/>
+                <SplashScreen displaySplash={!removeSplash}  />
+      
+            </div>
 }

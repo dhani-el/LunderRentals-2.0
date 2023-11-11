@@ -23,4 +23,18 @@ function Features(){
     </div>
 }
 
+function Progressor(setProgress){
+    let  progressValue = 0
+    let hintherval
+    hintherval =  setInterval(() => {
+      progressValue +=  Math.ceil(Math.random() *5) + 8;
+      console.log(progressValue);
+      if (progressValue >= 50) {
+        clearInterval(hintherval)
+    }
+    }, 2000);
+
+    
+}
+
 export default Upload

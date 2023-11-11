@@ -1,4 +1,4 @@
-import { useEffect, useRef} from 'react';
+import { useEffect, useLayoutEffect, useRef, useState} from 'react';
 import { Button } from "@mui/material";
 import Swipe from "@mui/icons-material/Swipe";
 import { Canvas, useLoader} from '@react-three/fiber';
@@ -7,7 +7,8 @@ import { OrbitControls, MeshReflectorMaterial, PerspectiveCamera } from '@react-
 import {LinearEncoding, RepeatWrapping, TextureLoader} from 'three';
 import { useMediaQuery } from 'react-responsive';
 import { Link, useNavigate } from 'react-router-dom';
-
+import { motion } from 'framer-motion';
+import splashImage from "/one.png";
 
 
 
@@ -45,7 +46,7 @@ export function CallToAction(){
         </div>
 }
 
-export function Modelo(){
+export function Modelo({setModelReady}){
     const spinIndicatorRef = useRef(null);
 
     function removeSpinIndicator(){
@@ -54,12 +55,13 @@ export function Modelo(){
             return
         }
     }
+
     return <div id='model'onTouchMove={removeSpinIndicator} onMouseDown={removeSpinIndicator} >
         <Canvas shadows >
             <ambientLight intensity = {1} color={"white"} />
             <directionalLight intensity={1}  position={[0,5,0]} />
             <spotLight color={"white"} angle={0.15} distance={8} intensity={40} penumbra={10} position={[0,3,0]} />
-            <HomeCarModel  />
+            <HomeCarModel setModelReady={setModelReady}  />
             <Ground/>
         </Canvas>
         <div id='spinIndicator' ref={spinIndicatorRef} >
@@ -68,11 +70,17 @@ export function Modelo(){
     </div>
 }
 
-export function HomeCarModel(){
+export function HomeCarModel({setModelReady}){
     const isLandScape  = useMediaQuery({query: '(orientation:landscape)'});
     const scale  = isLandScape ? ([0.005,0.005,0.005]) : ([0.0020,0.0020,0.0020]);
     const position  = isLandScape ? ([0,0.68,0.5]) : ([1,0.68,1.4]);
     const Scene = useLoader(GLTFLoader,'/lambo.glb');
+
+    useLayoutEffect(function(){
+        console.log("inside layout effect #1");
+        setModelReady(true);
+    },[]);
+
     return <>
                 <OrbitControls target={[0,0.35,0]}  maxPolarAngle={1.45} enablePan = {false} enableZoom = {false} />
                 <PerspectiveCamera makeDefault fov={50} position={[3,2,5]} />
@@ -119,3 +127,42 @@ export function Ground(){
                 reflectorOffset={0.2}/>
             </mesh>
 }
+
+export function SplashScreen({displaySplash,progress}){
+    const animations = {
+        main:{
+          initial : {
+            opacity:1,
+            zindex:20,
+            duration:'2s',
+        },
+        animationOn:{
+            opacity:1,
+            zindex:20,
+        },
+        animationOff:{
+            opacity:0,
+            zindex:0,
+            duration:'2s',
+            display:"none",
+        }
+    },
+    image:{
+        initial:{
+            scaleX:1.0,
+            scaleY:1.0,
+            duration:'1s'
+        },
+        animation:{
+            scaleX:1.2,
+            scaleY:1.2,
+            duration:'1s'
+        }
+    }
+}
+    return <motion.div id='mainSplashDiv' variants={animations.main} initial="initial" animate={displaySplash ? "animationOn" : "animationOff"} >
+                <motion.img src={splashImage} alt='lunder rentals splash screen image' variants={animations.image} initial="initial" animate={displaySplash ?"animation" : "initial"} />
+                {/* <ProgressBar/> */}
+            </motion.div>
+}
+

@@ -108,6 +108,22 @@ body {
   bottom: 50%;
   left: 48%;
 }
+#bodyDiv #mainSplashDiv {
+  width: 100%;
+  height: 110vh;
+  background-color: black;
+  position: absolute;
+  top: -10vh;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+}
+#bodyDiv #mainSplashDiv img {
+  width: 65%;
+  height: auto;
+}
 
 @media (orientation: portrait) and (max-width: 300px) {
   #bodyDiv #abslouteContentContainer #top #LargeTextDiv p {
@@ -219,5 +235,12 @@ body {
     position: relative;
     bottom: 40%;
     left: 50%;
+  }
+  #bodyDiv #mainSplashDiv {
+    z-index: 10;
+  }
+  #bodyDiv #mainSplashDiv img {
+    height: 30%;
+    width: auto;
   }
 }/*# sourceMappingURL=index.css.map */
