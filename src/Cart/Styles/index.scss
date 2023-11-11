@@ -1,4 +1,10 @@
 
+$cartBackground-h2-p-bottom:3.2em;
+$cartBackground-800-h2-p-bottom:1em;
+
+$cartBackground-700-mc-paymentBarMainDiv-button-font-size:1.2em;
+$cartBackground-300-mc-paymentBarMainDiv-button-font-size:0.8em;
+
 
 
 
@@ -10,7 +16,7 @@
         overflow-x: hidden;
         h2{
             text-align: center;
-            padding-bottom: 3.2em;
+            padding-bottom: $cartBackground-h2-p-bottom;
             padding-top: 1em;
             color: rgb(4, 194, 130);
             span{
@@ -269,7 +275,7 @@
         #cartBackground{
             h2{
                 font-size: 4em;
-                padding-bottom: 1em;
+                padding-bottom: $cartBackground-800-h2-p-bottom;
             }
             #mostContent{
                 #cartContent{
