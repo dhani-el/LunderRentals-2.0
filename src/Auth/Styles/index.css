@@ -12,12 +12,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  gap: 10vh;
 }
 #authPageContainer #authSelectorContainer {
-  position: absolute;
   width: 80%;
   height: 7vh;
-  top: 10vh;
   display: flex;
   justify-content: space-between;
 }
@@ -39,8 +39,6 @@
   left: 10%;
 }
 #authPageContainer .formDiv {
-  position: absolute;
-  top: 25vh;
   display: flex;
   justify-content: center;
   width: 100%;
@@ -54,15 +52,87 @@
   padding: 1em;
   gap: 2em;
 }
-#authPageContainer .formDiv .form .card button {
+#authPageContainer .formDiv .form .card div {
+  width: 100%;
+}
+#authPageContainer .formDiv .form .card div button {
   display: block;
   background-color: aquamarine;
   color: navy;
   font-family: monospace;
+  width: 100%;
 }
 #authPageContainer .formDiv .form .card #formLinks {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.2em;
+}
+
+@media (orientation: portrait) and (max-width: 300px) {
+  #authPageContainer #authSelectorContainer .singleAuthSelector button {
+    font-size: 0.8em;
+  }
+  #authPageContainer .formDiv .form .card {
+    gap: 1em;
+  }
+  #authPageContainer .formDiv .form .card div label {
+    font-size: 0.8em;
+  }
+  #authPageContainer .formDiv .form .card div input {
+    font-size: 0.8em;
+    margin-top: 0.6em;
+  }
+  #authPageContainer .formDiv .form .card div button {
+    font-size: 1em;
+  }
+  #authPageContainer .formDiv .form .card #formLinks {
+    font-size: 0.8em;
+  }
+}
+@media (orientation: portrait) and (min-width: 800px) {
+  #authPageContainer #authSelectorContainer .singleAuthSelector button {
+    font-size: 1.8em;
+  }
+  #authPageContainer .formDiv .form .card {
+    gap: 4em;
+  }
+  #authPageContainer .formDiv .form .card div label {
+    font-size: 2em;
+  }
+  #authPageContainer .formDiv .form .card div input {
+    font-size: 1.5em;
+    margin-top: 1.2em;
+  }
+  #authPageContainer .formDiv .form .card div button {
+    font-size: 2em;
+  }
+  #authPageContainer .formDiv .form .card #formLinks {
+    font-size: 2em;
+  }
+}
+@media (orientation: landscape) {
+  #authPageContainer #authSelectorContainer {
+    width: 65%;
+  }
+  #authPageContainer #authSelectorContainer .singleAuthSelector button {
+    font-size: 1.2em;
+    font-weight: 900;
+  }
+  #authPageContainer .formDiv .form {
+    width: 65%;
+  }
+  #authPageContainer .formDiv .form .card {
+    gap: 2.5em;
+  }
+  #authPageContainer .formDiv .form .card div {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #authPageContainer .formDiv .form .card div button {
+    font-size: 1.5em;
+    width: 40%;
+  }
 }/*# sourceMappingURL=index.css.map */

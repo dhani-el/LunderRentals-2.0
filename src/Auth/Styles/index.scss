@@ -16,11 +16,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    gap: 10vh;
     #authSelectorContainer{
-        position: absolute;
         width: 80%;
         height: 7vh;
-        top: 10vh;
         display: flex;
         justify-content: space-between;
         .singleAuthSelector{
@@ -45,8 +45,6 @@
     }
 
     .formDiv{
-        position: absolute;
-        top: 25vh;
         display: flex;
         justify-content: center;
         width: 100%;
@@ -57,12 +55,16 @@
                 flex-direction: column;
                 padding: 1em;
                 gap: 2em;
+                div{
+                    width: 100%;
                 button{
                     display: block;
                     background-color: aquamarine;
                     color: navy;
                     font-family: monospace;
+                    width: 100%;
                 }
+            }
                 #formLinks{
                     display: flex;
                     flex-direction: column;
@@ -74,6 +76,110 @@
     }
 }
 
+@media (orientation:'portrait') and (max-width:'300px') {
+    #authPageContainer{
+        #authSelectorContainer{
+            .singleAuthSelector{
+                button{
+                    font-size: 0.8em;
+                }
+            }
+        }
+        .formDiv{
+            .form{
+                .card{
+                    gap: 1em;
+                    div{
+                        label{
+                            font-size: 0.8em;
+                        }
+                    }
+                    div{
+                        input{
+                            font-size: 0.8em;
+                            margin-top: 0.6em;
+                        }
+                    }
+                    div{
+                    button{
+                        font-size: 1em;
+                    }
+                }
+                    #formLinks{
+                        font-size: 0.8em;
+                    }
+                }
+            }
+        }
+    }
+    }
+
+@media (orientation:'portrait') and (min-width:'800px') {
+#authPageContainer{
+    #authSelectorContainer{
+        .singleAuthSelector{
+            button{
+                font-size: 1.8em;
+            }
+        }
+    }
+    .formDiv{
+        .form{
+            .card{
+                gap: 4em;
+                div{
+                    label{
+                        font-size: 2em;
+                    }
+                }
+                div{
+                    input{
+                        font-size: 1.5em;
+                        margin-top: 1.2em;
+                    }
+                }
+                div{
+                button{
+                    font-size: 2em;
+                }
+            }
+                #formLinks{
+                    font-size: 2em;
+                }
+            }
+        }
+    }
+}
+}
+
 @media (orientation:'landscape') {
-    
+    #authPageContainer{
+        #authSelectorContainer{
+            width: 65%;
+            .singleAuthSelector{
+                button{
+                    font-size: 1.2em;
+                    font-weight: 900;
+                }
+            }
+        }
+        .formDiv{
+            .form{
+                width: 65%;
+                .card{
+                    gap: 2.5em;
+                    div{
+                        width: 100%;
+                        display: flex;
+                        align-items:center ;
+                        justify-content: center;
+                        button{
+                            font-size: 1.5em;
+                            width: 40%;
+                        }
+                }
+                }
+            }
+        }
+    }
 }

@@ -17,8 +17,10 @@ export function Header(){
     return <div id = "header">
              <Logo/>
              <NavBar/>
+             <div id='authNmenuDiv'>
              <Authenticator loggedIn = {loginData.isUserLoggedIn} username={loginData.username} />
              <Menu/>
+             </div>
         </div>
 }
 
@@ -115,7 +117,7 @@ export function Footer(){
 
 function CartLink({numberOfItems}){
     return <div id='cartLinkMainDiv'>
-        <p id='noOfItems'>{numberOfItems}</p>
+        {/* <p id='noOfItems'>{numberOfItems}</p> */}
         <Link to="/cart">
             <ShoppingBag id="cartIcon"/>
         </Link>

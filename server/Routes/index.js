@@ -42,15 +42,15 @@ route.get("/cars/:brand", async function(req,res){
     res.json(data);
 });
 
-route.get("/car/:name", async function(req,res){
-    const data = await CAR_DB.findOne().where("name").equals(req.params.name);
+route.get("/car/:id", async function(req,res){
+    const data = await CAR_DB.findOne({_id:req.params.id})
     data.image = await fromS3(data.image);
     res.json(data);
 });
 
 route.get("/cart", async function(req,res){
     try {
-        const cartItems = await USERDB.findOne({name:"daniel ukuhor"}).populate("cart").select("cart");
+        const cartItems = await USERDB.findOne({name:req.user._doc.name}).populate("cart").select("cart");
         res.send(cartItems);
     } catch (error) {
         console.log(error);
@@ -58,9 +58,7 @@ route.get("/cart", async function(req,res){
 });
 
 route.post("/cart",  async function(req,res){
-    console.log(req.user);
     console.log(req.isAuthenticated(),"user is authorised");
-    console.log("session ",req.sessionID);
     if(req.user != null){
     try{
         console.log(req.body);
@@ -129,10 +127,11 @@ route.delete('/car/:carImage',async function(req,res){
     res.send("brand deleted");
 })
 
-route.delete("/cart", async function(req,res){
+route.delete("/cart/:id", async function(req,res){
     try{
-        const newCart =  await USERDB.findOneAndUpdate({name:req.user.name},
-         {"$pull":{"cart":req.body.cartItem}},{new:true}).select("cart");
+        console.log("id",req.params.id);
+        const newCart =  await USERDB.findOneAndUpdate({name:req.user._doc.name},
+         {$pull:{"cart":req.params.id}},{new:true});
         res.send(newCart);
      }catch(error){
          return console.log(error);

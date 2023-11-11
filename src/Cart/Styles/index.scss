@@ -1,186 +1,389 @@
 
 
-#cartBackground{
-    position: relative;
-    min-height: 100vh;
-    width: 100vw;
-    color: black;
-    h2{
-        text-align: center;
-        padding-bottom: 3.2em;
-        padding-top: 1em;
-        color: rgb(4, 194, 130);
-        span{
+
+
+    #cartBackground{
+        position: relative;
+        min-height: 100vh;
+        width: 100vw;
+        color: black;
+        overflow-x: hidden;
+        h2{
+            text-align: center;
+            padding-bottom: 3.2em;
+            padding-top: 1em;
             color: rgb(4, 194, 130);
-        }
-    }
-    #mostContent{
-        display: flex;
-        width: 100%;
-        gap: 2.5em;
-        // #cartContent{
-        //     width: 100%;
-        // }
-        #paymentBarMainDiv{
-            position: absolute;
-            top: 0px;
-            width: 25%;
-            height: 100% ;
-            display: flex;
-            flex-direction: column;
-            background-color:aquamarine;
-            color: white;
-            box-shadow: 5em 5em 7em 7em black ;
-            #atmCardBackground{
-                background: url("/card3.jpg");
-                background-size: 100%;
-                width: 25vw;
-                height: 15vw;
-                border-radius: 0.8em;
-                margin-top: 4em;
-                margin-bottom: 3.5em;
-                position: relative;
-                box-shadow: 0.5em 0.5em 3em 0.2em rgb(40, 40, 40) ;
-                img{
-                    width: 25%;
-                }
-                p{
-                    color: white;
-                }
-                #masterCardText{
-                    color: white;
-                    font-size: 1em;
-                    padding-left: 0.5em;
-                }
-                #cardNumberDiv{
-                    display: flex;
-                    width: 100%;
-                    gap: 1.5em;
-                    padding-top: 1.5em;
-                    justify-content: center;
-                }
-                #nameAndExpiry{
-                    display: flex;
-                    padding: 2em 1.5em;
-                    justify-content: space-between;
-                }
+            span{
+                color: rgb(4, 194, 130);
             }
-            #paymentForm{
+        }
+        #mostContent{
+            display: flex;
+            width: 100%;
+            gap: 2.5em;
+            #paymentBarMainDiv{
+                position: absolute;
+                top: 0px;
+                width: 100%;
+                height: 100% ;
                 display: flex;
                 flex-direction: column;
-                align-items: center;
-                gap: 2.5em;
-                input{
-                    color: navy;
-                }
-                #majorRow{
+                background-color:aquamarine;
+                color: white;
+                #atmCardBackground{
+                    background: url("/card3.jpg");
+                    background-size: 100%;
+                    width: 85vw;
+                    height: 45vw;
                     display: flex;
-                    padding: 0 1.5em;
-                    #minorRow{
+                    flex-direction: column;
+                    border-radius: 0.8em;
+                    margin-top: 4em;
+                    margin-bottom: 3.5em;
+                    position: relative;
+                    box-shadow: 0.5em 0.5em 3em 0.2em rgb(40, 40, 40) ;
+                    img{
+                        width: 25%;
+                        height: auto;
+                    }
+                    p{
+                        color: white;
+                    }
+                    #masterCardText{
+                        color: white;
+                        font-size: 1em;
+                        padding-left: 0.5em;
+                    }
+                    #cardNumberDiv{
                         display: flex;
-                        gap: 0.4em;
-                        #dash{
-                            position: relative;
-                            border-left: 0.06em navy solid;
-                            rotate: 15deg;
-                            height: 60%;
-                            bottom: -45%;
+                        width: 100%;
+                        gap: 1.5em;
+                        padding-top: 1em;
+                        justify-content: center;
+                    }
+                    #nameAndExpiry{
+                        display: flex;
+                        padding: 2em 1.5em;
+                        justify-content: space-between;
+                    }
+                }
+                #paymentForm{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 2.5em;
+                    input{
+                        color: navy;
+                    }
+                    #majorRow{
+                        display: flex;
+                        padding: 0 1.5em;
+                        width: 75%;
+                        #minorRow{
+                            display: flex;
+                            gap: 0.4em;
+                            #dash{
+                                position: relative;
+                                border-left: 0.06em navy solid;
+                                rotate: 15deg;
+                                height: 60%;
+                                bottom: -45%;
+                            }
+                        }
+                    }
+                }
+                #pay{
+                    background-color: navy;
+                    color: aquamarine;
+                    font-weight: 700;
+                    position: absolute;
+                    bottom: 20vh;
+                    width: 70%;
+                    margin: 0 15%;
+                    padding: 1em;
+                }
+                #cancel{
+                    text-align: left;
+                    width: min-content;
+                    margin-top: 1em;
+                    font-weight: 900;
+                }
+            }
+        }
+    }
+    
+    #listHeader{
+        display: grid;
+        color: black;
+        grid-template-columns: repeat(5, 1fr);
+        width: 100%;
+        font-weight: 900;
+        padding: 0em ;
+        padding-bottom: 2em;
+        p{
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+    }
+    
+    #singleCartItemCard{
+        display: grid;
+        color: black;
+        font-size: 0.8em;
+        width: 100%;
+        grid-template-columns: 2fr 4.5fr 0.5fr;
+        padding: 0em 0.5em;
+        margin: 2em 0em;
+        border-bottom: 0.02em aquamarine solid;
+        border-top: 0.02em aquamarine solid;    
+        justify-content: center;
+        #itemDetails{
+            display: grid;
+            width: 100%;
+            grid-template-columns: repeat(3, 1fr);
+            align-items: center;
+            padding: 0em 0.5em;
+            p{
+                width: 100% ;
+                text-align: center;
+                font-size: 1.2em;
+                font-weight: 900;
+                overflow: hidden;
+                text-wrap: nowrap;
+                text-overflow: ellipsis;
+            }
+            #color{
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                div{
+                    width: 2em;
+                    height: 2em;
+                    border-radius: 1em;
+                }
+            }
+        }
+        #cartItemImage{
+            width: 100%;
+            height: auto;
+            img{
+                width: 100%;
+                height: 100%;
+            }
+        }
+        #closeIcon{
+            width: 100%;
+            height: 100%;
+            text-align: center;
+        }
+    }
+    
+    #summaryContainer{
+       width: 100%;
+       display: flex;
+       padding-right: 2em;
+       flex-direction: column;
+       align-items: end;
+       padding-bottom: 4em;
+       gap: 0.3em;
+       button{
+        margin-top: 2em;
+        background-color:aquamarine ;
+        color: navy;
+        font-weight: 700;
+       }
+    
+    }
+
+    @media (max-width: '300px') {
+        #cartBackground {
+            #mostContent {
+                #paymentBarMainDiv {
+                    button{
+                        font-size: 0.8em;
+                    }
+                    #atmCardBackground{
+                        font-size: 0.8em;
+                        height: 50vw;
+                        margin-top: 2em;
+                        margin-bottom: 1.5em;
+                    }
+                    #paymentForm{
+                        gap: 1.5em;
+                    }
+                }
+            }
+        }
+    }
+
+    @media (min-width: '700px') and (orientation:'portrait'){
+        #cartBackground{
+            #mostContent{
+                #cartContent{
+                    #cartItemsCard{
+                        #singleCartItemCard{
+                            #itemDetails{
+                                p{
+                                    font-size: 1.7em;
+                                }
+                            }
+                            #closeIcon{
+                                width: 70%;
+                            }
+                        }
+                    }
+                    #summaryContainer{
+                        div{
+                            font-size: 1.2em;
+                        }
+                    }
+                }
+                #paymentBarMainDiv{
+                    button{
+                        font-size: 1.2em;
+                    }
+                    #atmCardBackground{
+                        width: 65vw;
+                        height: 35vw;
+                        align-self: center;
+                        #masterCardText,p{
+                            font-size: 1.4em;
+                        }
+                    }
+                    #paymentForm{
+                        label{
+                            font-size: 1.2em;
+                        }
+                        div{
+                            input{
+                                font-size: 1.2em;
+                            }
                         }
                     }
                 }
             }
-            #pay{
-                background-color: navy;
-                color: aquamarine;
-                font-weight: 700;
-                position: absolute;
-                top: 82vh;
-                width: 70%;
-                margin: 0 15%;
-                padding: 1em;
+        }
+    }
+    @media (min-width: '800px') and (orientation:'portrait'){
+        #cartBackground{
+            h2{
+                font-size: 4em;
+                padding-bottom: 1em;
             }
-            #cancel{
-                text-align: left;
-                width: min-content;
-                margin-top: 1em;
-                font-weight: 900;
+            #mostContent{
+                #cartContent{
+                    #cartItemsCard{
+                        #listHeader{
+                            font-size: 1.5em;
+                        }
+                        #singleCartItemCard{
+                            padding: 6em 0em;
+                            #itemDetails{
+                                p{
+                                    font-size: 2.8em;
+                                }
+                            }
+                            #closeIcon{
+                                width: 70%;
+                            }
+                        }
+                    }
+                    #summaryContainer{
+                        h3{
+                            font-size:2.5em ;
+                        }
+                        div{
+                            font-size: 2em;
+                        }
+                        button{
+                            font-size: 2em;
+                        }
+                    }
+                }
+                #paymentBarMainDiv{
+                    gap: 3em;
+                    button{
+                        font-size: 2.5em;
+                    }
+                    #atmCardBackground{
+                        width: 55vw;
+                        height: 35vw;
+                        align-self: center;
+                        #masterCardText,p{
+                            font-size: 2.4em;
+                        }
+                        #cardNumberDiv{
+                            padding-top: 3.5em;
+                        }
+                        #nameAndExpiry{
+                            padding: 5em 2.5em;
+                        }
+                    }
+                    #paymentForm{
+                        label{
+                            font-size: 2.6em;
+                        }
+                        div{
+                            input{
+                                padding-top: 1.5em;
+                                font-size: 2.6em;
+                            }
+                        }
+                    }
+                }
             }
         }
     }
-}
 
-#listHeader{
-    display: flex;
-    color: black;
-    width: 100%;
-    font-weight: 900;
-    padding: 0em 1.5em;
-    padding-bottom: 2em;
-    p{
-        display: block;
-        width: 20%;
-        text-align: center;
+@media (orientation: 'landscape') {
+    #cartBackground{
+        #mostContent{
+            #paymentBarMainDiv{
+                width: 25%;
+                box-shadow: 5em 5em 7em 7em black ;
+                #atmCardBackground{
+                    background: url("/card3.jpg");
+                    background-size: 100%;
+                    width: 25vw;
+                    height: 15vw;
+                }
+            }
+        }
     }
-}
-
-#singleCartItemCard{
-    display: flex;
-    color: navy;
-    width: 100%;
-    align-items: center;
-    padding: 1em 1.5em;
-    border-bottom: 0.02em aquamarine solid;
-    border-top: 0.02em aquamarine solid;
-
-    #itemDetails{
+    
+    #listHeader{
         display: flex;
-        width: 60%;
-        justify-content: space-between;
+        padding: 0em 1.5em;
+        padding-bottom: 2em;
         p{
-            width: calc(100% / 3);
-            text-align: center;
-            font-size: 1.2em;
-            font-weight: 500;
+            width: 20%;
         }
-        #color{
-            width: calc(100% / 3);
+    }
+    
+    #singleCartItemCard{
+        display: flex;
+        color: navy;
+        align-items: center;
+        padding: 1em 1.5em;
+    
+        #itemDetails{
             display: flex;
-            justify-content: center;
-            div{
-                width: 2em;
-                height: 2em;
-                border-radius: 1em;
+            width: 60%;
+            justify-content: space-between;
+            p{
+                width: calc(100% / 3);
+            }
+            #color{
+                width: calc(100% / 3);
             }
         }
-    }
-    #cartItemImage{
-        width: 20%;
-        height: auto;
-        img{
-            width: 100%;
-            height: 100%;
+        #cartItemImage{
+            width: 20%;
+        }
+        #closeIcon{
+            width: 2%;
         }
     }
-    #closeIcon{
-        width: 20%;
-        text-align: center;
-    }
-}
-
-#summaryContainer{
-   width: 100%;
-   display: flex;
-   padding-right: 2em;
-   flex-direction: column;
-   align-items: end;
-   padding-bottom: 4em;
-   gap: 0.3em;
-   button{
-    margin-top: 2em;
-    background-color:aquamarine ;
-    color: navy;
-    font-weight: 700;
-    width: 10%;
-   }
-
+    
 }
