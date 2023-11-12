@@ -7,6 +7,34 @@
     font-family:  monospace, 'Courier New', Courier;
 }
 
+$small_formDiv_form_card_formLinks_font-size:0.8em;
+$small_portrait_singleAuthSelector_button_font_size : 0.8em;
+$small_formDiv_form_card_gap:1em;
+$small_formDiv_form_card_gap_div_label:0.8em;
+$small_formDiv_form_card_div_input_font-size:0.8em;
+$small_formDiv_form_card_div_input_margin-top:0.6em;
+$small_formDiv_form_card_div_button_font-size:1em;
+
+$big_portrait_singleAuthSelector_button_font_size : 1.8em;
+$big_formDiv_form_card_gap:4em;
+$big_formDiv_form_card_div_input_font-size:1.5em;
+$big_formDiv_form_card_div_input_margin-top:1.2em;
+$big_formDiv_form_card_div_button_font-size:2em;
+$big_formDiv_form_card_gap_div_label:2em;
+$big_formDiv_form_card_formLinks_font-size:2em;
+
+$normal_formDiv_form_width:80%;
+$normal_formDiv_form_card_gap:2em;
+$normal_formDiv_form_card_div_button_width:100%;
+
+$portrait_authSelector_Container_width :80%;
+
+$landscape_authSelector_Container_width :65%;
+$landscape_singleAuthSelector_button_font_size : 1.2em;
+$landscape_formDiv_form_width:65%;
+$landscape_formDiv_form_card_gap:2.5em;
+$landscape_formDiv_form_card_div_button_font-size:1.5em;
+$landscape_formDiv_form_card_div_button_width:40%;
 
 
 #authPageContainer{
@@ -19,7 +47,7 @@
     justify-content: center;
     gap: 10vh;
     #authSelectorContainer{
-        width: 80%;
+        width: $portrait_authSelector_Container_width;
         height: 7vh;
         display: flex;
         justify-content: space-between;
@@ -49,12 +77,12 @@
         justify-content: center;
         width: 100%;
         .form{
-            width: 80%;
+            width: $normal_formDiv_form_width;
             .card{
                 display: flex;
                 flex-direction: column;
                 padding: 1em;
-                gap: 2em;
+                gap: $normal_formDiv_form_card_gap;
                 div{
                     width: 100%;
                 button{
@@ -62,7 +90,7 @@
                     background-color: aquamarine;
                     color: navy;
                     font-family: monospace;
-                    width: 100%;
+                    width: $normal_formDiv_form_card_div_button_width;
                 }
             }
                 #formLinks{
@@ -81,23 +109,23 @@
         #authSelectorContainer{
             .singleAuthSelector{
                 button{
-                    font-size: 0.8em;
+                    font-size:$small_portrait_singleAuthSelector_button_font_size ;
                 }
             }
         }
         .formDiv{
             .form{
                 .card{
-                    gap: 1em;
+                    gap: $small_formDiv_form_card_gap;
                     div{
                         label{
-                            font-size: 0.8em;
+                            font-size: $small_formDiv_form_card_gap_div_label;
                         }
                     }
                     div{
                         input{
-                            font-size: 0.8em;
-                            margin-top: 0.6em;
+                            font-size:$small_formDiv_form_card_div_input_font-size;
+                            margin-top: $small_formDiv_form_card_div_input_margin-top;
                         }
                     }
                     div{
@@ -106,7 +134,7 @@
                     }
                 }
                     #formLinks{
-                        font-size: 0.8em;
+                        font-size: $small_formDiv_form_card_formLinks_font-size;
                     }
                 }
             }
@@ -126,25 +154,25 @@
     .formDiv{
         .form{
             .card{
-                gap: 4em;
+                gap: $big_formDiv_form_card_gap;
                 div{
                     label{
-                        font-size: 2em;
+                        font-size: $big_formDiv_form_card_gap_div_label;
                     }
                 }
                 div{
                     input{
-                        font-size: 1.5em;
-                        margin-top: 1.2em;
+                        font-size: $big_formDiv_form_card_div_input_font-size;
+                        margin-top: $big_formDiv_form_card_div_input_margin-top;
                     }
                 }
                 div{
                 button{
-                    font-size: 2em;
+                    font-size: $big_formDiv_form_card_div_button_font-size;
                 }
             }
                 #formLinks{
-                    font-size: 2em;
+                    font-size: $big_formDiv_form_card_formLinks_font-size;
                 }
             }
         }
@@ -155,19 +183,19 @@
 @media (orientation:'landscape') {
     #authPageContainer{
         #authSelectorContainer{
-            width: 65%;
+            width: $landscape_authSelector_Container_width;
             .singleAuthSelector{
                 button{
-                    font-size: 1.2em;
+                    font-size: $landscape_singleAuthSelector_button_font_size;
                     font-weight: 900;
                 }
             }
         }
         .formDiv{
             .form{
-                width: 65%;
+                width: $landscape_formDiv_form_width;
                 .card{
-                    gap: 2.5em;
+                    gap: $landscape_formDiv_form_card_gap;
                     div{
                         width: 100%;
                         display: flex;
@@ -175,7 +203,7 @@
                         justify-content: center;
                         button{
                             font-size: 1.5em;
-                            width: 40%;
+                            width: $landscape_formDiv_form_card_div_button_width;
                         }
                 }
                 }
