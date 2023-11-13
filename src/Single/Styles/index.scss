@@ -73,6 +73,9 @@
                 }
                 #pricePDiv{
                     font-size: 1.5em;
+                    border-radius: 0.5em;
+                    background-color: rgb(233, 233, 233);
+                    padding: 0.5em;
 
                 }
                 button{
@@ -235,6 +238,124 @@
             }
             button{
                 font-size: 0.8em;
+            }
+        }
+    }
+}
+
+}
+
+@media (min-width : '700px') and (orientation:'portrait') {
+    #singleFeature{
+        svg{
+            font-size: 2em;
+        }
+        #featureValueSpan{
+            p{
+                font-size: 1.2em;
+            }
+        }
+    }
+
+    #singleCarContainer {
+        #baseContainer {
+            #descriptiveDiv{ 
+                #carLocationDiv{
+                 #locatinHeaderDiv{
+                     #leftOfLocation {
+                        svg{
+                            font-size: 2em;
+                        }
+                        p#meters{
+                            font-size: 1.5em;
+                        }
+                    
+                    }
+                }
+
+                #actualLocationComponent{
+                    svg{
+                        font-size: 1.6em;
+                    }
+                    p{
+                        font-size: 1.5em;
+                    }
+                }
+
+            }
+        }
+        #cartAndPay{
+            #priceComponent{
+                #pricePDiv{
+                    p{
+                        font-size: 1.2em;
+                    }
+                }
+                button{
+                    font-size: 1.2em;
+                }
+            }
+            button{
+                font-size: 1.2em;
+            }
+        }
+    }
+}
+
+}
+
+@media (min-width : '800px') and (orientation:'portrait') {
+    #singleFeature{
+        svg{
+            font-size: 2em;
+        }
+        #featureValueSpan{
+            p{
+                font-size: 1.2em;
+            }
+        }
+    }
+
+    #singleCarContainer {
+        #baseContainer {
+            #descriptiveDiv{ 
+                #carLocationDiv{
+                 #locatinHeaderDiv{
+                     #leftOfLocation {
+                        svg{
+                            font-size: 2em;
+                        }
+                        p#meters{
+                            font-size: 1.5em;
+                        }
+                    
+                    }
+                }
+
+                #actualLocationComponent{
+                    svg{
+                        font-size: 1.6em;
+                    }
+                    p{
+                        font-size: 1.5em;
+                    }
+                }
+
+            }
+        }
+        #cartAndPay{
+            #priceComponent{
+                #pricePDiv{
+                    p{
+                        font-size: 1.2em;
+                    }
+                }
+                button{
+                    font-size: 1.2em;
+                }
+            }
+            button{
+                font-size: 1.2em;
             }
         }
     }

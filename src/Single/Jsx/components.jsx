@@ -101,7 +101,7 @@ export function CarPrice({price,id}){
         setIsQueryEnabled(true)
     }
     return  <div id='priceComponent'>
-                <div id='pricePDiv'><p>{price}</p><p>/per day</p></div>
+                <div id='pricePDiv'><p>{price}</p><p>/PER DAY</p></div>
                 <Button variant='contained' onClick={()=> HandleAddtoCartClick()}>Add To Cart</Button>
             </div>
 }
