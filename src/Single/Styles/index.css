@@ -177,6 +177,32 @@
   color: rgb(67, 67, 67);
 }
 
+@media (max-width: 300px) and (orientation: portrait) {
+  #featureValueSpan p {
+    font-size: 0.6em;
+  }
+  #singleCarContainer #baseContainer #descriptiveDiv #carLocationDiv #locatinHeaderDiv #leftOfLocation svg {
+    font-size: 1em;
+  }
+  #singleCarContainer #baseContainer #descriptiveDiv #carLocationDiv #locatinHeaderDiv #leftOfLocation p#meters {
+    font-size: 0.8em;
+  }
+  #singleCarContainer #baseContainer #descriptiveDiv #carLocationDiv #actualLocationComponent svg {
+    font-size: 1em;
+  }
+  #singleCarContainer #baseContainer #descriptiveDiv #carLocationDiv #actualLocationComponent p {
+    font-size: 0.8em;
+  }
+  #singleCarContainer #baseContainer #cartAndPay #priceComponent #pricePDiv p {
+    font-size: 0.6em;
+  }
+  #singleCarContainer #baseContainer #cartAndPay #priceComponent button {
+    font-size: 0.6em;
+  }
+  #singleCarContainer #baseContainer #cartAndPay button {
+    font-size: 0.8em;
+  }
+}
 @media (orientation: landscape) {
   #singleCarContainer #carImageDiv {
     height: 55vh;
