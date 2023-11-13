@@ -1,5 +1,9 @@
 
-
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 #singleCarContainer{
     width: 100vw;
@@ -43,10 +47,48 @@
             }
         }
     }
-    #descriptiveDiv{
-        margin-top: 1em;
-        height: 30%;
+    #baseContainer{
+        height: 60vh;
+        display: flex;
+        flex-direction: column;
+        gap: 6%;
+        margin-bottom: 2em;
+        #cartAndPay{
+                padding: 1.5em 0em;
+                margin: 0em 1em;
+                margin-bottom: 2em;
+                height: 46%;
+                display: flex;
+                flex-direction: column;
+                gap: 2vh;
+                align-items: center;
+                justify-content: center;
+                background-color: aliceblue;
+                #priceComponent{
+                    width: 100%;
+                    button{
+                        width: 45%;
+                        background-color: none;
+                    }
+                }
+                #pricePDiv{
+                    font-size: 1.5em;
+                    border-radius: 0.5em;
+                    background-color: rgb(233, 233, 233);
+                    padding: 0.5em;
 
+                }
+                button{
+                    background-color: aquamarine;
+                    width: 90%;
+                    color: black;
+             }
+        }
+        #descriptiveDiv{
+        margin-top: 1em;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         h2{
             padding-left: 1em;
         }
@@ -73,10 +115,10 @@
                             background-color: rgb(0, 0, 0);
                             color: aquamarine;
                             border-radius: 1.2em;
-                            #icon{
-                                height: 35%;
-                                width: auto;
-                            }
+                            // #icon{
+                            //     height: 35%;
+                            //     width: auto;
+                            // }
                             #featureValueSpan{
                                 display: flex;
                                 width: 100%;
@@ -103,20 +145,13 @@
             flex-direction: column;
             #locatinHeaderDiv{
                 display: flex;
-                justify-content: space-between;
-                #locationText{
-                    font-size: 1.5em;
-                    font-weight: 900;
-                    padding-left: 0.8em;
-                    color: rgb(177, 177, 177);
-                }
+                justify-content: end;
                 #meters{
                     font-size: 1.2em;
                 }
                 #leftOfLocation{
                     padding-right: 1em;
                     display: flex;
-                    color: gray;
                     align-items: flex-end;
                     p{
                         color: gray;
@@ -127,14 +162,12 @@
                 display: flex;
                 align-self: center;
                 align-items: center;
-                padding: 1em;
+                padding: 1.5em;
                 gap: 1em;
                 width: 90%;
                 border-radius: 0.8em;
-                background-color: rgb(241, 241, 241);
-                #placeIcon{
-                    color: aquamarine;
-                }
+                background-color: aliceblue;
+
                 p{
                     width: 90%;
                     overflow: hidden;
@@ -146,47 +179,257 @@
             }
         }
     }
+    }
+
+
     #priceComponent{
-        margin-top: 1.5em;
         display: flex;
-        align-items: flex-end;
-        justify-content: space-between;
-        height: 14%;
-        background-color: rgb(241, 241, 241);
-        width: 95%;
-        margin-left: 2.5%;
-        border-radius: 1.2em;
+        align-items: center;
+        justify-content: space-around;
         #pricePDiv{
             display: flex;
-            font-size: 1.8em;
-            margin-left: 0.5em;
-            margin-bottom: 1em;
-            font-weight: 900;
-            text-transform: capitalize;
             color: rgb(67, 67, 67);
         }
-        span{
-            width: 50%;
-            height: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: aquamarine;
-            border-top-left-radius: 1.5em;
-            border-bottom-right-radius: 1.5em;
-            font-size: 1.5em;
+
+    }
+}
+
+@media (max-width : '300px') and (orientation:'portrait') {
+    #featureValueSpan{
+        p{
+            font-size: 0.6em;
+        }
+    }
+    #singleCarContainer {
+        #baseContainer {
+            #descriptiveDiv{ 
+                #carLocationDiv{
+                 #locatinHeaderDiv{
+                     #leftOfLocation {
+                        svg{
+                            font-size: 1em;
+                        }
+                        p#meters{
+                            font-size: 0.8em;
+                        }
+                    
+                    }
+                }
+                #actualLocationComponent{
+                    svg{
+                        font-size: 1em;
+                    }
+                    p{
+                        font-size: 0.8em;
+                    }
+                }
+            }
+        }
+        #cartAndPay{
+            #priceComponent{
+                #pricePDiv{
+                    p{
+                        font-size: 0.6em;
+                    }
+                }
+                button{
+                    font-size: 0.6em;
+                }
+            }
+            button{
+                font-size: 0.8em;
+            }
         }
     }
 }
 
+}
+
+@media (min-width : '700px') and (orientation:'portrait') {
+    #singleFeature{
+        svg{
+            font-size: 2em;
+        }
+        #featureValueSpan{
+            p{
+                font-size: 1.2em;
+            }
+        }
+    }
+
+    #singleCarContainer {
+        #baseContainer {
+            #descriptiveDiv{ 
+                #carLocationDiv{
+                 #locatinHeaderDiv{
+                     #leftOfLocation {
+                        svg{
+                            font-size: 2em;
+                        }
+                        p#meters{
+                            font-size: 1.5em;
+                        }
+                    
+                    }
+                }
+
+                #actualLocationComponent{
+                    svg{
+                        font-size: 1.6em;
+                    }
+                    p{
+                        font-size: 1.5em;
+                    }
+                }
+
+            }
+        }
+        #cartAndPay{
+            #priceComponent{
+                #pricePDiv{
+                    p{
+                        font-size: 1.2em;
+                    }
+                }
+                button{
+                    font-size: 1.2em;
+                }
+            }
+            button{
+                font-size: 1.2em;
+            }
+        }
+    }
+}
+
+}
+
+@media (min-width : '800px') and (orientation:'portrait') {
+    #singleFeature{
+        svg{
+            font-size: 4.5em;
+        }
+        #featureValueSpan{
+            p{
+                font-size: 2.5em;
+            }
+        }
+    }
+
+    #singleCarContainer {
+        #baseContainer {
+            #descriptiveDiv{ 
+                #carLocationDiv{
+                 #locatinHeaderDiv{
+                     #leftOfLocation {
+                        svg{
+                            font-size: 3.5em;
+                        }
+                        p#meters{
+                            font-size: 2.5em;
+                        }
+                    
+                    }
+                }
+
+                #actualLocationComponent{
+                    svg{
+                        font-size: 3.6em;
+                    }
+                    p{
+                        font-size: 2.5em;
+                    }
+                }
+
+            }
+        }
+        #cartAndPay{
+            #priceComponent{
+                #pricePDiv{
+                    p{
+                        font-size: 2.2em;
+                    }
+                }
+                button{
+                    font-size: 2.2em;
+                }
+            }
+            button{
+                font-size: 2.2em;
+            }
+        }
+    }
+}
+
+}
+
 @media (orientation:'landscape'){
     #singleCarContainer{
+        #baseContainer{
+            min-height: 45vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            #descriptiveDiv{
+                width: 100%;
+                #carLocationDiv{
+                    #locatinHeaderDiv{
+                        width: 100%;
+                        padding: 0 5%;
+                        margin-bottom: 0em;
+                    }
+                    #actualLocationComponent{
+                        border-radius: 0;
+                        p{
+                            font-size: 1.6em;
+                        }
+                        svg{
+                            font-size: 1.6em;
+                        }
+                    }
+                }
+                #carSpecificationDiv{
+                    #featuresDiv{
+                        #swipeRR{
+                            #SwipeRslide{
+                                #singleFeature{
+                                    width: 20vw;
+                                    font-size: 1.5em;
+                                    height: 96%;
+                                    border-radius: 0.5em;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            #cartAndPay{
+                width: 100%;
+                padding: 0;
+                margin: 0;
+                width: 90%;
+                #priceComponent{
+                    margin-top: 0;
+                    width: 100%;
+                    border-radius: 0;
+                    border-bottom-left-radius: 1em;
+                    border-bottom-right-radius: 1em;
+                }
+                button{
+                    width: 40%;
+                    font-size: 1.4em;
+                }
+            }
+        }
         #carImageDiv{
             height: 55vh;
             justify-content: center;
             border-bottom-left-radius:0;
             border-bottom-right-radius:0;
             background-color: rgb(87, 87, 87);
+            
             img{
                 width: auto;
                 height: 100%;
@@ -200,27 +443,7 @@
                 }
             }
         }
-        #descriptiveDiv{
-            #carLocationDiv{
-                #locatinHeaderDiv{
-                    width: 90%;
-                    padding: 0 5%;
-                    margin-bottom: 1em;
-                }
-                #actualLocationComponent{
-                    border-radius: 0;
-                }
-            }
-        }
-        #priceComponent{
-            margin-top: 0;
-            width: 90%;
-            margin: 0 5%;
-            padding-top: 2em;
-            border-radius: 0;
-            border-bottom-left-radius: 1em;
-            border-bottom-right-radius: 1em;
-            margin-bottom: 4em;
-        }
+
+
     }
 }

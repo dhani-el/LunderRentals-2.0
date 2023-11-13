@@ -1,10 +1,12 @@
-import { Fragment, useState } from 'react';
+import {  useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Place,Streetview } from '@mui/icons-material';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import IconPack from '../../util';
 import '../Styles/index.css'
+import { Button } from '@mui/material';
+import { useMediaQuery } from 'react-responsive';
 
 const baseUrl = "http://localhost:3000/"
 
@@ -34,14 +36,15 @@ export function CarDescription({carFeatures,location}){
 
  function CarSpecification({features}){
     return <div id='carSpecificationDiv'>
-             <h2>SPECIFICATION</h2>
+             {/* <h2>SPECIFICATION</h2> */}
              <Features features={features}/>
             </div>
 }
 
 function Features({features}){
+    const isLandscape = useMediaQuery({query:"(orientation: landscape)"})
     return <div id="featuresDiv">
-                <Swiper spaceBetween={10} slidesPerView={2.4} id='swipeRR'>
+                <Swiper spaceBetween={10} slidesPerView={isLandscape ?3.2 : 2.4} id='swipeRR'>
                     {features.map(function(feature){
                         return <SwiperSlide id='SwipeRslide'>
                             <Feature Icon={feature.icon} featureValue={feature.description} optFeature={(feature.optFeature?feature.optFeature:null)} />
@@ -53,9 +56,7 @@ function Features({features}){
 
 function Feature({Icon,featureValue,optFeature}){
     return <div id='singleFeature'>
-                <Fragment id = "icon" >
-                    <Iconverter iconString={Icon} />
-                </Fragment>
+                <Iconverter iconString={"default"} />
                 <span id='featureValueSpan'>
                     <p id='text'>{featureValue}{optFeature && <span>{optFeature}</span>}</p>
                 </span>
@@ -64,13 +65,12 @@ function Feature({Icon,featureValue,optFeature}){
 
 function Iconverter({iconString}){
     const Icon = IconPack[iconString] == null ? IconPack.default : IconPack[iconString];
-    return Icon 
+    return <Icon id= "icon" /> 
 }
 
 function CarLocation({meters,address}){
     return <div id='carLocationDiv' >
                 <div id="locatinHeaderDiv">
-                    <p id='locationText'>Location</p> 
                     <span id='leftOfLocation'> <Streetview/> <p id='meters'>{meters}m</p></span>
                 </div>
                 <div id="actualLocationComponent"> 
@@ -79,6 +79,7 @@ function CarLocation({meters,address}){
                 </div>
     </div>
 }
+
 
 export function CarPrice({price,id}){
     const [isQueryEnabled, setIsQueryEnabled] = useState(false);
@@ -102,7 +103,7 @@ export function CarPrice({price,id}){
         setIsQueryEnabled(true)
     }
     return  <div id='priceComponent'>
-                <div id='pricePDiv'><p>{price}</p><p>/day</p></div>
-                <span onClick={()=> HandleAddtoCartClick()} >Add to Cart</span>
+                <div id='pricePDiv'><p>{price}</p><p>/PER DAY</p></div>
+                <Button variant='contained' onClick={()=> HandleAddtoCartClick()}>Add To Cart</Button>
             </div>
 }

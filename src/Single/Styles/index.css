@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 #singleCarContainer {
   width: 100vw;
   min-height: 100vh;
@@ -40,28 +46,67 @@
   color: rgb(164, 163, 163);
   font-weight: 900;
 }
-#singleCarContainer #descriptiveDiv {
-  margin-top: 1em;
-  height: 30%;
+#singleCarContainer #baseContainer {
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  gap: 6%;
+  margin-bottom: 2em;
 }
-#singleCarContainer #descriptiveDiv h2 {
+#singleCarContainer #baseContainer #cartAndPay {
+  padding: 1.5em 0em;
+  margin: 0em 1em;
+  margin-bottom: 2em;
+  height: 46%;
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+  align-items: center;
+  justify-content: center;
+  background-color: aliceblue;
+}
+#singleCarContainer #baseContainer #cartAndPay #priceComponent {
+  width: 100%;
+}
+#singleCarContainer #baseContainer #cartAndPay #priceComponent button {
+  width: 45%;
+  background-color: none;
+}
+#singleCarContainer #baseContainer #cartAndPay #pricePDiv {
+  font-size: 1.5em;
+  border-radius: 0.5em;
+  background-color: rgb(233, 233, 233);
+  padding: 0.5em;
+}
+#singleCarContainer #baseContainer #cartAndPay button {
+  background-color: aquamarine;
+  width: 90%;
+  color: black;
+}
+#singleCarContainer #baseContainer #descriptiveDiv {
+  margin-top: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+#singleCarContainer #baseContainer #descriptiveDiv h2 {
   padding-left: 1em;
 }
-#singleCarContainer #descriptiveDiv #carSpecificationDiv h2 {
+#singleCarContainer #baseContainer #descriptiveDiv #carSpecificationDiv h2 {
   font-weight: 900;
   color: rgb(177, 177, 177);
 }
-#singleCarContainer #descriptiveDiv #carSpecificationDiv #featuresDiv {
+#singleCarContainer #baseContainer #descriptiveDiv #carSpecificationDiv #featuresDiv {
   margin-top: 0.5em;
   height: 16vh;
 }
-#singleCarContainer #descriptiveDiv #carSpecificationDiv #featuresDiv #swipeRR {
+#singleCarContainer #baseContainer #descriptiveDiv #carSpecificationDiv #featuresDiv #swipeRR {
   height: 100%;
 }
-#singleCarContainer #descriptiveDiv #carSpecificationDiv #featuresDiv #swipeRR #SwipeRslide {
+#singleCarContainer #baseContainer #descriptiveDiv #carSpecificationDiv #featuresDiv #swipeRR #SwipeRslide {
   height: 100%;
 }
-#singleCarContainer #descriptiveDiv #carSpecificationDiv #featuresDiv #swipeRR #SwipeRslide #singleFeature {
+#singleCarContainer #baseContainer #descriptiveDiv #carSpecificationDiv #featuresDiv #swipeRR #SwipeRslide #singleFeature {
   width: 35vw;
   display: flex;
   flex-direction: column;
@@ -72,17 +117,13 @@
   color: aquamarine;
   border-radius: 1.2em;
 }
-#singleCarContainer #descriptiveDiv #carSpecificationDiv #featuresDiv #swipeRR #SwipeRslide #singleFeature #icon {
-  height: 35%;
-  width: auto;
-}
-#singleCarContainer #descriptiveDiv #carSpecificationDiv #featuresDiv #swipeRR #SwipeRslide #singleFeature #featureValueSpan {
+#singleCarContainer #baseContainer #descriptiveDiv #carSpecificationDiv #featuresDiv #swipeRR #SwipeRslide #singleFeature #featureValueSpan {
   display: flex;
   width: 100%;
   align-items: center;
   justify-content: center;
 }
-#singleCarContainer #descriptiveDiv #carSpecificationDiv #featuresDiv #swipeRR #SwipeRslide #singleFeature #featureValueSpan p {
+#singleCarContainer #baseContainer #descriptiveDiv #carSpecificationDiv #featuresDiv #swipeRR #SwipeRslide #singleFeature #featureValueSpan p {
   text-align: center;
   display: inline-block;
   width: 100%;
@@ -92,46 +133,36 @@
   text-transform: capitalize;
   color: rgb(163, 160, 160);
 }
-#singleCarContainer #descriptiveDiv #carLocationDiv {
+#singleCarContainer #baseContainer #descriptiveDiv #carLocationDiv {
   display: flex;
   flex-direction: column;
 }
-#singleCarContainer #descriptiveDiv #carLocationDiv #locatinHeaderDiv {
+#singleCarContainer #baseContainer #descriptiveDiv #carLocationDiv #locatinHeaderDiv {
   display: flex;
-  justify-content: space-between;
+  justify-content: end;
 }
-#singleCarContainer #descriptiveDiv #carLocationDiv #locatinHeaderDiv #locationText {
-  font-size: 1.5em;
-  font-weight: 900;
-  padding-left: 0.8em;
-  color: rgb(177, 177, 177);
-}
-#singleCarContainer #descriptiveDiv #carLocationDiv #locatinHeaderDiv #meters {
+#singleCarContainer #baseContainer #descriptiveDiv #carLocationDiv #locatinHeaderDiv #meters {
   font-size: 1.2em;
 }
-#singleCarContainer #descriptiveDiv #carLocationDiv #locatinHeaderDiv #leftOfLocation {
+#singleCarContainer #baseContainer #descriptiveDiv #carLocationDiv #locatinHeaderDiv #leftOfLocation {
   padding-right: 1em;
   display: flex;
-  color: gray;
   align-items: flex-end;
 }
-#singleCarContainer #descriptiveDiv #carLocationDiv #locatinHeaderDiv #leftOfLocation p {
+#singleCarContainer #baseContainer #descriptiveDiv #carLocationDiv #locatinHeaderDiv #leftOfLocation p {
   color: gray;
 }
-#singleCarContainer #descriptiveDiv #carLocationDiv #actualLocationComponent {
+#singleCarContainer #baseContainer #descriptiveDiv #carLocationDiv #actualLocationComponent {
   display: flex;
   align-self: center;
   align-items: center;
-  padding: 1em;
+  padding: 1.5em;
   gap: 1em;
   width: 90%;
   border-radius: 0.8em;
-  background-color: rgb(241, 241, 241);
+  background-color: aliceblue;
 }
-#singleCarContainer #descriptiveDiv #carLocationDiv #actualLocationComponent #placeIcon {
-  color: aquamarine;
-}
-#singleCarContainer #descriptiveDiv #carLocationDiv #actualLocationComponent p {
+#singleCarContainer #baseContainer #descriptiveDiv #carLocationDiv #actualLocationComponent p {
   width: 90%;
   overflow: hidden;
   white-space: nowrap;
@@ -140,38 +171,148 @@
   font-weight: 500;
 }
 #singleCarContainer #priceComponent {
-  margin-top: 1.5em;
   display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  height: 14%;
-  background-color: rgb(241, 241, 241);
-  width: 95%;
-  margin-left: 2.5%;
-  border-radius: 1.2em;
+  align-items: center;
+  justify-content: space-around;
 }
 #singleCarContainer #priceComponent #pricePDiv {
   display: flex;
-  font-size: 1.8em;
-  margin-left: 0.5em;
-  margin-bottom: 1em;
-  font-weight: 900;
-  text-transform: capitalize;
   color: rgb(67, 67, 67);
 }
-#singleCarContainer #priceComponent span {
-  width: 50%;
-  height: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: aquamarine;
-  border-top-left-radius: 1.5em;
-  border-bottom-right-radius: 1.5em;
-  font-size: 1.5em;
-}
 
+@media (max-width: 300px) and (orientation: portrait) {
+  #featureValueSpan p {
+    font-size: 0.6em;
+  }
+  #singleCarContainer #baseContainer #descriptiveDiv #carLocationDiv #locatinHeaderDiv #leftOfLocation svg {
+    font-size: 1em;
+  }
+  #singleCarContainer #baseContainer #descriptiveDiv #carLocationDiv #locatinHeaderDiv #leftOfLocation p#meters {
+    font-size: 0.8em;
+  }
+  #singleCarContainer #baseContainer #descriptiveDiv #carLocationDiv #actualLocationComponent svg {
+    font-size: 1em;
+  }
+  #singleCarContainer #baseContainer #descriptiveDiv #carLocationDiv #actualLocationComponent p {
+    font-size: 0.8em;
+  }
+  #singleCarContainer #baseContainer #cartAndPay #priceComponent #pricePDiv p {
+    font-size: 0.6em;
+  }
+  #singleCarContainer #baseContainer #cartAndPay #priceComponent button {
+    font-size: 0.6em;
+  }
+  #singleCarContainer #baseContainer #cartAndPay button {
+    font-size: 0.8em;
+  }
+}
+@media (min-width: 700px) and (orientation: portrait) {
+  #singleFeature svg {
+    font-size: 2em;
+  }
+  #singleFeature #featureValueSpan p {
+    font-size: 1.2em;
+  }
+  #singleCarContainer #baseContainer #descriptiveDiv #carLocationDiv #locatinHeaderDiv #leftOfLocation svg {
+    font-size: 2em;
+  }
+  #singleCarContainer #baseContainer #descriptiveDiv #carLocationDiv #locatinHeaderDiv #leftOfLocation p#meters {
+    font-size: 1.5em;
+  }
+  #singleCarContainer #baseContainer #descriptiveDiv #carLocationDiv #actualLocationComponent svg {
+    font-size: 1.6em;
+  }
+  #singleCarContainer #baseContainer #descriptiveDiv #carLocationDiv #actualLocationComponent p {
+    font-size: 1.5em;
+  }
+  #singleCarContainer #baseContainer #cartAndPay #priceComponent #pricePDiv p {
+    font-size: 1.2em;
+  }
+  #singleCarContainer #baseContainer #cartAndPay #priceComponent button {
+    font-size: 1.2em;
+  }
+  #singleCarContainer #baseContainer #cartAndPay button {
+    font-size: 1.2em;
+  }
+}
+@media (min-width: 800px) and (orientation: portrait) {
+  #singleFeature svg {
+    font-size: 4.5em;
+  }
+  #singleFeature #featureValueSpan p {
+    font-size: 2.5em;
+  }
+  #singleCarContainer #baseContainer #descriptiveDiv #carLocationDiv #locatinHeaderDiv #leftOfLocation svg {
+    font-size: 3.5em;
+  }
+  #singleCarContainer #baseContainer #descriptiveDiv #carLocationDiv #locatinHeaderDiv #leftOfLocation p#meters {
+    font-size: 2.5em;
+  }
+  #singleCarContainer #baseContainer #descriptiveDiv #carLocationDiv #actualLocationComponent svg {
+    font-size: 3.6em;
+  }
+  #singleCarContainer #baseContainer #descriptiveDiv #carLocationDiv #actualLocationComponent p {
+    font-size: 2.5em;
+  }
+  #singleCarContainer #baseContainer #cartAndPay #priceComponent #pricePDiv p {
+    font-size: 2.2em;
+  }
+  #singleCarContainer #baseContainer #cartAndPay #priceComponent button {
+    font-size: 2.2em;
+  }
+  #singleCarContainer #baseContainer #cartAndPay button {
+    font-size: 2.2em;
+  }
+}
 @media (orientation: landscape) {
+  #singleCarContainer #baseContainer {
+    min-height: 45vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  #singleCarContainer #baseContainer #descriptiveDiv {
+    width: 100%;
+  }
+  #singleCarContainer #baseContainer #descriptiveDiv #carLocationDiv #locatinHeaderDiv {
+    width: 100%;
+    padding: 0 5%;
+    margin-bottom: 0em;
+  }
+  #singleCarContainer #baseContainer #descriptiveDiv #carLocationDiv #actualLocationComponent {
+    border-radius: 0;
+  }
+  #singleCarContainer #baseContainer #descriptiveDiv #carLocationDiv #actualLocationComponent p {
+    font-size: 1.6em;
+  }
+  #singleCarContainer #baseContainer #descriptiveDiv #carLocationDiv #actualLocationComponent svg {
+    font-size: 1.6em;
+  }
+  #singleCarContainer #baseContainer #descriptiveDiv #carSpecificationDiv #featuresDiv #swipeRR #SwipeRslide #singleFeature {
+    width: 20vw;
+    font-size: 1.5em;
+    height: 96%;
+    border-radius: 0.5em;
+  }
+  #singleCarContainer #baseContainer #cartAndPay {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    width: 90%;
+  }
+  #singleCarContainer #baseContainer #cartAndPay #priceComponent {
+    margin-top: 0;
+    width: 100%;
+    border-radius: 0;
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+  }
+  #singleCarContainer #baseContainer #cartAndPay button {
+    width: 40%;
+    font-size: 1.4em;
+  }
   #singleCarContainer #carImageDiv {
     height: 55vh;
     justify-content: center;
@@ -190,23 +331,5 @@
   }
   #singleCarContainer #carImageDiv #carImageTextSpan img {
     width: 40%;
-  }
-  #singleCarContainer #descriptiveDiv #carLocationDiv #locatinHeaderDiv {
-    width: 90%;
-    padding: 0 5%;
-    margin-bottom: 1em;
-  }
-  #singleCarContainer #descriptiveDiv #carLocationDiv #actualLocationComponent {
-    border-radius: 0;
-  }
-  #singleCarContainer #priceComponent {
-    margin-top: 0;
-    width: 90%;
-    margin: 0 5%;
-    padding-top: 2em;
-    border-radius: 0;
-    border-bottom-left-radius: 1em;
-    border-bottom-right-radius: 1em;
-    margin-bottom: 4em;
   }
 }/*# sourceMappingURL=index.css.map */
