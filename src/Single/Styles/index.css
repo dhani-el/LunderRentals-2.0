@@ -237,31 +237,31 @@
 }
 @media (min-width: 800px) and (orientation: portrait) {
   #singleFeature svg {
-    font-size: 2em;
+    font-size: 4.5em;
   }
   #singleFeature #featureValueSpan p {
-    font-size: 1.2em;
+    font-size: 2.5em;
   }
   #singleCarContainer #baseContainer #descriptiveDiv #carLocationDiv #locatinHeaderDiv #leftOfLocation svg {
-    font-size: 2em;
+    font-size: 3.5em;
   }
   #singleCarContainer #baseContainer #descriptiveDiv #carLocationDiv #locatinHeaderDiv #leftOfLocation p#meters {
-    font-size: 1.5em;
+    font-size: 2.5em;
   }
   #singleCarContainer #baseContainer #descriptiveDiv #carLocationDiv #actualLocationComponent svg {
-    font-size: 1.6em;
+    font-size: 3.6em;
   }
   #singleCarContainer #baseContainer #descriptiveDiv #carLocationDiv #actualLocationComponent p {
-    font-size: 1.5em;
+    font-size: 2.5em;
   }
   #singleCarContainer #baseContainer #cartAndPay #priceComponent #pricePDiv p {
-    font-size: 1.2em;
+    font-size: 2.2em;
   }
   #singleCarContainer #baseContainer #cartAndPay #priceComponent button {
-    font-size: 1.2em;
+    font-size: 2.2em;
   }
   #singleCarContainer #baseContainer #cartAndPay button {
-    font-size: 1.2em;
+    font-size: 2.2em;
   }
 }
 @media (orientation: landscape) {

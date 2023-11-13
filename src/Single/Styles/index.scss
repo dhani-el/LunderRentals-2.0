@@ -307,11 +307,11 @@
 @media (min-width : '800px') and (orientation:'portrait') {
     #singleFeature{
         svg{
-            font-size: 2em;
+            font-size: 4.5em;
         }
         #featureValueSpan{
             p{
-                font-size: 1.2em;
+                font-size: 2.5em;
             }
         }
     }
@@ -323,10 +323,10 @@
                  #locatinHeaderDiv{
                      #leftOfLocation {
                         svg{
-                            font-size: 2em;
+                            font-size: 3.5em;
                         }
                         p#meters{
-                            font-size: 1.5em;
+                            font-size: 2.5em;
                         }
                     
                     }
@@ -334,10 +334,10 @@
 
                 #actualLocationComponent{
                     svg{
-                        font-size: 1.6em;
+                        font-size: 3.6em;
                     }
                     p{
-                        font-size: 1.5em;
+                        font-size: 2.5em;
                     }
                 }
 
@@ -347,15 +347,15 @@
             #priceComponent{
                 #pricePDiv{
                     p{
-                        font-size: 1.2em;
+                        font-size: 2.2em;
                     }
                 }
                 button{
-                    font-size: 1.2em;
+                    font-size: 2.2em;
                 }
             }
             button{
-                font-size: 1.2em;
+                font-size: 2.2em;
             }
         }
     }
