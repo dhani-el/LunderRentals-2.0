@@ -265,6 +265,54 @@
   }
 }
 @media (orientation: landscape) {
+  #singleCarContainer #baseContainer {
+    min-height: 45vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  #singleCarContainer #baseContainer #descriptiveDiv {
+    width: 100%;
+  }
+  #singleCarContainer #baseContainer #descriptiveDiv #carLocationDiv #locatinHeaderDiv {
+    width: 100%;
+    padding: 0 5%;
+    margin-bottom: 0em;
+  }
+  #singleCarContainer #baseContainer #descriptiveDiv #carLocationDiv #actualLocationComponent {
+    border-radius: 0;
+  }
+  #singleCarContainer #baseContainer #descriptiveDiv #carLocationDiv #actualLocationComponent p {
+    font-size: 1.6em;
+  }
+  #singleCarContainer #baseContainer #descriptiveDiv #carLocationDiv #actualLocationComponent svg {
+    font-size: 1.6em;
+  }
+  #singleCarContainer #baseContainer #descriptiveDiv #carSpecificationDiv #featuresDiv #swipeRR #SwipeRslide #singleFeature {
+    width: 20vw;
+    font-size: 1.5em;
+    height: 96%;
+    border-radius: 0.5em;
+  }
+  #singleCarContainer #baseContainer #cartAndPay {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    width: 90%;
+  }
+  #singleCarContainer #baseContainer #cartAndPay #priceComponent {
+    margin-top: 0;
+    width: 100%;
+    border-radius: 0;
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+  }
+  #singleCarContainer #baseContainer #cartAndPay button {
+    width: 40%;
+    font-size: 1.4em;
+  }
   #singleCarContainer #carImageDiv {
     height: 55vh;
     justify-content: center;
@@ -283,23 +331,5 @@
   }
   #singleCarContainer #carImageDiv #carImageTextSpan img {
     width: 40%;
-  }
-  #singleCarContainer #descriptiveDiv #carLocationDiv #locatinHeaderDiv {
-    width: 90%;
-    padding: 0 5%;
-    margin-bottom: 1em;
-  }
-  #singleCarContainer #descriptiveDiv #carLocationDiv #actualLocationComponent {
-    border-radius: 0;
-  }
-  #singleCarContainer #priceComponent {
-    margin-top: 0;
-    width: 90%;
-    margin: 0 5%;
-    padding-top: 2em;
-    border-radius: 0;
-    border-bottom-left-radius: 1em;
-    border-bottom-right-radius: 1em;
-    margin-bottom: 4em;
   }
 }/*# sourceMappingURL=index.css.map */

@@ -365,12 +365,71 @@
 
 @media (orientation:'landscape'){
     #singleCarContainer{
+        #baseContainer{
+            min-height: 45vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            #descriptiveDiv{
+                width: 100%;
+                #carLocationDiv{
+                    #locatinHeaderDiv{
+                        width: 100%;
+                        padding: 0 5%;
+                        margin-bottom: 0em;
+                    }
+                    #actualLocationComponent{
+                        border-radius: 0;
+                        p{
+                            font-size: 1.6em;
+                        }
+                        svg{
+                            font-size: 1.6em;
+                        }
+                    }
+                }
+                #carSpecificationDiv{
+                    #featuresDiv{
+                        #swipeRR{
+                            #SwipeRslide{
+                                #singleFeature{
+                                    width: 20vw;
+                                    font-size: 1.5em;
+                                    height: 96%;
+                                    border-radius: 0.5em;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            #cartAndPay{
+                width: 100%;
+                padding: 0;
+                margin: 0;
+                width: 90%;
+                #priceComponent{
+                    margin-top: 0;
+                    width: 100%;
+                    border-radius: 0;
+                    border-bottom-left-radius: 1em;
+                    border-bottom-right-radius: 1em;
+                }
+                button{
+                    width: 40%;
+                    font-size: 1.4em;
+                }
+            }
+        }
         #carImageDiv{
             height: 55vh;
             justify-content: center;
             border-bottom-left-radius:0;
             border-bottom-right-radius:0;
             background-color: rgb(87, 87, 87);
+            
             img{
                 width: auto;
                 height: 100%;
@@ -384,27 +443,7 @@
                 }
             }
         }
-        #descriptiveDiv{
-            #carLocationDiv{
-                #locatinHeaderDiv{
-                    width: 90%;
-                    padding: 0 5%;
-                    margin-bottom: 1em;
-                }
-                #actualLocationComponent{
-                    border-radius: 0;
-                }
-            }
-        }
-        #priceComponent{
-            margin-top: 0;
-            width: 90%;
-            margin: 0 5%;
-            padding-top: 2em;
-            border-radius: 0;
-            border-bottom-left-radius: 1em;
-            border-bottom-right-radius: 1em;
-            margin-bottom: 4em;
-        }
+
+
     }
 }
