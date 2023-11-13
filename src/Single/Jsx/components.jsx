@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react';
+import {  useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Place,Streetview } from '@mui/icons-material';
 import { useQuery } from '@tanstack/react-query';
@@ -6,6 +6,7 @@ import axios from 'axios';
 import IconPack from '../../util';
 import '../Styles/index.css'
 import { Button } from '@mui/material';
+import { useMediaQuery } from 'react-responsive';
 
 const baseUrl = "http://localhost:3000/"
 
@@ -41,8 +42,9 @@ export function CarDescription({carFeatures,location}){
 }
 
 function Features({features}){
+    const isLandscape = useMediaQuery({query:"(orientation: landscape)"})
     return <div id="featuresDiv">
-                <Swiper spaceBetween={10} slidesPerView={2.4} id='swipeRR'>
+                <Swiper spaceBetween={10} slidesPerView={isLandscape ?3.2 : 2.4} id='swipeRR'>
                     {features.map(function(feature){
                         return <SwiperSlide id='SwipeRslide'>
                             <Feature Icon={feature.icon} featureValue={feature.description} optFeature={(feature.optFeature?feature.optFeature:null)} />
