@@ -11,15 +11,14 @@ import LogoImage from '/one.png';
 
 
 export function Header(){
-    const loginData = false
-    console.log(loginData.isUserLoggedIn);
     const [isUserLoggedIn, setIsUserLogedIn] = useState(false);
-    const [username, setUsername] = useState('')
+    const [username, setUsername] = useState('');
 
     useEffect(function(){
-        if(document.cookie.user){
+        console.log(`${document.cookie}`.substring(5));
+        if(document.cookie !=null){
             setIsUserLogedIn(true);
-            setUsername((former)=> document.cookie.user);
+            setUsername((former)=> `${document.cookie}`.substring(5).toString());
         }
     })
     
@@ -50,17 +49,18 @@ function NavBar(){
 }
 
 function Authenticator({loggedIn,username}){
+    console.log('inside ather', username);
     const location = useLocation().pathname;
     return <div id="authenticator" >
         {location === "/cart" || <CartLink numberOfItems={3}/>}
-        {loggedIn ? <UserComponent name={username} /> : <AuthButton/> }
+        {loggedIn ? <UserComponent user={username} /> : <AuthButton/> }
     </div>
 }
 
 function UserComponent({user}){
     return <div id="userDiv" >
         <User/>
-        <p>hi, {user.name} </p>
+        <p>hi, {user} </p>
     </div>
 }
 
