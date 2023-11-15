@@ -3,13 +3,9 @@ import { motion } from "framer-motion" ;
 import { Box, TextField, Button, Card } from "@mui/material";
 import formType from "../constant";
 import axios from "axios";
-import { useQuery,useQueryClient } from "@tanstack/react-query";
-
-
-const baseUrl = "http://localhost:3000/"
+import { useQuery} from "@tanstack/react-query";
 
 export function Login(){
-    const Qclient = useQueryClient();
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
     const [shouldSend, setShouldSend] = useState(false);
@@ -17,7 +13,7 @@ export function Login(){
     
     const {isFetching,data} = useQuery({
         queryKey:["login"],
-        queryFn: ()=> axios.post(`${baseUrl}auth/login`,payload, {
+        queryFn: ()=> axios.post(`/auth/login`,payload, {
             withCredentials:true,
         })
             .then(function(response){
@@ -54,14 +50,12 @@ export function Login(){
         return fieldHealth.length
     }
     function logUserIn(){
-        // setShouldSend(true);
-        // Qclient.refetchQueries({queryKey:["login"],exact:true})
-        axios.post(`${baseUrl}auth/login`,payload, {
+        axios.post(`/auth/login`,payload, {
             withCredentials:true,
         })
     }
     function SaveLoggedInUser(user){
-        // document.cookie = `user=${user};expires=${new Date(Date.now() + 1000*60*60)}`
+        document.cookie = `user=${user};expires=${new Date(Date.now() + 1000*60*60)}`
     }
     function indicateUserLoggedIn(){
         console.log('user logged in');
@@ -93,7 +87,7 @@ export function SignUp(){
 
     const {isFetching,data} = useQuery({
         queryKey:["signup"],
-        queryFn: ()=> axios.post(`${baseUrl}auth/signup`,payload)
+        queryFn: ()=> axios.post(`/auth/signup`,payload)
             .then(function(response){
                 setShouldSend(false);
                 resetUser();
@@ -127,10 +121,10 @@ export function SignUp(){
     }
 
     function resetUser(){
-        setFirstName('');
-        setLastname('');
-        setEmail('');
-        setPassword('');
+        setFirstName(initial => '');
+        setLastname(initial => '');
+        setEmail(initial => '');
+        setPassword(initial => '');
     }
 
     return <motion.div className="formDiv" id="signUpForm" >
