@@ -92,6 +92,7 @@ export function Cars({brand}){
         queryFn : ()=>  Axios.get(`${baseUrl}data/api/cars/${brand}`)
                         .then(function(result){ setInitialRender(false); return result}),
         enabled: initialRender,
+        refetchOnWindowFocus:false,
     });
 
 

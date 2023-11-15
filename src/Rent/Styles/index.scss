@@ -149,6 +149,13 @@
             }
         }
     }
+    #noCarsDiv{
+        width: 100%;
+        min-height: inherit;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 }
 
 @media (orientation : 'portrait') and (max-width:"300px"){
