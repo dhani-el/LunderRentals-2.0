@@ -3,37 +3,14 @@ import { motion } from "framer-motion" ;
 import { Box, TextField, Button, Card } from "@mui/material";
 import formType from "../constant";
 import axios from "axios";
-import { useQuery,useQueryClient } from "@tanstack/react-query";
 
 
 const baseUrl = "http://localhost:3000/"
 
 export function Login(){
-    const Qclient = useQueryClient();
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
-    const [shouldSend, setShouldSend] = useState(false);
     const payload = {username : userName, password: password}
-    
-    const {isFetching,data} = useQuery({
-        queryKey:["login"],
-        queryFn: ()=> axios.post(`${baseUrl}auth/login`,payload, {
-            withCredentials:true,
-        })
-            .then(function(response){
-                setShouldSend(false);
-                console.log(response.data);
-                return response.data;
-            }).then(function(user){
-                SaveLoggedInUser(user)
-                return user
-            })
-        ,
-        enabled: shouldSend,
-        retry:0,
-        refetchOnWindowFocus:false,
-    });
-
 
     function handleInputChange(e, setFunc){
         if(e != null){
@@ -54,14 +31,16 @@ export function Login(){
         return fieldHealth.length
     }
     function logUserIn(){
-        // setShouldSend(true);
-        // Qclient.refetchQueries({queryKey:["login"],exact:true})
         axios.post(`${baseUrl}auth/login`,payload, {
             withCredentials:true,
+        }).then(function(user){
+            console.log("isd");
+            SaveLoggedInUser(user)
+            return user
         })
     }
     function SaveLoggedInUser(user){
-        // document.cookie = `user=${user};expires=${new Date(Date.now() + 1000*60*60)}`
+        document.cookie = `user=${user.data};expires=${new Date(Date.now() + 1000*60*60)}`
     }
     function indicateUserLoggedIn(){
         console.log('user logged in');
