@@ -8,7 +8,6 @@ import '../Styles/index.css'
 import { Button } from '@mui/material';
 import { useMediaQuery } from 'react-responsive';
 
-const baseUrl = "http://localhost:3000/"
 
 export function CarImage({image,logo,title,year}){
     return <div id="carImageDiv">
@@ -84,7 +83,7 @@ export function CarPrice({price,id}){
     const [isQueryEnabled, setIsQueryEnabled] = useState(false);
     const {data} = useQuery({
         queryKey:["addtocart"],
-        queryFn:()=> axios.post(`${baseUrl}data/api/cart`,{cartItem:id},{
+        queryFn:()=> axios.post(`/data/api/cart`,{cartItem:id},{
             headers:{
                 'Content-Type':'multipart/form-data,'
             },
