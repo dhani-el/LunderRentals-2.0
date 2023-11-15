@@ -66,6 +66,11 @@
   padding: 2em 1.5em;
   justify-content: space-between;
 }
+#cartBackground #mostContent #paymentBarMainDiv #atmCardBackground #nameAndExpiry #holderName {
+  text-overflow: ellipsis;
+  overflow-x: hidden;
+  text-wrap: nowrap;
+}
 #cartBackground #mostContent #paymentBarMainDiv #paymentForm {
   display: flex;
   flex-direction: column;
@@ -292,12 +297,18 @@
   #cartBackground #mostContent #paymentBarMainDiv {
     width: 25%;
     box-shadow: 5em 5em 7em 7em black;
+    min-height: 100vh;
+    justify-content: space-evenly;
+  }
+  #cartBackground #mostContent #paymentBarMainDiv #pay {
+    position: static;
   }
   #cartBackground #mostContent #paymentBarMainDiv #atmCardBackground {
     background: url("/card3.jpg");
     background-size: 100%;
     width: 25vw;
     height: 15vw;
+    margin: 0;
   }
   #listHeader {
     display: flex;
