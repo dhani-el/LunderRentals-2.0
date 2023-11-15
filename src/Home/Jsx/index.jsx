@@ -1,7 +1,7 @@
+import { useEffect,  useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Paragraph, AchivementText, LargeText, CallToAction, Modelo, SplashScreen} from './components';
 import '../Styles/index.css';
-import { useEffect,  useState } from 'react';
 
 
 export default function Home(){

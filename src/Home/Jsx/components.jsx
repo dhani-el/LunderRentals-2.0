@@ -7,7 +7,7 @@ import { OrbitControls, MeshReflectorMaterial, PerspectiveCamera } from '@react-
 import {LinearEncoding, RepeatWrapping, TextureLoader} from 'three';
 import { useMediaQuery } from 'react-responsive';
 import LoadingBar from "react-top-loading-bar"
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import splashImage from "/one.png";
 

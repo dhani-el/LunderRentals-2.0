@@ -2,7 +2,7 @@ import { useState} from 'react';
 import { TextField, Card } from "@mui/material";
 import { Search, Close } from "@mui/icons-material";
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 import { useQuery,useQueryClient } from '@tanstack/react-query';
 import Axios from 'axios';
@@ -10,7 +10,6 @@ import 'swiper/css';
 import '../Styles/index.css';
 
 
-const baseUrl = "http://localhost:3000/"
 
 export function SearchComponent(){
     const [openSearchBar, setOpenSearchBar] = useState(false);
@@ -41,7 +40,7 @@ export function Brands({handleBrandChange}){
     const isLandscape = useMediaQuery({query:'(orientation:landscape)'});
     const {data} = useQuery({
         queryKey:["brandsQuery"],
-        queryFn: ()=> Axios.get(`${baseUrl}data/api/brands`).then(function(response){return response}),
+        queryFn: ()=> Axios.get(`/data/api/brands`).then(function(response){return response}),
         refetchOnWindowFocus:false,
         retry:0
     });
@@ -89,7 +88,7 @@ export function Cars({brand}){
     const [initialRender,setInitialRender] = useState(true);
   const {data, isFetching} = useQuery({
         queryKey:["carData"],
-        queryFn : ()=>  Axios.get(`${baseUrl}data/api/cars/${brand}`)
+        queryFn : ()=>  Axios.get(`/data/api/cars/${brand}`)
                         .then(function(result){ setInitialRender(false); return result}),
         enabled: initialRender,
     });
@@ -111,7 +110,7 @@ function Car({car}){
     const navigate = useNavigate();
     const {isFetching} = useQuery({
         queryKey:["addToCartRent"],
-        queryFn:()=> Axios.post(`${baseUrl}data/api/cart`, {cartItem:car._id},{withCredentials:true}).then(function(response){
+        queryFn:()=> Axios.post(`/data/api/cart`, {cartItem:car._id},{withCredentials:true}).then(function(response){
                 setIsQueryEnabled(false);
                 return response
             })

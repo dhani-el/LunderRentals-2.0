@@ -52,7 +52,7 @@ function NavBar(){
 function Authenticator({loggedIn,username}){
     const location = useLocation().pathname;
     return <div id="authenticator" >
-        {location === "/cart" || <CartLink numberOfItems={3}/>}
+        {location === "/cart" || <CartLink />}
         {loggedIn ? <UserComponent name={username} /> : <AuthButton/> }
     </div>
 }
@@ -124,9 +124,8 @@ export function Footer(){
     </div>
 }
 
-function CartLink({numberOfItems}){
+function CartLink(){
     return <div id='cartLinkMainDiv'>
-        {/* <p id='noOfItems'>{numberOfItems}</p> */}
         <Link to="/cart">
             <ShoppingBag id="cartIcon"/>
         </Link>
