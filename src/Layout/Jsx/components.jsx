@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import { Button } from "@mui/material";
 import {User} from 'react-feather';
 import ViewList from '@mui/icons-material/ViewList';
@@ -13,12 +13,21 @@ import LogoImage from '/one.png';
 export function Header(){
     const loginData = false
     console.log(loginData.isUserLoggedIn);
+    const [isUserLoggedIn, setIsUserLogedIn] = useState(false);
+    const [username, setUsername] = useState('')
+
+    useEffect(function(){
+        if(document.cookie.user){
+            setIsUserLogedIn(true);
+            setUsername((former)=> document.cookie.user);
+        }
+    })
     
     return <div id = "header">
              <Logo/>
              <NavBar/>
              <div id='authNmenuDiv'>
-             <Authenticator loggedIn = {loginData.isUserLoggedIn} username={loginData.username} />
+             <Authenticator loggedIn = {isUserLoggedIn} username={username} />
              <Menu/>
              </div>
         </div>

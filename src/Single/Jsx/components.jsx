@@ -80,7 +80,6 @@ function CarLocation({meters,address}){
     </div>
 }
 
-
 export function CarPrice({price,id}){
     const [isQueryEnabled, setIsQueryEnabled] = useState(false);
     const {data} = useQuery({
