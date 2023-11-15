@@ -6,8 +6,6 @@ import { ListOfCartItems, OrderSummary, PaymentBar} from "./component";
 import  "../Styles/index.css";
 
 
-const baseUrl = "http://localhost:3000/"
-
 const animations = {
     cartAnimation:{
         initial:{
@@ -24,7 +22,7 @@ function Cart(){
     const [toCheckout, setToCheckout] = useState(false);
     const {data,isFetching} = useQuery({
         queryKey:["fetchCartItems"],
-        queryFn: async ()=> await axios.get(`${baseUrl}data/api/cart`,{withCredentials:true})
+        queryFn: async ()=> await axios.get(`/data/api/cart`,{withCredentials:true})
         .then(function(response){ console.log(response); return response}),
         refetchOnWindowFocus:false,
         retry:0 

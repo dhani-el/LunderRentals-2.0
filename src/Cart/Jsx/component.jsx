@@ -3,14 +3,10 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { motion } from "framer-motion";
 import { Close } from "@mui/icons-material";
-import productImage from "/imageOne.png";
 import { Button, TextField } from "@mui/material";
 import MasterCard from "/masterCard.png";
 import { useMediaQuery } from "react-responsive";
 
-
-
-const baseUrl = "http://localhost:3000/"
 
 export function ListOfCartItems({cartItems}){
     return <div id="cartItemsCard" >
@@ -35,7 +31,7 @@ function SingleCartItem({itemDetails}){
     const [removeItem, setRemoveItem] = useState(false);
     const {data,isFetching} = useQuery({
         queryKey:["removeCartItem"],
-        queryFn: async ()=> await axios.delete(`${baseUrl}data/api/cart/${itemDetails._id}`, {withCredentials:true})
+        queryFn: async ()=> await axios.delete(`/data/api/cart/${itemDetails._id}`, {withCredentials:true})
         .then(function(response){
             setRemoveItem(false);
             return response
