@@ -28,12 +28,12 @@
   gap: 1em;
 }
 #searchComponentContainer #searchComponentCard #searchBar fieldset {
-  border-color: black;
+  border-color: white;
 }
 #searchComponentContainer #searchComponentCard #searchBar .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
   padding: 0.4em;
-  width: 80%;
-  outline-color: purple;
+  width: 100%;
+  font-size: 1.2em;
 }
 #searchComponentContainer #searchComponentCard #searchBar .css-1u3bzj6-MuiFormControl-root-MuiTextField-root {
   width: 90%;
