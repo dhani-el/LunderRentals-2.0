@@ -108,19 +108,20 @@ body {
   bottom: 50%;
   left: 48%;
 }
-#bodyDiv #mainSplashDiv {
+
+#mainSplashDiv {
   width: 100%;
-  height: 110vh;
+  height: 120vh;
   background-color: black;
   position: absolute;
-  top: -10vh;
+  top: 0;
   left: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 20;
 }
-#bodyDiv #mainSplashDiv img {
+#mainSplashDiv img {
   width: 65%;
   height: auto;
 }
@@ -236,10 +237,10 @@ body {
     bottom: 40%;
     left: 50%;
   }
-  #bodyDiv #mainSplashDiv {
+  #mainSplashDiv {
     z-index: 10;
   }
-  #bodyDiv #mainSplashDiv img {
+  #mainSplashDiv img {
     height: 30%;
     width: auto;
   }
