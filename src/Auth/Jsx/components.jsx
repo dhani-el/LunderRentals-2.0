@@ -1,8 +1,10 @@
-import { useState} from "react";
+import { useState,useContext} from "react";
 import { motion } from "framer-motion" ;
 import { Box, TextField, Button, Card } from "@mui/material";
 import formType from "../constant";
 import axios from "axios";
+import { AuthContext } from "../../App";
+
 
 
 const baseUrl = "http://localhost:3000/"
@@ -10,14 +12,14 @@ const baseUrl = "http://localhost:3000/"
 export function Login(){
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
-    const payload = {username : userName, password: password}
+    const payload = {username : userName, password: password};
+    const {authState,contextFn} = useContext(AuthContext);
 
     function handleInputChange(e, setFunc){
         if(e != null){
             setFunc(e.target.value);
         }
     }
-
     function handleLoginClick(){
         if (checkFields([userName,password]) > 0) {
             return
@@ -35,7 +37,8 @@ export function Login(){
             withCredentials:true,
         }).then(function(user){
             console.log("isd");
-            SaveLoggedInUser(user)
+            SaveLoggedInUser(user);
+            contextFn((initial)=>({isloggedin:true,username:user}));
             return user
         })
     }

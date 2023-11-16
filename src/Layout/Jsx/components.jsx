@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import {useEffect, useState, useContext} from 'react';
 import { Button } from "@mui/material";
 import {User} from 'react-feather';
 import ViewList from '@mui/icons-material/ViewList';
@@ -6,27 +6,19 @@ import {Close,ShoppingBag} from '@mui/icons-material';
 import {motion} from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
 import LogoImage from '/one.png';
-
+import { AuthContext } from '../../App';
 
 
 
 export function Header(){
-    const [isUserLoggedIn, setIsUserLogedIn] = useState(false);
-    const [username, setUsername] = useState('');
-
-    useEffect(function(){
-        console.log(`${document.cookie}`.substring(5));
-        if(document.cookie !=null){
-            setIsUserLogedIn(true);
-            setUsername((former)=> `${document.cookie}`.substring(5).toString());
-        }
-    })
+    const {authState,contextFn} = useContext(AuthContext);
+    console.log("context data",authState.username);
     
     return <div id = "header">
              <Logo/>
              <NavBar/>
              <div id='authNmenuDiv'>
-             <Authenticator loggedIn = {isUserLoggedIn} username={username} />
+             <Authenticator loggedIn = {authState.username != ''} username={authState.username} />
              <Menu/>
              </div>
         </div>
@@ -126,7 +118,6 @@ export function Footer(){
 
 function CartLink({numberOfItems}){
     return <div id='cartLinkMainDiv'>
-        {/* <p id='noOfItems'>{numberOfItems}</p> */}
         <Link to="/cart">
             <ShoppingBag id="cartIcon"/>
         </Link>
