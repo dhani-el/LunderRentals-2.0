@@ -9,6 +9,9 @@ import Cart from './Cart/Jsx';
 import SinglePayment from './SinglePayment/Jsx';
 
 import {createBrowserRouter, RouterProvider} from 'react-router-dom';
+import { createContext, useEffect, useState } from 'react';
+
+export const AuthContext = createContext(null);
 
 
 
@@ -52,9 +55,12 @@ const route  = createBrowserRouter([
 ]);
 
 function App() {
+  const [userLoggedIn, setUserLoggedin] = useState({isloggedin:false,username:`${document.cookie}`.substring(5).toString()})
 
   return (
+    <AuthContext.Provider value={{authState:userLoggedIn,contextFn:setUserLoggedin}}>
       <RouterProvider router={route} />
+    </AuthContext.Provider>
   )
 
 }
