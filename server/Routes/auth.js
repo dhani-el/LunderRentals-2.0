@@ -11,8 +11,6 @@ passport.serializeUser(function(user,done){
 
 passport.deserializeUser( function(username,done){
     console.log("this is the deserialized function and this is the value of username ",username)
-    
-    // const user = await USERDB.findOne({name:username});
     return done(null,username);
 });
 
