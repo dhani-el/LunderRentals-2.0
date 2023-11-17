@@ -39,13 +39,14 @@ $landscape_formDiv_form_card_div_button_width:40%;
 
 #authPageContainer{
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 10vh;
+    padding: 2em 0em;
     #authSelectorContainer{
         width: $portrait_authSelector_Container_width;
         height: 7vh;

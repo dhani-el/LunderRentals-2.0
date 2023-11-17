@@ -4,6 +4,7 @@ import { Box, TextField, Button, Card } from "@mui/material";
 import formType from "../constant";
 import axios from "axios";
 import { AuthContext } from "../../App";
+import { useQuery } from "@tanstack/react-query";
 
 
 
@@ -38,7 +39,7 @@ export function Login(){
         }).then(function(user){
             console.log("isd");
             SaveLoggedInUser(user);
-            contextFn((initial)=>({isloggedin:true,username:user}));
+            contextFn((initial)=>({isloggedin:true,username:user.data}));
             return user
         })
     }

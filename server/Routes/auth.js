@@ -27,6 +27,7 @@ route.post("/signup",async function(req,res){
     try{
         password = await bcrypt.hash(password,10)
         await USERDB.create({name,email,password});
+        console.log(password);
     }catch(error){
         console.log(error);
         res.send("error encountered");
