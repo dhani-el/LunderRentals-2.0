@@ -1,42 +1,26 @@
-import { useState} from "react";
+import { useState,useContext} from "react";
 import { motion } from "framer-motion" ;
 import { Box, TextField, Button, Card } from "@mui/material";
 import formType from "../constant";
 import axios from "axios";
-import { useQuery} from "@tanstack/react-query";
+import { AuthContext } from "../../App";
+import { useQuery } from "@tanstack/react-query";
+
+
+
+const baseUrl = "http://localhost:3000/"
 
 export function Login(){
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
-    const [shouldSend, setShouldSend] = useState(false);
-    const payload = {username : userName, password: password}
-    
-    const {isFetching,data} = useQuery({
-        queryKey:["login"],
-        queryFn: ()=> axios.post(`/auth/login`,payload, {
-            withCredentials:true,
-        })
-            .then(function(response){
-                setShouldSend(false);
-                console.log(response.data);
-                return response.data;
-            }).then(function(user){
-                SaveLoggedInUser(user)
-                return user
-            })
-        ,
-        enabled: shouldSend,
-        retry:0,
-        refetchOnWindowFocus:false,
-    });
-
+    const payload = {username : userName, password: password};
+    const {authState,contextFn} = useContext(AuthContext);
 
     function handleInputChange(e, setFunc){
         if(e != null){
             setFunc(e.target.value);
         }
     }
-
     function handleLoginClick(){
         if (checkFields([userName,password]) > 0) {
             return
@@ -52,10 +36,15 @@ export function Login(){
     function logUserIn(){
         axios.post(`/auth/login`,payload, {
             withCredentials:true,
+        }).then(function(user){
+            console.log("isd");
+            SaveLoggedInUser(user);
+            contextFn((initial)=>({isloggedin:true,username:user.data}));
+            return user
         })
     }
     function SaveLoggedInUser(user){
-        document.cookie = `user=${user};expires=${new Date(Date.now() + 1000*60*60)}`
+        document.cookie = `user=${user.data};expires=${new Date(Date.now() + 1000*60*60)}`
     }
     function indicateUserLoggedIn(){
         console.log('user logged in');

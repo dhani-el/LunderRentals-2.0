@@ -12,7 +12,9 @@ export default function Home(){
         console.log("stageOne");
     },[]);
 
-    return <div id = "bodyDiv">
+    return <>
+            <SplashScreen displaySplash={!removeSplash}  />
+            <div id = "bodyDiv">
                 <div id='abslouteContentContainer'>
                     <div id='top'>
                     {isLandScape && <AchivementText/>}
@@ -23,7 +25,6 @@ export default function Home(){
                     <CallToAction/>
                 </div>
                 <Modelo setModelReady={setRemoveSplash}/>
-                <SplashScreen displaySplash={!removeSplash}  />
-      
             </div>
+            </>
 }

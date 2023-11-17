@@ -176,7 +176,7 @@ export function SplashScreen({displaySplash}){
         }
     }, []);
 
-    return <motion.div id='mainSplashDiv' variants={animations.main} initial="initial" animate={displaySplash ? "animationOn" : "animationOff"} >
+    return <motion.div id='mainSplashDiv' className={displaySplash? "displaySplash": "" } variants={animations.main} initial="initial" animate={displaySplash ? "animationOn" : "animationOff"} >
                 <motion.img src={splashImage} alt='lunder rentals splash screen image' variants={animations.image} initial="initial" animate={displaySplash ?"animation" : "initial"} />
                 <LoadingBar ref={LoadingBarRef} color='aquamarine' height="1em" />
             </motion.div>

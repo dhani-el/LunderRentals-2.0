@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import {useEffect, useState, useContext} from 'react';
 import { Button } from "@mui/material";
 import {User} from 'react-feather';
 import ViewList from '@mui/icons-material/ViewList';
@@ -6,28 +6,19 @@ import {Close,ShoppingBag} from '@mui/icons-material';
 import {motion} from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
 import LogoImage from '/one.png';
-
+import { AuthContext } from '../../App';
 
 
 
 export function Header(){
-    const loginData = false
-    console.log(loginData.isUserLoggedIn);
-    const [isUserLoggedIn, setIsUserLogedIn] = useState(false);
-    const [username, setUsername] = useState('')
-
-    useEffect(function(){
-        if(document.cookie.user){
-            setIsUserLogedIn(true);
-            setUsername((former)=> document.cookie.user);
-        }
-    })
+    const {authState,contextFn} = useContext(AuthContext);
+    console.log("context data",authState.username);
     
     return <div id = "header">
              <Logo/>
              <NavBar/>
              <div id='authNmenuDiv'>
-             <Authenticator loggedIn = {isUserLoggedIn} username={username} />
+             <Authenticator loggedIn = {authState.username != ''} username={authState.username} />
              <Menu/>
              </div>
         </div>
@@ -50,17 +41,18 @@ function NavBar(){
 }
 
 function Authenticator({loggedIn,username}){
+    console.log('inside ather', username);
     const location = useLocation().pathname;
     return <div id="authenticator" >
-        {location === "/cart" || <CartLink />}
-        {loggedIn ? <UserComponent name={username} /> : <AuthButton/> }
+        {location === "/cart" || <CartLink numberOfItems={3}/>}
+        {loggedIn ? <UserComponent user={username} /> : <AuthButton/> }
     </div>
 }
 
 function UserComponent({user}){
     return <div id="userDiv" >
         <User/>
-        <p>hi, {user.name} </p>
+        <p>hi, {user} </p>
     </div>
 }
 
