@@ -44,7 +44,8 @@ route.get("/cars/:brand", async function(req,res){
 
 route.get("/car/:id", async function(req,res){
     const data = await CAR_DB.findOne({_id:req.params.id});
-    data.logo = await BRAND_DB.findOne({name:data.brand}).select("logo");
+    logoString = await BRAND_DB.findOne({name:data.brand}).select("logo");
+    data.logo = await fromS3(logoString.logo);
     data.image = await fromS3(data.image);
     res.json(data);
 });

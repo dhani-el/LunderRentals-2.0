@@ -7,6 +7,9 @@ const carSchema = new mongoose.Schema({
         type : String,
         required: true
     },
+    logo:{
+        type:String
+    },
    name:{
     type: String,
     required: true
