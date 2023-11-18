@@ -103,8 +103,7 @@ route.post("/car", upload.single("image"), async function(req,res){
                      price:body?.price,
                      address:body?.address,
                      meters:body.meters,
-                     featureIcon:body.featureIcon,
-                     featureDescription: body.featureDescription});
+                     features:[{icon:String,description:String}]});
     res.send('data has been entered')
 })
 
