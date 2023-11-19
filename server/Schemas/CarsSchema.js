@@ -35,7 +35,7 @@ const carSchema = new mongoose.Schema({
         required: true,
     },
     features:{
-        type:[{icon: String, description: String}],
+        type:[String],
         required:true
     },
     
