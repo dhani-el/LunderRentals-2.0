@@ -54,9 +54,9 @@ function Features({features}){
 
 function Feature({featureData}){
     return <div id='singleFeature'>
-                <Iconverter iconString={IconPack[featureData].icon} />
+                <Iconverter iconString={IconPack[`${featureData}`].icon} />
                 <span id='featureValueSpan'>
-                    <p id='text'>{IconPack[featureData].description}{IconPack[featureData].optFeature && <span>{IconPack[featureData].optFeature}</span>}</p>
+                    <p id='text'>{IconPack[featureData].description}</p>
                 </span>
             </div>
 }
