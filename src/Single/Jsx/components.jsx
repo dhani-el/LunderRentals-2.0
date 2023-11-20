@@ -35,35 +35,36 @@ export function CarDescription({carFeatures,location}){
 
  function CarSpecification({features}){
     return <div id='carSpecificationDiv'>
-             {/* <h2>SPECIFICATION</h2> */}
              <Features features={features}/>
             </div>
 }
 
 function Features({features}){
+    console.log("this is features in features comp", features);
     const isLandscape = useMediaQuery({query:"(orientation: landscape)"})
     return <div id="featuresDiv">
                 <Swiper spaceBetween={10} slidesPerView={isLandscape ?3.2 : 2.4} id='swipeRR'>
                     {features.map(function(feature){
                         return <SwiperSlide id='SwipeRslide'>
-                            <Feature Icon={feature.icon} featureValue={feature.description} optFeature={(feature.optFeature?feature.optFeature:null)} />
+                            <Feature featureData = {feature} />
                         </SwiperSlide>
                     })}
                 </Swiper>
             </div>
 }
 
-function Feature({Icon,featureValue,optFeature}){
+function Feature({featureData}){
+    console.log(IconPack[featureData].description,"that is iconpack descritpion");
     return <div id='singleFeature'>
-                <Iconverter iconString={"default"} />
+                <Iconverter iconString={featureData} />
                 <span id='featureValueSpan'>
-                    <p id='text'>{featureValue}{optFeature && <span>{optFeature}</span>}</p>
+                    <p id='text'>{IconPack[featureData].description}</p>
                 </span>
             </div>
 }
 
 function Iconverter({iconString}){
-    const Icon = IconPack[iconString] == null ? IconPack.default : IconPack[iconString];
+    const Icon = IconPack[iconString].icon == null ? IconPack.default : IconPack[iconString].icon;
     return <Icon id= "icon" /> 
 }
 
