@@ -1,7 +1,7 @@
+import { useEffect,  useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Paragraph, AchivementText, LargeText, CallToAction, Modelo, SplashScreen} from './components';
 import '../Styles/index.css';
-import { useEffect,  useState } from 'react';
 
 
 export default function Home(){
@@ -12,7 +12,9 @@ export default function Home(){
         console.log("stageOne");
     },[]);
 
-    return <div id = "bodyDiv">
+    return <>
+            <SplashScreen displaySplash={!removeSplash}  />
+            <div id = "bodyDiv">
                 <div id='abslouteContentContainer'>
                     <div id='top'>
                     {isLandScape && <AchivementText/>}
@@ -23,7 +25,6 @@ export default function Home(){
                     <CallToAction/>
                 </div>
                 <Modelo setModelReady={setRemoveSplash}/>
-                <SplashScreen displaySplash={!removeSplash}  />
-      
             </div>
+            </>
 }

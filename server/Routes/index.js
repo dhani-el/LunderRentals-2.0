@@ -43,7 +43,9 @@ route.get("/cars/:brand", async function(req,res){
 });
 
 route.get("/car/:id", async function(req,res){
-    const data = await CAR_DB.findOne({_id:req.params.id})
+    const data = await CAR_DB.findOne({_id:req.params.id});
+    logoString = await BRAND_DB.findOne({name:data.brand}).select("logo");
+    data.logo = await fromS3(logoString.logo);
     data.image = await fromS3(data.image);
     res.json(data);
 });
@@ -102,8 +104,7 @@ route.post("/car", upload.single("image"), async function(req,res){
                      price:body?.price,
                      address:body?.address,
                      meters:body.meters,
-                     featureIcon:body.featureIcon,
-                     featureDescription: body.featureDescription});
+                     features:[{icon:String,description:String}]});
     res.send('data has been entered')
 })
 

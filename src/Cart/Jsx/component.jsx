@@ -1,16 +1,12 @@
-import { forwardRef, useState } from "react";
+import { forwardRef, useEffect, useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { motion } from "framer-motion";
 import { Close } from "@mui/icons-material";
-import productImage from "/imageOne.png";
 import { Button, TextField } from "@mui/material";
 import MasterCard from "/masterCard.png";
 import { useMediaQuery } from "react-responsive";
 
-
-
-const baseUrl = "http://localhost:3000/"
 
 export function ListOfCartItems({cartItems}){
     return <div id="cartItemsCard" >
@@ -35,7 +31,7 @@ function SingleCartItem({itemDetails}){
     const [removeItem, setRemoveItem] = useState(false);
     const {data,isFetching} = useQuery({
         queryKey:["removeCartItem"],
-        queryFn: async ()=> await axios.delete(`${baseUrl}data/api/cart/${itemDetails._id}`, {withCredentials:true})
+        queryFn: async ()=> await axios.delete(`/data/api/cart/${itemDetails._id}`, {withCredentials:true})
         .then(function(response){
             setRemoveItem(false);
             return response
@@ -84,6 +80,11 @@ export function OrderSummary({summaryDetails,clickHandler}){
 
 export const PaymentBar = forwardRef(function(props,ref){
     const isLandScape  = useMediaQuery({query: '(orientation:landscape)'});
+    const [cardname, setCardname ]= useState('')
+    const [cardnumber, setCardnumber] = useState('')
+    const [expirydate,setExpirydate] = useState({month:'',year:''})
+    const [cvv,setCvv] = useState('')
+
     const paymentAnimation = {
         landscape:{
             initial:{
@@ -106,14 +107,47 @@ export const PaymentBar = forwardRef(function(props,ref){
     }
         return <motion.div id="paymentBarMainDiv" ref={ref} variants={isLandScape? paymentAnimation.landscape : paymentAnimation.portrait} initial="initial" animate= {props.slide ? "animation" : "initial"}>
                     <Button id="cancel" onClick={props.handleClose} >Cancel</Button>
-                    <AtmCard slide={props.slide} />
-                    <PaymentForm/>
+                    <AtmCard slide={props.slide} cardname={cardname} cardnumber={cardnumber} expirydate={expirydate} cvv={cvv} />
+                    <PaymentForm  nameSetter={setCardname} numberSetter={setCardnumber} expirySetter={setExpirydate} cvvSetter={setCvv} />
                     <Button variant="contained" id="pay"  >PAY</Button>
                 </motion.div>
 })
 
-function AtmCard({slide}){
+function AtmCard({slide, cardname, cardnumber, expirydate, cvv}){
     const isLandScape  = useMediaQuery({query: '(orientation:landscape)'});
+    const setOneRef = useRef(null);
+    const setTwoRef = useRef(null);
+    const setThreeRef = useRef(null);
+    const setFourRef = useRef(null);
+
+    useEffect(function(){
+        if(!cardnumber){
+          if(setOneRef.current.innerText != null ) setOneRef.current.innerText = 'xxxx';
+          if(setTwoRef.current.innerText != null ) setTwoRef.current.innerText = 'xxxx';
+          if(setThreeRef.current.innerText != null ) setThreeRef.current.innerText = 'xxxx';
+          if(setFourRef.current.innerText != null )  setFourRef.current.innerText = 'xxxx';
+          return
+        }
+        switch(true){
+            case (cardnumber.length > 0 && cardnumber.length <5 ):{
+                    if(setOneRef.current.innerText != null ) setOneRef.current.innerText = `${cardnumber}`.substring(0,4);
+                    return
+            }
+            case (cardnumber.length > 4 && cardnumber.length <9 ):{
+                    if(setTwoRef.current.innerText != null ) setTwoRef.current.innerText = `${cardnumber}`.substring(4,8);
+                    return
+            }
+            case (cardnumber.length > 8 && cardnumber.length <13 ):{
+                    if(setThreeRef.current.innerText != null ) setThreeRef.current.innerText = `${cardnumber}`.substring(8,12);
+                    return
+            }
+            case (cardnumber.length > 12 && cardnumber.length <17 ):{
+                    if(setFourRef.current.innerText != null ) setFourRef.current.innerText = `${cardnumber}`.substring(12);
+                    return
+            }
+        }
+    },[cardnumber])
+
     const atmAnimation = {
         landscape:{
             initial:{
@@ -138,32 +172,52 @@ function AtmCard({slide}){
         <img src={MasterCard}/>
         <p id="masterCardText">Mastercard</p>
         <div id="cardNumberDiv">
-            <p id="one">5334</p>
-            <p id="two">3563</p>
-            <p id="three">5642</p>
-            <p id="four">4356</p>
+            <p id="one" ref={setOneRef}></p>
+            <p id="two" ref={setTwoRef}></p>
+            <p id="three" ref={setThreeRef}></p>
+            <p id="four" ref={setFourRef}></p>
         </div>
         <div id="nameAndExpiry">
-        <p id="holderName">John Doe</p>
-        <p id="expiry">09/23</p>
+        <p id="holderName">{cardname || 'John Doe'}</p>
+        <p id="expiry">{(expirydate.month || expirydate.year) ? `${expirydate.month} / ${expirydate.year}` :  '09/23'}</p>
         </div>
     </motion.div>
 }
 
-function PaymentForm(){
+function PaymentForm({nameSetter,numberSetter,expirySetter,cvvSetter}){
 
+    function handleChange(text, setter){
+        setter(initial => text);
+    }
 
+    function handleExpiryChange(text,sig){
+        if (sig === "MONTH") {
+            if(text.length > 2){
+                 expirySetter(initial => ({...initial,month: `${text}`.substring(text.length-2)}) );
+                return
+            }
+            expirySetter(initial => ({...initial,month: text}) )
+        }
+
+        if (sig === "YEAR") {
+            if(text.length > 2){
+                expirySetter(initial => ({...initial,year: `${text}`.substring(text.length-2)}) );
+               return
+           }
+           expirySetter(initial => ({...initial,year: text}) )
+        }
+    }
 
     return <div id="paymentForm" >
-        <TextField id="cardHolder" label="Card Name" variant="standard" type="text" sx={{width:"75%"}} />
-        <TextField id="cardNumber" label="Card Number" variant="standard" type="number" sx={{width:"75%"}}  />
+        <TextField id="cardHolder" label="Card Name" variant="standard" type="text" sx={{width:"75%"}} onChange={(e)=>{handleChange(e.target.value,nameSetter)}} />
+        <TextField id="cardNumber" label="Card Number" variant="standard" type="number" sx={{width:"75%"}}  onChange={(e)=>{handleChange(e.target.value, numberSetter)}}   />
         <div id="majorRow">
             <div id="minorRow">
-                <TextField  variant="standard" label = "mm" type="number"  sx={{width:"40%"}} />
+                <TextField  variant="standard" label = "mm" type="number"  sx={{width:"40%"}} onChange={(e)=>{handleExpiryChange(e.target.value, "MONTH")}}  />
                 <div id="dash"></div>
-                <TextField label="yy" variant="standard" type="number" sx={{width:"40%"}} />
+                <TextField label="yy" variant="standard" type="number" sx={{width:"40%"}}  onChange={(e)=>{handleExpiryChange(e.target.value,"YEAR")}} />
             </div>
-            <TextField label="cvv" variant="standard" type="number"  sx={{width:"35%"}}/>
+            <TextField label="cvv"  variant="standard" type="number"  sx={{width:"35%"}} onChange={(e)=>{handleChange(e.target.value,cvvSetter)}} />
         </div>
     </div>
 }
