@@ -1,8 +1,9 @@
-import { CarCrash } from "@mui/icons-material"
+import { CarCrash } from "@mui/icons-material";
+import fwd from '/icons/eco.png'
 
 const IconPack = {
     default : {
-        icon:CarCrash,
+        icon:fwd,
         description:"Accident Free",
     },
     v8:{
