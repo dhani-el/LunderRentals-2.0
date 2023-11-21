@@ -113,9 +113,13 @@
   align-items: center;
   justify-content: center;
   height: 90%;
-  background-color: rgb(0, 0, 0);
-  color: aquamarine;
+  background-color: #f0f8ff;
+  color: black;
   border-radius: 1.2em;
+}
+#singleCarContainer #baseContainer #descriptiveDiv #carSpecificationDiv #featuresDiv #swipeRR #SwipeRslide #singleFeature #icon {
+  height: 50%;
+  width: auto;
 }
 #singleCarContainer #baseContainer #descriptiveDiv #carSpecificationDiv #featuresDiv #swipeRR #SwipeRslide #singleFeature #featureValueSpan {
   display: flex;
@@ -131,7 +135,7 @@
   overflow-x: hidden;
   text-overflow: ellipsis;
   text-transform: capitalize;
-  color: rgb(163, 160, 160);
+  color: black;
 }
 #singleCarContainer #baseContainer #descriptiveDiv #carLocationDiv {
   display: flex;
@@ -298,7 +302,7 @@
   }
   #singleCarContainer #baseContainer #cartAndPay {
     width: 100%;
-    padding: 0;
+    padding: 0.5em;
     margin: 0;
     width: 90%;
   }
@@ -328,7 +332,7 @@
   #singleCarContainer #carImageDiv #carImageTextSpan {
     width: 30%;
     align-items: center;
-    gap: 1em;
+    gap: 0.5em;
     padding-left: 1em;
   }
   #singleCarContainer #carImageDiv #carImageTextSpan img {

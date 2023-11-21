@@ -1,6 +1,5 @@
 import {useQuery} from "@tanstack/react-query";
-import axios from "axios"
-import { Search } from "@mui/icons-material";
+import axios from "axios";
 import { Button } from "@mui/material";
 import { CarImage,CarDescription, CarPrice } from "./components";
 import {useSearchParams,  useNavigate} from 'react-router-dom';
