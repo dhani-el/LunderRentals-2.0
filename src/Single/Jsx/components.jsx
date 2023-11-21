@@ -63,9 +63,14 @@ function Feature({featureData}){
             </div>
 }
 
+// function Iconverter({iconString}){
+//     const Icon = IconPack[iconString].icon == null ? IconPack.default : IconPack[iconString].icon;
+//     return <Icon id= "icon" /> 
+// }
+
 function Iconverter({iconString}){
     const Icon = IconPack[iconString].icon == null ? IconPack.default : IconPack[iconString].icon;
-    return <Icon id= "icon" /> 
+    return <img src={Icon} id='icon' /> 
 }
 
 function CarLocation({meters,address}){
