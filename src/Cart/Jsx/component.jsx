@@ -67,13 +67,25 @@ function Colour({color}){
     </div>
 }
 
-export function OrderSummary({summaryDetails,clickHandler}){
+export function OrderSummary({summaryDetails,clickHandler,cartItems}){
+    const [cartCost,setCartCost] = useState(0);
+
+    function cartcost(cartItems){
+        let cost
+        cartItems.forEach(function(cartItem){
+            cost += cartItem.price
+        });
+        setCartCost(init => cost);
+    }
+    useEffect(function(){
+        cartcost(cartItems);
+    },[])
     return <div id="summaryContainer" >
         <h3>Order Summary</h3>
         <div>Cars : {summaryDetails.count}</div>
         <div>Tax : {summaryDetails.tax}%</div>
         <div>Shipping : {summaryDetails.shipping}</div>
-        <div>Total : {summaryDetails.total} N</div>
+        <div>Total : {cartCost} N</div>
         <Button variant="contained" onClick={clickHandler} >Checkout</Button>
     </div>
 }
