@@ -40,7 +40,7 @@ export function CarDescription({carFeatures,location}){
 }
 
 function Features({features}){
-    console.log("this is features in features comp", features);
+    // console.log("this is features in features comp", features);
     const isLandscape = useMediaQuery({query:"(orientation: landscape)"})
     return <div id="featuresDiv">
                 <Swiper spaceBetween={10} slidesPerView={isLandscape ?3.2 : 2.4} id='swipeRR'>
@@ -54,7 +54,7 @@ function Features({features}){
 }
 
 function Feature({featureData}){
-    console.log(IconPack[featureData].description,"that is iconpack descritpion");
+    // console.log(IconPack[featureData].description,"that is iconpack descritpion");
     return <div id='singleFeature'>
                 <Iconverter iconString={featureData} />
                 <span id='featureValueSpan'>
