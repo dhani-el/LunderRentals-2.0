@@ -1,7 +1,16 @@
+@font-face {
+  font-family: "montserrat";
+  src: url("../../assets/fonts/montserrat.ttf");
+}
+@font-face {
+  font-family: "bebas";
+  src: url("../../assets/fonts/bebas.ttf");
+}
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "montserrat";
 }
 
 #headerWrapper {
@@ -25,6 +34,9 @@
 }
 #header #authButtonDiv {
   display: none;
+}
+#header #authButtonDiv a button {
+  font-family: "montserrat";
 }
 #header #menu #menuBody {
   display: none;
@@ -129,14 +141,13 @@
     gap: 1vw;
   }
   #header #authButtonDiv button {
-    font-size: 0.5em;
+    font-size: 0.6em;
     color: black;
     line-height: 0;
     text-transform: none;
     letter-spacing: 0;
     padding: 1.5em;
     font-weight: 900;
-    width: 2em;
     border-color: black;
     background-color: whitesmoke;
   }

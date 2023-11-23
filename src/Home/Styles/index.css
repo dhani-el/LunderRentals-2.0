@@ -1,3 +1,11 @@
+@font-face {
+  font-family: "montserrat";
+  src: url("../../assets/fonts/montserrat.ttf");
+}
+@font-face {
+  font-family: "bebas";
+  src: url("../../assets/fonts/bebas.ttf");
+}
 * {
   margin: 0;
   padding: 0;
@@ -53,9 +61,11 @@ body {
 #bodyDiv #abslouteContentContainer #top #acheivementDivContainer .singleAchivement .number {
   font-size: 2em;
   font-weight: 700;
+  font-family: "bebas";
 }
 #bodyDiv #abslouteContentContainer #top #acheivementDivContainer .singleAchivement .number + p {
   color: rgb(171, 167, 167);
+  font-family: "montserrat";
 }
 #bodyDiv #abslouteContentContainer #top #LargeTextDiv {
   width: 100%;
@@ -67,12 +77,16 @@ body {
   font-size: 2.8em;
   font-weight: 700;
   text-align: center;
+  font-family: "bebas";
 }
 #bodyDiv #abslouteContentContainer #top #paragraph {
   text-align: center;
   padding: 1em;
   position: absolute;
   top: 58vh;
+}
+#bodyDiv #abslouteContentContainer #top #paragraph p {
+  font-family: "montserrat";
 }
 #bodyDiv #abslouteContentContainer #callToActionDiv {
   display: flex;
@@ -87,9 +101,16 @@ body {
   font-family: "Courier New", Courier, monospace;
   position: absolute;
   top: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#bodyDiv #abslouteContentContainer #callToActionDiv button p {
+  font-family: "montserrat";
+  font-weight: 700;
 }
 #bodyDiv #abslouteContentContainer #callToActionDiv button * {
-  padding: none;
+  padding: 0;
 }
 #bodyDiv #abslouteContentContainer * {
   z-index: 9;
@@ -243,5 +264,10 @@ body {
   #mainSplashDiv img {
     height: 30%;
     width: auto;
+  }
+}
+@media (orientation: landscape) and (min-width: 1034px) {
+  #bodyDiv #abslouteContentContainer #top #LargeTextDiv p {
+    font-size: 4.2em;
   }
 }/*# sourceMappingURL=index.css.map */

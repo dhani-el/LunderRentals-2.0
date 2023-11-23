@@ -1,3 +1,11 @@
+@font-face {
+  font-family: "montserrat";
+  src: url("../../assets/fonts/montserrat.ttf");
+}
+@font-face {
+  font-family: "bebas";
+  src: url("../../assets/fonts/bebas.ttf");
+}
 * {
   margin: 0;
   padding: 0;
@@ -29,7 +37,7 @@
   position: relative;
 }
 #authPageContainer #authSelectorContainer .singleAuthSelector button {
-  font-family: monospace, "Courier New", Courier;
+  font-family: "montserrat", "Courier New", Courier;
   height: 100%;
   width: 100%;
 }
@@ -38,6 +46,9 @@
 }
 #authPageContainer #authSelectorContainer #signUpButtonSpan {
   left: 10%;
+}
+#authPageContainer #authSelectorContainer .css-1x51dt5-MuiInputBase-input-MuiInput-input {
+  font-family: "montserrat";
 }
 #authPageContainer .formDiv {
   display: flex;
@@ -60,14 +71,24 @@
   display: block;
   background-color: aquamarine;
   color: navy;
-  font-family: monospace;
+  font-family: "montserrat";
   width: 100%;
+}
+#authPageContainer .formDiv .form .card div label {
+  font-family: "montserrat";
+}
+#authPageContainer .formDiv .form .card div div input {
+  font-family: "montserrat";
 }
 #authPageContainer .formDiv .form .card #formLinks {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.2em;
+}
+
+input, button {
+  font-family: "montserrat";
 }
 
 @media (orientation: portrait) and (max-width: 300px) {
@@ -117,7 +138,7 @@
     width: 65%;
   }
   #authPageContainer #authSelectorContainer .singleAuthSelector button {
-    font-size: 1.2em;
+    font-size: 1em;
     font-weight: 900;
   }
   #authPageContainer .formDiv .form {
@@ -133,7 +154,7 @@
     justify-content: center;
   }
   #authPageContainer .formDiv .form .card div button {
-    font-size: 1.5em;
+    font-size: 1em;
     width: 40%;
   }
 }/*# sourceMappingURL=index.css.map */
