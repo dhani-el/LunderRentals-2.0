@@ -1,3 +1,19 @@
+@font-face {
+    font-family: 'montserrat';
+    src: url("../../assets/fonts/montserrat.ttf");
+}
+
+@font-face {
+    font-family: 'bebas';
+    src: url("../../assets/fonts/bebas.ttf");
+}
+
+$primary-font:'montserrat';
+$secondary-font:'bebas';
+
+*{
+    font-family: $primary-font;
+}
 
 $cartBackground-h2-p-bottom:3.2em;
 $cartBackground-800-h2-p-bottom:1em;

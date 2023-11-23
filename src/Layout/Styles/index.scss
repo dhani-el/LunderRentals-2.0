@@ -1,9 +1,21 @@
+@font-face {
+    font-family: 'montserrat';
+    src: url("../../assets/fonts/montserrat.ttf");
+}
 
+@font-face {
+    font-family: 'bebas';
+    src: url("../../assets/fonts/bebas.ttf");
+}
+
+$primary-font:'montserrat';
+$secondary-font:'bebas';
 
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: $primary-font;
 }
 
 #headerWrapper{
@@ -26,6 +38,11 @@
     }
     #authButtonDiv{
             display: none;
+            a{
+                button{
+                    font-family: $primary-font;
+                }
+            }
     }
     #menu{
         #menuBody{
@@ -134,14 +151,14 @@
             align-items: center;
             gap: 1vw;
             button{
-                font-size: 0.5em;
+                font-size: 0.6em;
                 color: black;
                 line-height: 0;
                 text-transform: none;
                 letter-spacing: 0;
                 padding: 1.5em;
                 font-weight: 900;
-                width: 2em;
+                // width: 2em;
                 border-color: black;
                 background-color: whitesmoke;
                 span{
