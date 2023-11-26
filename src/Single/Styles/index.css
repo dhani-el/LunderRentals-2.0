@@ -326,7 +326,7 @@
   }
   #singleCarContainer #carImageDiv img {
     width: auto;
-    height: 100%;
+    height: 95%;
     justify-self: center;
   }
   #singleCarContainer #carImageDiv #carImageTextSpan {
