@@ -7,9 +7,6 @@ import { AuthContext } from "../../App";
 import { useQuery } from "@tanstack/react-query";
 
 
-
-const baseUrl = "http://localhost:3000/"
-
 export function Login(){
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
