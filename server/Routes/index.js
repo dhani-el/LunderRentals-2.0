@@ -52,8 +52,14 @@ route.get("/car/:id", async function(req,res){
 
 route.get("/cart", async function(req,res){
     try {
-        const cartItems = await USERDB.findOne({name:req.user._doc.name}).populate("cart").select("cart");
-        res.send(cartItems);
+        console.log("this is the request user object");
+        if(req.user != null){
+            const cartItems = await USERDB.findOne({name:req.user._doc.name}).populate("cart").select("cart");
+            res.send(cartItems);
+            return
+        }
+        res.send([])
+
     } catch (error) {
         console.log(error);
     }

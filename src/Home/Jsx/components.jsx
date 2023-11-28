@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState} from 'react';
+import { useEffect, useLayoutEffect, useRef} from 'react';
 import { Button } from "@mui/material";
 import Swipe from "@mui/icons-material/Swipe";
 import { Canvas, useLoader} from '@react-three/fiber';
