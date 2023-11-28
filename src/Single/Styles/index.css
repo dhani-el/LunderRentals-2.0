@@ -18,8 +18,8 @@
   width: 100%;
   height: 50vh;
   background-color: rgb(51, 51, 51);
-  border-bottom-left-radius: 3em;
-  border-bottom-right-radius: 3em;
+  border-bottom-left-radius: 1.5em;
+  border-bottom-right-radius: 1.5em;
 }
 #singleCarContainer #carImageDiv img {
   height: auto;
@@ -318,7 +318,7 @@
     font-size: 1.4em;
   }
   #singleCarContainer #carImageDiv {
-    height: 55vh;
+    height: 60vh;
     justify-content: center;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
