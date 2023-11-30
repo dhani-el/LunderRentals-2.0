@@ -58,7 +58,7 @@ route.get("/cart", async function(req,res){
             res.send(cartItems);
             return
         }
-        res.send([])
+        res.send({cart:[]})
 
     } catch (error) {
         console.log(error);

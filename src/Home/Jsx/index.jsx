@@ -1,4 +1,4 @@
-import { useEffect,  useState } from 'react';
+import { useEffect,  useRef,  useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Paragraph, AchivementText, LargeText, CallToAction, Modelo, SplashScreen} from './components';
 import '../Styles/index.css';
@@ -7,12 +7,17 @@ import '../Styles/index.css';
 export default function Home(){
     const isLandScape  = useMediaQuery({query: '(orientation:landscape)'});
     const [removeSplash, setRemoveSplash] = useState(false);
-
+    
     useEffect(function(){
-        console.log("stageOne");
-    },[]);
+        const header = document.getElementById("headerWrapper");
+        if(!removeSplash){
+            header.style.display = "none"
+            return
+        }
+        header.style.display = "block"
+    },[removeSplash]);
 
-    return <>
+    return <div id = {!removeSplash ? "Wsplash" : "Lsplash"}>
             <SplashScreen displaySplash={!removeSplash}  />
             <div id = "bodyDiv">
                 <div id='abslouteContentContainer'>
@@ -26,5 +31,5 @@ export default function Home(){
                 </div>
                 <Modelo setModelReady={setRemoveSplash}/>
             </div>
-            </>
+            </div>
 }
