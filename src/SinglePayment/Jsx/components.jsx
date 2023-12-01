@@ -23,7 +23,7 @@ export function Payment({amount}){
                     <span>
 
                     <p>PAYMENT AMOUNT:</p>
-                    <p id="amountP"> {amount ? `N ${amount}` : "free"}</p>
+                    <p id="amountP"> {amount ? `${amount}` : "free"}</p>
 
                     </span>
                 </div>

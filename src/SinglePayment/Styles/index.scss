@@ -41,6 +41,7 @@ $secondary-font:'bebas';
             flex-direction: column;
             position: relative;
             top: 2vh;
+            padding-bottom: 2vh;
             box-shadow: 0.2em 0.2em 1.5em 0.5em #11111175;
             img{
                 width: inherit;
@@ -57,7 +58,7 @@ $secondary-font:'bebas';
             background-color: grey;
             position: relative;
             border-radius: 1em;
-            top: -2vh;
+            top: -2.1vh;
             width: 80%;
             height: 90%;
             padding: 0em 2em;
@@ -77,6 +78,9 @@ $secondary-font:'bebas';
                 }
                 .css-v4u5dn-MuiInputBase-root-MuiInput-root:before{
                     border-bottom-color: white;
+                }
+                .css-1bddaix{
+                    width: 90%;
                 }
                 input{
                     color: white;
