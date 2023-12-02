@@ -1,4 +1,4 @@
-import {useEffect, useState, useContext} from 'react';
+import {useState, useContext} from 'react';
 import { Button } from "@mui/material";
 import {User} from 'react-feather';
 import ViewList from '@mui/icons-material/ViewList';
@@ -26,7 +26,9 @@ export function Header(){
 
 function Logo(){
     return <div id="logo">
-        <img src={LogoImage} alt='lunder rentals logo' />
+        <Link to={"/"} >
+            <img src={LogoImage} alt='lunder rentals logo' />
+        </Link>
     </div>
 }
 
