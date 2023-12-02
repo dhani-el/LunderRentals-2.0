@@ -145,20 +145,28 @@ export function SplashScreen({displaySplash}){
             opacity:0,
             zindex:0,
             duration:'2s',
-            display:"none",
+            transitionEnd:{
+                display:"none",
+            }
         }
     },
     image:{
         initial:{
             scaleX:1.0,
             scaleY:1.0,
-            duration:'1s'
         },
         animation:{
             scaleX:1.2,
             scaleY:1.2,
-            duration:'1s'
-        }
+            transition:{
+                repeat:"Infinity",
+                repeatType: "reverse",
+                repeatDelay: 0.5,
+                ease:"easeInOut",
+                duration:0.5
+            },
+        },
+
     }
 }
     const LoadingBarRef = useRef(null);
