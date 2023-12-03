@@ -31,12 +31,13 @@ route.get("/cars", async function(req,res){
     for(const info of data){
         info.image = await fromS3(info.image);
     }
-    console.log(data);
     res.json(data);
 });
 
 route.get("/cars/:brand", async function(req,res){
-    const data = await CAR_DB.find().where("brand").equals(req.params.brand).select('-address -meters -featureDescription -featureIcon');
+    const limit = 15
+    const data = await CAR_DB.find().where("brand").equals(req.params.brand)
+    .skip(req.query.page * limit ).limit(limit).select('-address -meters -featureDescription -featureIcon');
     for(const info of data){
         info.image = await fromS3(info.image)
     }
