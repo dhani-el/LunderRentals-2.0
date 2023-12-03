@@ -1,5 +1,5 @@
 import { useState} from 'react';
-import { TextField, Card } from "@mui/material";
+import { TextField, Card, Skeleton, Pagination } from "@mui/material";
 import { Search, Close } from "@mui/icons-material";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useNavigate } from 'react-router-dom';
@@ -86,7 +86,8 @@ function AllBrands({handleClick}){
 
 export function Cars({brand}){
     const [initialRender,setInitialRender] = useState(true);
-  const {data, isFetching} = useQuery({
+    const [pageNumber,setPageNumber] = useState(0);
+    const {data, isFetching} = useQuery({
         queryKey:["carData"],
         queryFn : ()=>  Axios.get(`/data/api/cars/${brand}`)
                         .then(function(result){ setInitialRender(false); return result}),
@@ -94,17 +95,19 @@ export function Cars({brand}){
         refetchOnWindowFocus:false,
     });
 
-
-   ( !isFetching && console.log("are cars available?",!!data?.data.length))
-    console.log("is currently fetching ?",isFetching);
-
     return <div id='carsContainer'>
                 <h3  style={{color:"black"}} >AVAILABLE CARS</h3>
-                {isFetching && <div>loading..</div>}
-                {!isFetching && (!!data?.data.length ? <div id='listOfCars'>{data?.data.map((single)=><div key={single?._id} id='keyDivs' ><Car car = {single} /></div>)}</div>
-                                 : <NoCars brand = {brand} />)}
-    </div>
+                {isFetching && <Skeletors/>}
+                {!isFetching && (!!data?.data.length ?
+                    <div id='listOfCars'>
+                        {data?.data.map((single)=><div key={single?._id} id='keyDivs' ><Car car = {single} /></div>)}
+                    </div>
+                    : <NoCars brand = {brand} />)}
+                <Paginator pageNumberSetter={setPageNumber} />
+            </div>
 }
+
+
 
 function Car({car}){
     const [isQueryEnabled, setIsQueryEnabled] = useState(false);
@@ -128,7 +131,7 @@ function Car({car}){
                 <Card className='aCarCard'  >
                     <div id='firstDiv'>
                         <img src={car.image} /> 
-                    <div id='textDiv'>
+                        <div id='textDiv'>
                             <h3>{car.name}</h3>
                             <p>{car.year}</p>
                         </div>
@@ -144,15 +147,63 @@ function Car({car}){
                 </Card>
     </div>
 }
-
 function NoCars({brand}){
     return <div id='noCarsDiv'>
                 <h2>{`No ${brand} cars available currently`} </h2>
             </div>
 }
+function Skeletor(){
+    return <div id='Acar'  >
+         <Card className='aCarCard'  >
+            <div id='firstDiv'>
+                <Skeleton variant='rounded' animation = "pulse" />
+                <div id='textDiv'>
+                    <Skeleton variant='text' animation = "pulse" width="1em" />
+                    <Skeleton variant='text' animation = "pulse" width="1em" />
+                </div>
 
+            </div>
+            <div id='secondDiv' >
+                <div id='pricediv'>
+                    <Skeleton variant='text' animation = "pulse" width="1em"  id='price' />
+                </div>
+                <div id='detailsdiv'  >
+                    <Skeleton variant='text' animation = "pulse" width="1em" />
+                </div>
+            </div>
+         </Card>
+    </div>
+}
+function Skeletors(){
+    const numberOfCarsPerPage = 15;
+    let ray = new Array(numberOfCarsPerPage);
+
+    return <div id='listOfCars'>
+        <Skeletor/>
+        <Skeletor/>
+        <Skeletor/>
+        <Skeletor/>
+        <Skeletor/>
+        <Skeletor/>
+        <Skeletor/>
+        <Skeletor/>
+        <Skeletor/>
+        <Skeletor/>
+    </div>
+}
 function CartIndicator({isAdded}){
     return <div>
         {isAdded ? <><span id='spinner'></span> <p>Adding to Cart</p></> : <><span id='plus'></span> <p>Added to Cart</p></>}
+    </div>
+}
+
+function Paginator({count , pageNumberSetter}){
+
+    function handlePaginationItemClicked(pageNumber){
+        pageNumberSetter(function(initialValue){return pageNumber})
+    }
+
+    return <div>
+        <Pagination count={7} variant='outlined'  shape='rounded' size='medium' onChange={function(event,pagenumber){handlePaginationItemClicked(pagenumber)}} />
     </div>
 }
