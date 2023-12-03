@@ -1,4 +1,4 @@
-import { useState} from 'react';
+import { useEffect, useState} from 'react';
 import { TextField, Card, Skeleton, Pagination } from "@mui/material";
 import { Search, Close } from "@mui/icons-material";
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -86,6 +86,7 @@ function AllBrands({handleClick}){
 
 export function Cars({brand}){
     const [initialRender,setInitialRender] = useState(true);
+    const queryClient = useQueryClient();
     const [pageNumber,setPageNumber] = useState(0);
     const {data, isFetching} = useQuery({
         queryKey:["carData"],
@@ -95,20 +96,24 @@ export function Cars({brand}){
         refetchOnWindowFocus:false,
     });
 
+    useEffect(function(){
+        if (!initialRender) {
+            queryClient.invalidateQueries({queryKey:["carData"]});
+            setInitialRender(true);
+        }
+    },[pageNumber]);
+
     return <div id='carsContainer'>
                 <h3  style={{color:"black"}} >AVAILABLE CARS</h3>
                 {isFetching && <Skeletors/>}
-                {!isFetching && (!!data?.data.length ?
+                {!isFetching && (!!data?.data.payload.length ?
                     <div id='listOfCars'>
-                        {data?.data.map((single)=><div key={single?._id} id='keyDivs' ><Car car = {single} /></div>)}
+                        {data?.data.payload.map((single)=><div key={single?._id} id='keyDivs' ><Car car = {single} /></div>)}
                     </div>
                     : <NoCars brand = {brand} />)}
-                <Paginator pageNumberSetter={setPageNumber} />
+                <Paginator pageNumberSetter={setPageNumber} count={data?.data.count} />
             </div>
 }
-
-
-
 function Car({car}){
     const [isQueryEnabled, setIsQueryEnabled] = useState(false);
     const navigate = useNavigate();
@@ -200,10 +205,10 @@ function CartIndicator({isAdded}){
 function Paginator({count , pageNumberSetter}){
 
     function handlePaginationItemClicked(pageNumber){
-        pageNumberSetter(function(initialValue){return pageNumber})
+        pageNumberSetter(function(initialValue){return (pageNumber - 1)});
     }
 
     return <div>
-        <Pagination count={7} variant='outlined'  shape='rounded' size='medium' onChange={function(event,pagenumber){handlePaginationItemClicked(pagenumber)}} />
+        <Pagination count={count} variant='outlined'  shape='rounded' size='medium' onChange={function(event,pagenumber){handlePaginationItemClicked(pagenumber); console.log("paginator ckicked",pagnumber - 1);}} />
     </div>
 }
