@@ -24,9 +24,10 @@ route.get("/brand/:brand", async function(req,res){
     res.json(data);
 });
 
-route.get("/cars", async function(req,res){
+route.get("/cars/:page", async function(req,res){
+    const limit = 15;
     console.log(req.sessionID,"cookies");
-    const data = await CAR_DB.find().select('-address -meters -featureDescription -featureIcon');
+    const data = await CAR_DB.find().skip(req.params.page * limit ).limit(limit).select('-address -meters -featureDescription -featureIcon');
     for(const info of data){
         info.image = await fromS3(info.image);
     }
