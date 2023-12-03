@@ -89,7 +89,7 @@ export function Cars({brand}){
     const [pageNumber,setPageNumber] = useState(0);
     const {data, isFetching} = useQuery({
         queryKey:["carData"],
-        queryFn : ()=>  Axios.get(`/data/api/cars/${brand}`)
+        queryFn : ()=>  Axios.get(`/data/api/cars/${brand}?page=${pageNumber}`)
                         .then(function(result){ setInitialRender(false); return result}),
         enabled: initialRender,
         refetchOnWindowFocus:false,
