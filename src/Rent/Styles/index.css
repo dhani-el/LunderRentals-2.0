@@ -163,6 +163,13 @@
 #carsContainer #noCarsDiv h2 {
   font-family: "bebas";
 }
+#carsContainer #pagDiv {
+  width: 100vw;
+  margin-top: 1.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 @media (orientation: portrait) and (max-width: 300px) {
   #carsContainer #listOfCars {

@@ -132,7 +132,7 @@ function Car({car}){
         setIsQueryEnabled(true);
     }
 
-    return <div id='Acar' onClick={()=>{navigate(`${car.brand}?id=${car._id}`)}} >
+    return <div id='Acar' onClick={()=>{navigate(`${car.brand}?id=${car._id}`,{preventScrollReset:false})}} >
                 <Card className='aCarCard'  >
                     <div id='firstDiv'>
                         <img src={car.image} /> 
@@ -161,19 +161,19 @@ function Skeletor(){
     return <div id='Acar'  >
          <Card className='aCarCard'  >
             <div id='firstDiv'>
-                <Skeleton variant='rounded' animation = "pulse" />
+                <Skeleton variant='rounded' animation = "pulse" width="40%" />
                 <div id='textDiv'>
-                    <Skeleton variant='text' animation = "pulse" width="1em" />
-                    <Skeleton variant='text' animation = "pulse" width="1em" />
+                    <Skeleton variant='text' animation = "pulse" width="4em" />
+                    <Skeleton variant='text' animation = "pulse" width="2.5em" />
                 </div>
 
             </div>
             <div id='secondDiv' >
                 <div id='pricediv'>
-                    <Skeleton variant='text' animation = "pulse" width="1em"  id='price' />
+                    <Skeleton variant='text' animation = "pulse" width="3.5em"  id='price' />
                 </div>
                 <div id='detailsdiv'  >
-                    <Skeleton variant='text' animation = "pulse" width="1em" />
+                    <Skeleton variant='text' animation = "pulse" width="4em" />
                 </div>
             </div>
          </Card>
@@ -208,7 +208,7 @@ function Paginator({count , pageNumberSetter}){
         pageNumberSetter(function(initialValue){return (pageNumber - 1)});
     }
 
-    return <div>
+    return <div id = "pagDiv">
         <Pagination count={count} variant='outlined'  shape='rounded' size='medium' onChange={function(event,pagenumber){handlePaginationItemClicked(pagenumber); console.log("paginator ckicked",pagnumber - 1);}} />
     </div>
 }
