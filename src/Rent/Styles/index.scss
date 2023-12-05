@@ -171,6 +171,14 @@ $secondary-font:'bebas';
             font-family: $secondary-font;
         }
     }
+    #pagDiv{
+        width: 100vw;
+        margin-top: 1.5em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+    }
 }
 
 @media (orientation : 'portrait') and (max-width:"300px"){

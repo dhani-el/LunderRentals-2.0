@@ -3,6 +3,7 @@ import axios from "axios";
 import { Button } from "@mui/material";
 import { CarImage,CarDescription, CarPrice } from "./components";
 import {useSearchParams,  useNavigate} from 'react-router-dom';
+import { useEffect,useState } from "react";
 
 
 export default function SingleCar(){
@@ -18,6 +19,7 @@ export default function SingleCar(){
         retry:0,
     })
     
+
     return <div id="singleCarContainer">
             <CarImage image={data?.data.image} logo={data?.data.logo} title={data?.data.name} year={data?.data.year}/>
             <div id="baseContainer">
