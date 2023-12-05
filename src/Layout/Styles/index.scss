@@ -72,6 +72,10 @@ $secondary-font:'bebas';
     }
     #logo{
         width: 8em;
+        a{
+            display: block;
+            width: 100%;
+        }
         img{
             width: 100%;
             height: auto;
