@@ -29,5 +29,6 @@ export default function SingleCar(){
                 {!isFetching ?  <Button variant="contained" onClick={()=>{navigate(`/payment/${data.data._id}`)}} >PAY NOW</Button>  : <Button variant="contained" >PAY NOW</Button> }
                 </div>
             </div>
+            
     </div>
 }
