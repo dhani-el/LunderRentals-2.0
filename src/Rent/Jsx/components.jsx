@@ -116,6 +116,7 @@ export function Cars({brand}){
 }
 function Car({car}){
     const [isQueryEnabled, setIsQueryEnabled] = useState(false);
+    const qclient  = useQueryClient()
     const navigate = useNavigate();
     const {isFetching} = useQuery({
         queryKey:["addToCartRent"],
@@ -132,7 +133,7 @@ function Car({car}){
         setIsQueryEnabled(true);
     }
 
-    return <div id='Acar' onClick={()=>{navigate(`${car.brand}?id=${car._id}`,{preventScrollReset:false})}} >
+    return <div id='Acar' onClick={()=>{qclient.resetQueries({queryKey:["singleData"],exact:true}); navigate(`${car.brand}?id=${car._id}`)}} >
                 <Card className='aCarCard'  >
                     <div id='firstDiv'>
                         <img src={car.image} /> 
