@@ -1,5 +1,4 @@
 import { Button, TextField } from "@mui/material";
-import TestImage from "/imageOne.png";
 
 export function CarImage({image,brand,model}){
     return <div id="carImageDiv">
@@ -24,7 +23,7 @@ export function Payment({amount}){
                     <span>
 
                     <p>PAYMENT AMOUNT:</p>
-                    <p id="amountP"> {amount ? `N ${amount}` : "free"}</p>
+                    <p id="amountP"> {amount ? `${amount}` : "free"}</p>
 
                     </span>
                 </div>
