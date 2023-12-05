@@ -1,4 +1,4 @@
-import {useQuery, useQueryClient} from "@tanstack/react-query";
+import {useQuery} from "@tanstack/react-query";
 import axios from "axios";
 import { Button } from "@mui/material";
 import { CarImage,CarDescription, CarPrice } from "./components";
@@ -7,9 +7,7 @@ import { useEffect,useState } from "react";
 
 
 export default function SingleCar(){
-    // const [isFirstFetch, setIsFirstFetch] = useState(true)
     const searchParams = useSearchParams()[0];
-    // const queryClient  = useQueryClient();
     const id = searchParams.get('id');
     const navigate = useNavigate()
     const {data, isFetching} = useQuery({
@@ -21,16 +19,6 @@ export default function SingleCar(){
         retry:0,
     })
     
-    // useEffect(function(){
-    //     setIsFirstFetch(false);
-    // },[isFirstFetch]);
-
-    // useEffect(function(){
-    //     if (isFirstFetch) {
-    //         return
-    //     }
-    //     queryClient.invalidateQueries({queryKey:["singleData"]})
-    // },[])
 
     return <div id="singleCarContainer">
             <CarImage image={data?.data.image} logo={data?.data.logo} title={data?.data.name} year={data?.data.year}/>
