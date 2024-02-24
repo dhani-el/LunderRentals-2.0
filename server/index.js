@@ -29,7 +29,7 @@ app.use(Cors({origin:["http://localhost:5173"],
 
 app.use(Parser.urlencoded({extended:false}));
 app.use(Parser.json());
-app.use(express.static("./dist"));
+app.use(express.static(path.join(__dirname,"../server/dist")));
 app.use(cookieParser());
 app.use(session({
     secret: process.env.SESSION_SECRET,
@@ -61,8 +61,8 @@ app.use("/auth",AuthRoute);
 
 app.get("*",function(req,res){
 
-    // res.sendFile(path.join(__dirname,"../dist/index.html"));
-    res.sendFile("./dist/index.html");
+    res.sendFile(path.join(__dirname,"../server/dist/index.html"));
+    // res.sendFile("./dist/index.html");
 });
 
 app.listen(port, function(){
