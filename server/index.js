@@ -62,6 +62,7 @@ app.use("/auth",AuthRoute);
 app.get("*",function(req,res){
 
     res.sendFile(path.join(__dirname,"../server/dist/index.html"));
+    res.sendFile(path.join(__dirname,"../server/dist/index.html"));
     // res.sendFile("./dist/index.html");
 });
 
