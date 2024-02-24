@@ -30,6 +30,7 @@ app.use(Cors({origin:["http://localhost:5173"],
 app.use(Parser.urlencoded({extended:false}));
 app.use(Parser.json());
 app.use(express.static(path.join(__dirname,"../server/dist")));
+app.use(express.static(path.join(__dirname,"../server/public")));
 app.use(cookieParser());
 app.use(session({
     secret: process.env.SESSION_SECRET,
