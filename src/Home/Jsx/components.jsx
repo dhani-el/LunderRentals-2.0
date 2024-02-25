@@ -10,6 +10,9 @@ import LoadingBar from "react-top-loading-bar"
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import splashImage from "/one.png";
+import RoughTexture from "/texture/rough.jpg";
+import NormalTexture from "/texture/normal.jpg";
+import Lambo from '/lambo.glb?url'
 
 
 
@@ -75,7 +78,7 @@ export function HomeCarModel({setModelReady}){
     const isLandScape  = useMediaQuery({query: '(orientation:landscape)'});
     const scale  = isLandScape ? ([0.005,0.005,0.005]) : ([0.0020,0.0020,0.0020]);
     const position  = isLandScape ? ([0,0.68,0.5]) : ([1,0.68,1.4]);
-    const Scene = useLoader(GLTFLoader,'/lambo.glb');
+    const Scene = useLoader(GLTFLoader,Lambo);
 
     useLayoutEffect(function(){
         console.log("inside layout effect #1");
@@ -93,7 +96,7 @@ export function HomeCarModel({setModelReady}){
 }
 
 export function Ground(){
-    const [normal, roughness] = useLoader(TextureLoader, ["/texture/rough.jpg","/texture/normal.jpg"]);
+    const [normal, roughness] = useLoader(TextureLoader, [RoughTexture,NormalTexture]);
 
     useEffect(function(){
         [normal,roughness].forEach(function(map){
