@@ -17,11 +17,11 @@ export function AchivementText(){
     return <div id='acheivementDivContainer'>
             <span className='singleAchivement'>
                 <p className='number'>100+</p>
-                <p>Types of Cars</p>
+                <p> TYPES OF CARS</p>
             </span>
             <span className='singleAchivement'>
                 <p className='number'>7K+</p>
-                <p>Clients Served</p>
+                <p>CLIENTS SERVED</p>
             </span>
     </div>
 }
@@ -35,7 +35,7 @@ export function LargeText(){
 export function Paragraph(){
     return <div id = "paragraph" >
         <p>
-            we desire our customers to have a hassel free experience hence we make it easy to rent a car by providing a variety of cars, verified car owners and car rental delivery and pickup
+            WE DESIRE OUR CUSTOMERS TO HAVE A HASSEL FREE EXPERIENCE HENCE WE MAKE IT EASY TO RENT A CAR BY BY PROVIDING A VARIETY OF CARS, VERIFIED CAR OWNERS AND CAR RENTAL DELIVERY AND PICKUP 
         </p>
     </div>
 }
