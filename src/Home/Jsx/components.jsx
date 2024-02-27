@@ -74,7 +74,9 @@ export function Modelo({setModelReady}){
 export function HomeCarModel({setModelReady}){
     const isLandScape  = useMediaQuery({query: '(orientation:landscape)'});
     const scale  = isLandScape ? ([0.005,0.005,0.005]) : ([0.0020,0.0020,0.0020]);
-    const position  = isLandScape ? ([0,0.68,0.5]) : ([1,0.68,1.4]);
+    const modelPosition  = isLandScape ? ([0,0.68,0.5]) : ([0,0.68,1.4]);
+    const rotationSpeed  = isLandScape ? 4 : 2;
+    const cameraPosition = isLandScape ? [0,1,6] : [0,0.7,6]
     const Scene = useLoader(GLTFLoader,'/lambo.glb');
     const meshRef  = useRef(null);
 
@@ -84,15 +86,14 @@ export function HomeCarModel({setModelReady}){
     },[]);
 
     useFrame(function({clock}){
-        meshRef.current.rotation.y = clock.getElapsedTime() / 4;
+        meshRef.current.rotation.y = clock.getElapsedTime() / rotationSpeed;
     })
 
     return <>
-                {/* <OrbitControls target={[0,0.35,0]}  maxPolarAngle={1.45} enablePan = {false} enableZoom = {false} /> */}
-                <PerspectiveCamera makeDefault fov={50} position={[0,1,6]} lookAt={position}/>
+                <PerspectiveCamera makeDefault fov={50} zoom={isLandScape ? 1 : 2} position={cameraPosition} lookAt={modelPosition}/>
                 <color args={[0,0,0]} attach= 'background' />
                 <mesh receiveShadow = {true} castShadow={true} ref={meshRef} > 
-                    <primitive castShadow object={Scene.scene}  scale = {scale} position = {position}  receiveShadow = {true}  />
+                    <primitive castShadow object={Scene.scene}  scale = {scale} position = {modelPosition}  receiveShadow = {true}  />
                 </mesh>
             </>
 }
@@ -118,19 +119,19 @@ export function Ground(){
                 roughnessMap={roughness}
                 dithering = {true}
                 color={[0.015,0.015,0.015]}
-                roughness={1}
+                roughness={1.2}
                 blur={[1000,400]}
                 mixBlur={30}
                 mixStrength={80}
                 mixContrast={1}
                 resolution={1024}
                 mirror={0}
-                depthScale={0.04}
+                depthScale={0.2}
                 minDepthThreshold={0.9}
                 debug = {0}
                 maxDepthThreshold={1}
                 depthToBlurRatioBias={0.25}
-                reflectorOffset={0.2}/>
+                reflectorOffset={0.8}/>
             </mesh>
 }
 

@@ -202,12 +202,12 @@ body {
     padding: 2rem;
     width: 100%;
     height: 90vh;
+    gap: 0rem;
   }
   #bodyDiv #abslouteContentContainer #top {
     display: flex;
     width: 100vw;
     padding: 0 3.5em;
-    padding-top: 2em;
     flex-direction: row;
     align-items: flex-start;
     justify-content: space-between;
