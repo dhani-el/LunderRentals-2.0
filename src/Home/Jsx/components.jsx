@@ -1,7 +1,7 @@
 import { useEffect, useLayoutEffect, useRef} from 'react';
 import { Button } from "@mui/material";
 import Swipe from "@mui/icons-material/Swipe";
-import { Canvas, useLoader} from '@react-three/fiber';
+import { Canvas, useLoader,useFrame} from '@react-three/fiber';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { OrbitControls, MeshReflectorMaterial, PerspectiveCamera } from '@react-three/drei';
 import {LinearEncoding, RepeatWrapping, TextureLoader} from 'three';
@@ -76,18 +76,23 @@ export function HomeCarModel({setModelReady}){
     const scale  = isLandScape ? ([0.005,0.005,0.005]) : ([0.0020,0.0020,0.0020]);
     const position  = isLandScape ? ([0,0.68,0.5]) : ([1,0.68,1.4]);
     const Scene = useLoader(GLTFLoader,'/lambo.glb');
+    const meshRef  = useRef(null);
 
     useLayoutEffect(function(){
         console.log("inside layout effect #1");
         setModelReady(true);
     },[]);
 
+    useFrame(function({clock}){
+        meshRef.current.rotation.y = clock.getElapsedTime() / 4;
+    })
+
     return <>
-                <OrbitControls target={[0,0.35,0]}  maxPolarAngle={1.45} enablePan = {false} enableZoom = {false} />
-                <PerspectiveCamera makeDefault fov={50} position={[3,2,5]} />
+                {/* <OrbitControls target={[0,0.35,0]}  maxPolarAngle={1.45} enablePan = {false} enableZoom = {false} /> */}
+                <PerspectiveCamera makeDefault fov={50} position={[0,1,6]} lookAt={position}/>
                 <color args={[0,0,0]} attach= 'background' />
-                <mesh receiveShadow = {true} castShadow={true} > 
-                    <primitive castShadow object={Scene.scene} rotation = {[0,2,0]} scale = {scale} position = {position}  receiveShadow = {true}  />
+                <mesh receiveShadow = {true} castShadow={true} ref={meshRef} > 
+                    <primitive castShadow object={Scene.scene}  scale = {scale} position = {position}  receiveShadow = {true}  />
                 </mesh>
             </>
 }

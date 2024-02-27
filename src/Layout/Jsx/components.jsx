@@ -69,7 +69,7 @@ function Menu(){
 
     return <div id="menu">
                 <motion.div onClick={()=>{setIsOpen((!isOpen))}} >
-                   { isOpen ? <Close id ="menuCloseIcon" className='menuIcons' /> :<ViewList id = "menuListIcon" className='menuIcons'/> }
+                   { isOpen ? <Close id ="menuCloseIcon" className='menuIcons' style ={{color:"black"}} /> :<ViewList id = "menuListIcon" className='menuIcons'/> }
                 </motion.div>
                 <MenuBody isOpen={isOpen} closeMenuFunction={setIsOpen} />
         </div>

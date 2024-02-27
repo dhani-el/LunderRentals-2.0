@@ -44,6 +44,8 @@ body {
   align-items: center;
   width: 100%;
   height: 100vh;
+  padding: 2rem;
+  gap: 4rem;
 }
 #bodyDiv #abslouteContentContainer #top {
   width: 100%;
@@ -51,12 +53,19 @@ body {
   display: flex;
   align-items: center;
   flex-direction: column;
+  gap: 4rem;
 }
 #bodyDiv #abslouteContentContainer #top #acheivementDivContainer {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 4em;
+}
+#bodyDiv #abslouteContentContainer #top #acheivementDivContainer .singleAchivement {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 #bodyDiv #abslouteContentContainer #top #acheivementDivContainer .singleAchivement .number {
   font-size: 2em;
@@ -70,6 +79,8 @@ body {
 #bodyDiv #abslouteContentContainer #top #LargeTextDiv {
   width: 100%;
   text-align: center;
+  padding-top: 3rem;
+  padding-bottom: 1.5rem;
 }
 #bodyDiv #abslouteContentContainer #top #LargeTextDiv p {
   font-size: 2.8em;
@@ -79,7 +90,6 @@ body {
 }
 #bodyDiv #abslouteContentContainer #top #paragraph {
   text-align: center;
-  padding: 1em;
 }
 #bodyDiv #abslouteContentContainer #top #paragraph p {
   font-family: "montserrat";
@@ -189,8 +199,7 @@ body {
 }
 @media (orientation: landscape) {
   #bodyDiv #abslouteContentContainer {
-    position: relative;
-    justify-content: space-between;
+    padding: 2rem;
     width: 100%;
     height: 90vh;
   }
@@ -202,11 +211,13 @@ body {
     flex-direction: row;
     align-items: flex-start;
     justify-content: space-between;
+    min-height: 70vh;
   }
   #bodyDiv #abslouteContentContainer #top #acheivementDivContainer {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    align-self: center;
   }
   #bodyDiv #abslouteContentContainer #top #acheivementDivContainer .singleAchivement .number {
     font-size: 2.8em;
