@@ -55,7 +55,7 @@ const route  = createBrowserRouter([
 ]);
 
 function App() {
-  const [userLoggedIn, setUserLoggedin] = useState({isloggedin:false,username:`${document.cookie}`.substring(5).toString()})
+  const [userLoggedIn, setUserLoggedin] = useState({isloggedin:false,username:''})
 
   return (
     <AuthContext.Provider value={{authState:userLoggedIn,contextFn:setUserLoggedin}}>
