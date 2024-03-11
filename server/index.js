@@ -4,7 +4,7 @@ const app = express();
 const mongoose = require("mongoose");
 const Parser = require("body-parser");
 const cookieParser = require("cookie-parser")
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 3000;
 const path = require("path");
 const Cors = require("cors");
 const passport  = require("passport");
@@ -29,7 +29,7 @@ app.use(Cors({origin:["http://localhost:5173"],
 
 app.use(Parser.urlencoded({extended:false}));
 app.use(Parser.json());
-app.use(express.static(path.join(__filename,"../server/dist")));
+app.use(express.static(path.join(__dirname,"../server/dist")));
 app.use(express.static(path.join(__filename,"../server/public")));
 // app.use(express.static("/dist"));
 app.use(cookieParser());
@@ -63,8 +63,10 @@ app.use("/auth",AuthRoute);
 
 app.get("*",function(req,res){
 
-    res.sendFile(path.join(__dirname,"../server/dist/index.html"));
-    res.sendFile(path.join(__dirname,"../server/dist/index.html"));
+    // console.log(`${__filename,"../server/dist/index.html"}`);
+    res.sendFile(path.join(__filename,"../dist/index.html"));
+    // res.sendFile(path.join(__dirname,"../server/dist/index.html"));
+    console.log(`${path.join(__filename,"../dist/index.html")}`);
     // res.sendFile("./dist/index.html");
 });
 
