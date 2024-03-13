@@ -29,7 +29,7 @@ export default function Home(){
                     </div>
                     <CallToAction/>
                 </div>
-                <Modelo setModelReady={setRemoveSplash}/>
+                {/* <Modelo setModelReady={setRemoveSplash}/> */}
                 <BodyContent/>
             </div>
             </div>
