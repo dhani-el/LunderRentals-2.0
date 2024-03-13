@@ -134,6 +134,98 @@ body{
             display: none;
         }
     }
+    #bodyContentContainer{
+        width: 100vw;
+        padding: 1rem;
+        background-color: black;
+        display: flex;
+        flex-direction: column;
+        gap: 5vh;
+        #firstContainer{
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 2rem;
+            #imageContainer{
+                width: 55%;
+                img{
+                    width: 100%;
+                    height: auto;
+                    border-radius: 1rem;
+                }
+            }
+            #text{
+                width: 40%;
+                #paragraph, #Title{
+                    text-align: center;
+                }
+                #Title{
+                    font-family: bebas;
+                    font-size: 1.5rem;
+                }
+                #paragraph{
+                    font-size:0.8rem;
+                }
+            }
+        }
+        #secondContainer{
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 2rem;
+            #imageContainer{
+                width: 50%;
+                img{
+                    width: 100%;
+                    height: auto;
+                    border-radius: 0.5rem;
+                }
+            }
+            #text{
+                width: 40%;
+                #paragraph, #Title{
+                    text-align: center;
+                }
+                #Title{
+                    font-family: bebas;
+                    font-size: 1.5rem;
+                }
+                #paragraph{
+                    font-size:0.8rem;
+                }
+            }
+        }
+        #fourthContainer{
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 2rem;
+            #imageContainer{
+                width: 45%;
+                img{
+                    width: 100%;
+                    height: auto;
+                    border-radius: 0.5rem;
+                }
+            }
+            #text{
+                width: 40%;
+                #paragraph, #Title{
+                    text-align: center;
+                }
+                #Title{
+                    font-family: bebas;
+                    font-size: 1.5rem;
+                }
+                #paragraph{
+                    font-size:0.8rem;
+                }
+            }
+        }
+    }
 }
 
 #mainSplashDiv{

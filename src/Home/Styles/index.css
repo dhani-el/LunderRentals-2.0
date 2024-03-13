@@ -129,6 +129,98 @@ body {
 #bodyDiv #model #spinIndicator {
   display: none;
 }
+#bodyDiv #bodyContentContainer {
+  width: 100vw;
+  padding: 1rem;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  gap: 5vh;
+}
+#bodyDiv #bodyContentContainer #firstContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 2rem;
+}
+#bodyDiv #bodyContentContainer #firstContainer #imageContainer {
+  width: 55%;
+}
+#bodyDiv #bodyContentContainer #firstContainer #imageContainer img {
+  width: 100%;
+  height: auto;
+  border-radius: 1rem;
+}
+#bodyDiv #bodyContentContainer #firstContainer #text {
+  width: 40%;
+}
+#bodyDiv #bodyContentContainer #firstContainer #text #paragraph, #bodyDiv #bodyContentContainer #firstContainer #text #Title {
+  text-align: center;
+}
+#bodyDiv #bodyContentContainer #firstContainer #text #Title {
+  font-family: bebas;
+  font-size: 1.5rem;
+}
+#bodyDiv #bodyContentContainer #firstContainer #text #paragraph {
+  font-size: 0.8rem;
+}
+#bodyDiv #bodyContentContainer #secondContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 2rem;
+}
+#bodyDiv #bodyContentContainer #secondContainer #imageContainer {
+  width: 50%;
+}
+#bodyDiv #bodyContentContainer #secondContainer #imageContainer img {
+  width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+}
+#bodyDiv #bodyContentContainer #secondContainer #text {
+  width: 40%;
+}
+#bodyDiv #bodyContentContainer #secondContainer #text #paragraph, #bodyDiv #bodyContentContainer #secondContainer #text #Title {
+  text-align: center;
+}
+#bodyDiv #bodyContentContainer #secondContainer #text #Title {
+  font-family: bebas;
+  font-size: 1.5rem;
+}
+#bodyDiv #bodyContentContainer #secondContainer #text #paragraph {
+  font-size: 0.8rem;
+}
+#bodyDiv #bodyContentContainer #fourthContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 2rem;
+}
+#bodyDiv #bodyContentContainer #fourthContainer #imageContainer {
+  width: 45%;
+}
+#bodyDiv #bodyContentContainer #fourthContainer #imageContainer img {
+  width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+}
+#bodyDiv #bodyContentContainer #fourthContainer #text {
+  width: 40%;
+}
+#bodyDiv #bodyContentContainer #fourthContainer #text #paragraph, #bodyDiv #bodyContentContainer #fourthContainer #text #Title {
+  text-align: center;
+}
+#bodyDiv #bodyContentContainer #fourthContainer #text #Title {
+  font-family: bebas;
+  font-size: 1.5rem;
+}
+#bodyDiv #bodyContentContainer #fourthContainer #text #paragraph {
+  font-size: 0.8rem;
+}
 
 #mainSplashDiv {
   width: 100%;
