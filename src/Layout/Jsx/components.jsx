@@ -1,8 +1,8 @@
 import {useState, useContext} from 'react';
-import { Button } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import {User} from 'react-feather';
 import ViewList from '@mui/icons-material/ViewList';
-import {Close,ShoppingBag} from '@mui/icons-material';
+import {Close,ShoppingBag,Twitter,Instagram,YouTube,Facebook,Pinterest} from '@mui/icons-material';
 import {motion} from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
 import LogoImage from '/one.png';
@@ -102,19 +102,61 @@ function MenuBody({isOpen,closeMenuFunction}){
 export function Footer(){
     return <div id='footerContainer'>
         <Logo/>
-        <div id='quickLinks'>
-            <Link to='/'>Home</Link>
-            <Link to='/dealers'>Dealers</Link>
-            <Link to='/branches' >Branches</Link>
-            <Link to='/rent' >Rent a Car</Link>
-            <Link to='/delivery' >Pick Up</Link>
-            <Link to='/contact' >Contact Us</Link>
-            <Link to='/careers' >Careers</Link>
-            <Link to='/credit' >Credits</Link>
-        </div>
-        <div id='boilerPlateContent' >
+
+        <div id='quicknews'>
+
+            <div id='quickLinks'>
+                <Link to='/branches' >About</Link>
+                <Link to='/delivery' >Press</Link>
+                <Link to='/dealers'>Dealers</Link>
+                <Link to='/contact' >Contact Us</Link>
+                <Link to='/rent' >Careers</Link>
+            </div>
+
+            <div id='newsLetter'>
+                <p id='desc'>Get the freshest lunder rentals news</p>
+                <div id='muiDiv'>
+                    <TextField id='textF' placeholder='Your Email' type='email' sx={{color:"white"}} />
+                    <Button variant='outlined' sx={{color:"white",borderRadius:"0px",outlineColor:"white",borderColor:"white"}}>Subscribe</Button>
+                </div>
+            </div>
 
         </div>
+
+        <div id='boilerPlateterms'>
+            <div id='boilerPlateContent' >
+                <p className='singleP'>Terms & Conditions</p>
+                <p className='singleP'>Privacy Policy</p>
+                <p className='singleP'>Code of Conduct </p>
+                <p className='singleP' id='lastP'>Marketing to Children</p>
+            </div>
+
+            <div id='termsMedia' >
+
+                <p>© 2024 Lunder Rentals, LLC. All Rights Reserved.</p>
+
+                <div id='socialMediaDiv'>
+                    <span>
+                        <Instagram/>
+                    </span>
+                    <span>
+                        <Pinterest/>
+                    </span>
+                    <span>
+                        <Facebook/>
+                    </span>
+                    <span>
+                        <YouTube/>
+                    </span>
+                    <span>
+                        <Twitter/>
+                    </span>
+                </div>
+
+            </div>
+        </div>
+
+
     </div>
 }
 
