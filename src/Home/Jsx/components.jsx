@@ -3,7 +3,7 @@ import { Button } from "@mui/material";
 import Swipe from "@mui/icons-material/Swipe";
 import { Canvas, useLoader,useFrame} from '@react-three/fiber';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-import { OrbitControls, MeshReflectorMaterial, PerspectiveCamera } from '@react-three/drei';
+import { MeshReflectorMaterial, PerspectiveCamera } from '@react-three/drei';
 import {LinearEncoding, RepeatWrapping, TextureLoader} from 'three';
 import { useMediaQuery } from 'react-responsive';
 import LoadingBar from "react-top-loading-bar"
@@ -12,8 +12,9 @@ import { motion } from 'framer-motion';
 import splashImage from "/one.png";
 import RoughTexture from "/texture/rough.jpg";
 import NormalTexture from "/texture/normal.jpg";
-import Lambo from '/lambo.glb?url'
-
+import OneImage from "/images/1.0.jpeg"
+import TwoImage from "/images/2.0.jpeg"
+import FourImage from "/images/9.0.jpeg"
 
 
 export function AchivementText(){
@@ -199,3 +200,65 @@ export function SplashScreen({displaySplash}){
             </motion.div>
 }
 
+export function BodyContent(){
+    return <motion.div id='bodyContentContainer'>
+                <First/>
+                <Second/>
+                <Third/>
+                <Fourth/>
+    </motion.div>
+}
+
+function First(){
+    return <motion.div id='firstContainer'>
+                <motion.div id='imageContainer'>
+                    <motion.img src={OneImage}/>
+                </motion.div>
+
+                <motion.div id='text'>
+                    <motion.p id='Title'>TOP OF THE SHELVE CARS</motion.p>
+                    <motion.div id='underline'></motion.div>
+                    <motion.p id='paragraph'>
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse sit voluptates voluptatibus. Error consequatur laborum, accusamus quidem ad ipsam sit nihil id commodi perspiciatis libero voluptates culpa iusto eius et odit ab voluptate debitis sint facere esse adipisci officiis placeat? Atque ipsum rerum incidunt dolorem! Temporibus optio ea eos aspernatur!
+                    </motion.p>
+                </motion.div>
+    </motion.div>
+}
+
+function Second(){
+    return <motion.div id='secondContainer'>
+                <motion.div id='text'>
+                    <motion.p id='Title'>AFFORDABLE YET EXCLUSIVE</motion.p>
+                    <motion.div id='underline'></motion.div>
+                    <motion.p id='paragraph'>
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse sit voluptates voluptatibus. Error consequatur laborum, accusamus quidem ad ipsam sit nihil id commodi perspiciatis libero voluptates culpa iusto eius et odit ab voluptate debitis sint facere esse adipisci officiis placeat? Atque ipsum rerum incidunt dolorem! Temporibus optio ea eos aspernatur!
+                    </motion.p>
+                </motion.div>
+
+                <motion.div id='imageContainer'>
+                    <motion.img src={TwoImage}/>
+                </motion.div>
+</motion.div>
+}
+
+function Third(){
+    return <motion.div>
+
+    </motion.div>
+}
+
+function Fourth(){
+    return <motion.div id='fourthContainer'>
+                <motion.div id='text'>
+                    <motion.p id='Title'>AFFORDABLE YET EXCLUSIVE</motion.p>
+                    <motion.div id='underline'></motion.div>
+                    <motion.p id='paragraph'>
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse sit voluptates voluptatibus. Error consequatur laborum, accusamus quidem ad ipsam sit nihil id commodi perspiciatis libero voluptates culpa iusto eius et odit ab voluptate debitis sint facere esse adipisci officiis placeat? Atque ipsum rerum incidunt dolorem! Temporibus optio ea eos aspernatur!
+                    </motion.p>
+                </motion.div>
+
+                <motion.div id='imageContainer'>
+                    <motion.img src={FourImage}/>
+                </motion.div>
+            </motion.div>
+}

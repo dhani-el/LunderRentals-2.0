@@ -1,6 +1,6 @@
 import { useEffect,  useRef,  useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
-import { Paragraph, AchivementText, LargeText, CallToAction, Modelo, SplashScreen} from './components';
+import { Paragraph, AchivementText, LargeText, CallToAction, Modelo, SplashScreen,BodyContent} from './components';
 import '../Styles/index.css';
 
 
@@ -30,6 +30,7 @@ export default function Home(){
                     <CallToAction/>
                 </div>
                 <Modelo setModelReady={setRemoveSplash}/>
+                <BodyContent/>
             </div>
             </div>
 }

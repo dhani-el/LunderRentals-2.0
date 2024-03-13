@@ -17,8 +17,8 @@ export default function Layout(){
     <div id="outletWrapper">
         <Outlet/>
     </div>
-    {/* <div id="footerWrapper">
+    <div id="footerWrapper">
         <Footer/>
-    </div> */}
+    </div>
     </div>
 }
