@@ -140,23 +140,28 @@ body{
         background-color: black;
         display: flex;
         flex-direction: column;
-        gap: 5vh;
+        gap: 2vh;
         #firstContainer{
             width: 100%;
             display: flex;
+            gap:2rem;
+            flex-direction:column-reverse;
             justify-content: space-around;
             align-items: center;
             padding: 2rem;
             #imageContainer{
-                width: 55%;
+                width: 100%;
                 img{
                     width: 100%;
                     height: auto;
-                    border-radius: 1rem;
+                    border-radius: 0.5rem;
                 }
             }
             #text{
-                width: 40%;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
                 #paragraph, #Title{
                     text-align: center;
                 }
@@ -172,11 +177,13 @@ body{
         #secondContainer{
             width: 100%;
             display: flex;
+            gap:2rem;
+            flex-direction:column;
             justify-content: space-around;
             align-items: center;
             padding: 2rem;
             #imageContainer{
-                width: 50%;
+                width:100%;
                 img{
                     width: 100%;
                     height: auto;
@@ -184,7 +191,10 @@ body{
                 }
             }
             #text{
-                width: 40%;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
                 #paragraph, #Title{
                     text-align: center;
                 }
@@ -200,19 +210,24 @@ body{
         #fourthContainer{
             width: 100%;
             display: flex;
+            gap:2rem;
+            flex-direction:column;
             justify-content: space-around;
             align-items: center;
             padding: 2rem;
             #imageContainer{
-                width: 45%;
+                width: 100%;
                 img{
                     width: 100%;
                     height: auto;
-                    border-radius: 0.5rem;
+                    border-radius: 0.25rem;
                 }
             }
             #text{
-                width: 40%;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
                 #paragraph, #Title{
                     text-align: center;
                 }
@@ -380,6 +395,44 @@ body{
             width: 100%;
             height: 90vh;
         }
+        #bodyContentContainer{
+            gap: 5vh;
+            #firstContainer{
+                gap: 0rem;
+                flex-direction:row;
+                #imageContainer{
+                    width: 55%;
+                    img{
+                        border-radius: 1rem;
+                    }
+                }
+                #text{
+                    width: 40%;
+                }
+            }
+            #secondContainer{
+                flex-direction:row;
+                #imageContainer{
+                    width: 50%;
+                }
+                #text{
+                    width: 40%;
+                }
+            }
+            #fourthContainer{
+                flex-direction:row-reverse;
+                #imageContainer{
+                    width: 45%;
+                    img{
+                        border-radius: 0.5rem;
+                    }
+                }
+                #text{
+                    width: 40%;
+
+                }
+            }
+        }
     }
     #mainSplashDiv{
         z-index: 10;
@@ -388,6 +441,7 @@ body{
             width: auto;
         }
     }
+
 }
 
 @media (orientation:'landscape') and (min-width:'1034px'){
