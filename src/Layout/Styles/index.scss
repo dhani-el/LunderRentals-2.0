@@ -115,19 +115,22 @@ $secondary-font:'bebas';
     }
     #quicknews{
         display: flex;
+        flex-direction: column;
         justify-content: space-between;
         width: 100%;
         border-bottom: 0.02rem white solid;
         padding-bottom: 2rem;
+        gap: 1.5rem;
         #quickLinks{
             display: grid;
             grid-template-columns: 1fr 1fr;
-            width: 30%;
+            width: 100%;
+            align-items: center;
             a{
                 color: white;
                 text-decoration: none;
                 font-size: 0.8rem;
-                font-weight: 700;
+                padding-bottom: 0.5rem;
             }
         }
         #newsLetter{
@@ -144,10 +147,10 @@ $secondary-font:'bebas';
                     border-color:white;
                     border-top-right-radius: 0px;
                     border-bottom-right-radius: 0px;
-                    background-color: rgba(0, 0, 0, 0.659);
                 }
                 input,button{
                     font-family: montserrat;
+                    color: white;
                 }
                 .css-3w2hyt-MuiButtonBase-root-MuiButton-root:hover{
                     border-color: white;
@@ -167,8 +170,9 @@ $secondary-font:'bebas';
             .singleP{
                 display: block;
                 border-right: 0.06rem white solid;
-                width: 80%;
-                font-size: 0.6rem;
+                width: 100%;
+                font-size: 0.5rem;
+                text-align: center;
             }
             #lastP{
                 border: none;
@@ -176,12 +180,16 @@ $secondary-font:'bebas';
         }
         #termsMedia{
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
+            justify-content: space-between;            
+            align-items: center;
             padding-top: 1rem;
             font-size: 0.6rem;
+            gap: 1rem;
             #socialMediaDiv{
                 display: flex;
-                gap: 0.5rem;
+                width: 100%;
+                justify-content: space-around;
                 span{
                     svg{
                         width: 1rem;
@@ -255,8 +263,45 @@ $secondary-font:'bebas';
         }
     }
     #footerContainer{
-        #quickLinks{
-            grid-template-columns: repeat(3,1fr);
+        #logo{
+            width: 6rem;
+            padding-bottom: 1rem;
+            img{
+                width: 100%;
+                height: auto;
+            }
+        }
+        #quicknews{
+            flex-direction: row;
+            gap: 0rem;
+            #quickLinks{
+                width: 30%;
+                align-items: flex-start;
+                a{
+                    font-weight: 700;
+                    padding-bottom: 0rem;
+                }
+            }
+    
+        }
+        #boilerPlateterms{
+            #boilerPlateContent{
+                .singleP{
+                    width: 80%;
+                    font-size: 0.6rem;
+                    text-align: left;
+                }
+            }
+            #termsMedia{
+                flex-direction: row;
+                justify-content: space-between;
+                gap: 0rem;
+                font-size: 0.6rem;
+                #socialMediaDiv{
+                    gap: 0.5rem;
+                    width: fit-content;
+                }
+            }
         }
     }
     
