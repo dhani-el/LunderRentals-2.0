@@ -3,15 +3,16 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { motion } from "framer-motion";
 import { Close } from "@mui/icons-material";
-import { Button, TextField } from "@mui/material";
+import { Button, TextField, Skeleton } from "@mui/material";
 import MasterCard from "/masterCard.png";
 import { useMediaQuery } from "react-responsive";
 
 
-export function ListOfCartItems({cartItems}){
+export function ListOfCartItems({cartItems,notReady}){
     return <div id="cartItemsCard" >
         <ListHeader/>
-        {cartItems.map(function(item){
+        {notReady &&<ListOfCartSkeletons/>}
+        {!notReady && cartItems.map(function(item){
             return <SingleCartItem itemDetails={item}/>
         })}
     </div>
@@ -64,6 +65,26 @@ function Colour({color}){
         <div style={{background:color}}>
 
         </div>
+    </div>
+}
+
+function CartSkeleton(){
+    return <div id="aSkeleton"> 
+                <Skeleton animation = "wave" />
+                <Skeleton animation = "wave" />
+                <Skeleton variant="circular" animation = "pulse"/>
+                <Skeleton animation = "wave" />
+    </div>
+}
+
+function ListOfCartSkeletons(){
+    return <div id="listOcartSk">
+        
+        <CartSkeleton/>
+        <CartSkeleton/>
+        <CartSkeleton/>
+        <CartSkeleton/>
+
     </div>
 }
 
