@@ -40,15 +40,13 @@ function Cart(){
         <h2>Shopping Car<span>t</span></h2>
         <div id="mostContent">
             <motion.div id="cartContent" variants={animations.cartAnimation} initial="initial" animate= {toCheckout ? "animation" : "initial"} >
-                {isFetching && <p>cart items are being fetched</p>}
-                {!isFetching &&<ListOfCartItems cartItems={(data?.data.cart == null)?[]:data?.data.cart} />}
+                {/* {isFetching && <p>cart items are being fetched</p>} */}
+                <ListOfCartItems cartItems={(data?.data.cart == null)?[]:data?.data.cart} notReady={isFetching} />
                 {!isFetching &&<OrderSummary summaryDetails={{count:!isFetching ? data?.data.cart.length:"", tax:"5", shipping:"free"}} cartItems={(data?.data.cart == null)?[]:data?.data.cart} clickHandler={handleOpenCheckout} />}
             </motion.div>
             <PaymentBar slide= {toCheckout} handleClose = {handleCloseCheckout} />
         </div>
     </div>
 }
-
-
 
 export default Cart
