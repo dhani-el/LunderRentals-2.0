@@ -42,6 +42,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-around;
   width: 100%;
   height: 100vh;
   padding: 2rem;
@@ -92,6 +93,7 @@ body {
 #bodyDiv #abslouteContentContainer #top #paragraph {
   text-align: center;
   font-size: 0.8rem;
+  display: none;
 }
 #bodyDiv #abslouteContentContainer #top #paragraph p {
   font-family: "montserrat";
@@ -131,7 +133,7 @@ body {
 }
 #bodyDiv #bodyContentContainer {
   width: 100vw;
-  padding: 1rem;
+  padding: 0rem 2rem;
   background-color: black;
   display: flex;
   flex-direction: column;
@@ -161,7 +163,7 @@ body {
   gap: 0.5rem;
 }
 #bodyDiv #bodyContentContainer #firstContainer #text #paragraph, #bodyDiv #bodyContentContainer #firstContainer #text #Title {
-  text-align: center;
+  line-height: 1.5rem;
 }
 #bodyDiv #bodyContentContainer #firstContainer #text #Title {
   font-family: bebas;
@@ -194,7 +196,7 @@ body {
   gap: 0.5rem;
 }
 #bodyDiv #bodyContentContainer #secondContainer #text #paragraph, #bodyDiv #bodyContentContainer #secondContainer #text #Title {
-  text-align: center;
+  line-height: 1.5rem;
 }
 #bodyDiv #bodyContentContainer #secondContainer #text #Title {
   font-family: bebas;
@@ -227,7 +229,7 @@ body {
   gap: 0.5rem;
 }
 #bodyDiv #bodyContentContainer #fourthContainer #text #paragraph, #bodyDiv #bodyContentContainer #fourthContainer #text #Title {
-  text-align: center;
+  line-height: 1.5rem;
 }
 #bodyDiv #bodyContentContainer #fourthContainer #text #Title {
   font-family: bebas;
@@ -235,6 +237,11 @@ body {
 }
 #bodyDiv #bodyContentContainer #fourthContainer #text #paragraph {
   font-size: 0.8rem;
+}
+#bodyDiv #bodyContentContainer #firstContainer, #bodyDiv #bodyContentContainer #secondContainer, #bodyDiv #bodyContentContainer #fourthContainer {
+  padding: 2rem;
+  background-color: rgb(28, 27, 27);
+  border-radius: 1rem;
 }
 
 #mainSplashDiv {
@@ -245,6 +252,7 @@ body {
   top: 0;
   left: 0;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   z-index: 20;
@@ -252,6 +260,10 @@ body {
 #mainSplashDiv img {
   width: 65%;
   height: auto;
+}
+#mainSplashDiv #SplashProgressBar {
+  font-family: montserrat;
+  display: flex;
 }
 
 @media (orientation: portrait) and (max-width: 300px) {
@@ -279,12 +291,14 @@ body {
   #bodyDiv #abslouteContentContainer #top #paragraph {
     padding: 2em;
     font-size: 1.2em;
+    display: block;
   }
 }
 @media (orientation: portrait) and (min-width: 800px) {
   #bodyDiv #abslouteContentContainer #top #paragraph {
     padding: 0em 3em;
     font-size: 2em;
+    display: block;
   }
   #bodyDiv #abslouteContentContainer #top #acheivementDivContainer {
     gap: 15vw;
@@ -346,6 +360,7 @@ body {
     width: 15vw;
     padding: 0;
     align-self: center;
+    display: block;
   }
   #bodyDiv #model {
     position: absolute;
@@ -369,6 +384,7 @@ body {
   }
   #bodyDiv #bodyContentContainer #firstContainer #text {
     width: 40%;
+    text-align: right;
   }
   #bodyDiv #bodyContentContainer #secondContainer {
     flex-direction: row;

@@ -1,4 +1,5 @@
-import { useEffect, useLayoutEffect, useRef} from 'react';
+import { useEffect, useLayoutEffect, useRef,useState} from 'react';
+import { flushSync } from 'react-dom';
 import { Button } from "@mui/material";
 import Swipe from "@mui/icons-material/Swipe";
 import { Canvas, useLoader,useFrame} from '@react-three/fiber';
@@ -6,7 +7,6 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { MeshReflectorMaterial, PerspectiveCamera } from '@react-three/drei';
 import {LinearEncoding, RepeatWrapping, TextureLoader} from 'three';
 import { useMediaQuery } from 'react-responsive';
-import LoadingBar from "react-top-loading-bar"
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import splashImage from "/one.png";
@@ -145,7 +145,6 @@ export function SplashScreen({displaySplash}){
           initial : {
             opacity:1,
             zindex:20,
-            duration:'2s',
         },
         animationOn:{
             opacity:1,
@@ -154,7 +153,8 @@ export function SplashScreen({displaySplash}){
         animationOff:{
             opacity:0,
             zindex:0,
-            duration:'2s',
+            delay:5,
+            duration:2,
             transitionEnd:{
                 display:"none",
             }
@@ -179,24 +179,60 @@ export function SplashScreen({displaySplash}){
 
     }
 }
-    const LoadingBarRef = useRef(null);
+    // const LoadingBarRef = useRef(null);
+
+    // useEffect(function(){
+    //     if (LoadingBarRef === null) {
+    //         return     
+    //     }
+    //     LoadingBarRef.current.continuousStart()
+    // });
+
+    // useEffect(function(){
+    //     if ( displaySplash === false) {
+    //        LoadingBarRef.current.complete();
+    //     }
+    // }, []);
+
+    return <motion.div id='mainSplashDiv'  variants={animations.main} initial="initial" animate={displaySplash ? "animationOn" : "animationOff"} >
+                <motion.img src={splashImage}  alt='lunder rentals splash screen image' />
+                <SplashProgressBar removeSplashScreen={!displaySplash}/>
+            </motion.div>
+}
+
+function SplashProgressBar({removeSplashScreen}){
+    const [percentage,setPercentage] = useState(0);
+    const waitMax = 94;
+    const timeOutRef = useRef(null)
+    function generateProgress(){
+        timeOutRef.current = setTimeout(() => {
+            ProgressProcess()
+        }, 1670);
+    }
+    function ProgressProcess(){
+        let randomValue = GenerateRandomValue();
+        console.log("random value is : ", randomValue );
+        flushSync(()=>{
+            setPercentage(init=> init + randomValue <= waitMax ? init + randomValue : init )
+        })
+    }
+    function GenerateRandomValue(){
+        let multiplier = 7;
+        return Math.ceil(Math.random() * multiplier)
+    }
 
     useEffect(function(){
-        if (LoadingBarRef === null) {
-            return     
-        }
-        LoadingBarRef.current.continuousStart()
-    });
+        percentage >= waitMax ? clearTimeout(timeOutRef) : generateProgress();
+        return ()=> clearTimeout(timeOutRef)
+    },[percentage])
 
     useEffect(function(){
-        if ( displaySplash === false) {
-           LoadingBarRef.current.complete();
+        if (removeSplashScreen) {
+            setPercentage(init=>100)
         }
-    }, []);
-
-    return <motion.div id='mainSplashDiv' className={displaySplash? "displaySplash": "" } variants={animations.main} initial="initial" animate={displaySplash ? "animationOn" : "animationOff"} >
-                <motion.img src={splashImage} alt='lunder rentals splash screen image' variants={animations.image} initial="initial" animate={displaySplash ?"animation" : "initial"} />
-                <LoadingBar ref={LoadingBarRef} color='aquamarine' height="1em" />
+    },[removeSplashScreen])
+    return <motion.div id="SplashProgressBar" >
+                <motion.p id="pee">{percentage}</motion.p><motion.p>%</motion.p>
             </motion.div>
 }
 
