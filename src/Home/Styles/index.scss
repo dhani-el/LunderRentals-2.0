@@ -46,6 +46,7 @@ body{
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: space-around;
         width:100%;
         height:100vh;
         padding:2rem;
@@ -94,6 +95,7 @@ body{
             #paragraph{
             text-align: center;
             font-size: 0.8rem;
+            display: none;
             p{
                 font-family: $primary-font;
             }
@@ -136,7 +138,7 @@ body{
     }
     #bodyContentContainer{
         width: 100vw;
-        padding: 1rem;
+        padding: 0rem 2rem;
         background-color: black;
         display: flex;
         flex-direction: column;
@@ -163,7 +165,7 @@ body{
                 flex-direction: column;
                 gap: 0.5rem;
                 #paragraph, #Title{
-                    text-align: center;
+                    line-height: 1.5rem;
                 }
                 #Title{
                     font-family: bebas;
@@ -196,7 +198,7 @@ body{
                 flex-direction: column;
                 gap: 0.5rem;
                 #paragraph, #Title{
-                    text-align: center;
+                    line-height: 1.5rem;
                 }
                 #Title{
                     font-family: bebas;
@@ -229,7 +231,7 @@ body{
                 flex-direction: column;
                 gap: 0.5rem;
                 #paragraph, #Title{
-                    text-align: center;
+                    line-height: 1.5rem;
                 }
                 #Title{
                     font-family: bebas;
@@ -239,6 +241,11 @@ body{
                     font-size:0.8rem;
                 }
             }
+        }
+        #firstContainer,#secondContainer,#fourthContainer{
+            padding: 2rem;
+            background-color: rgb(28, 27, 27);
+            border-radius: 1rem;
         }
     }
 }
@@ -251,12 +258,17 @@ body{
     top: 0;
     left: 0;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     z-index: 20;
     img{
         width: 65%;
         height: auto;
+    }
+    #SplashProgressBar{
+        font-family: montserrat;
+        display: flex;
     }
 }
 
@@ -301,6 +313,7 @@ body{
                #paragraph{
                 padding: 2em;
                 font-size: 1.2em;
+                display: block;
                } 
             }
         }
@@ -314,6 +327,7 @@ body{
                #paragraph{
                 padding:0em 3em;
                 font-size: 2em;
+                display: block;
                } 
                #acheivementDivContainer{
                 gap: 15vw;
@@ -385,6 +399,7 @@ body{
                     width: 15vw;
                     padding: 0;
                     align-self: center;
+                    display: block;
                 }
             }
         }
@@ -408,6 +423,7 @@ body{
                 }
                 #text{
                     width: 40%;
+                    text-align: right;
                 }
             }
             #secondContainer{
@@ -440,6 +456,7 @@ body{
             height: 30%;
             width: auto;
         }
+
     }
 
 }
