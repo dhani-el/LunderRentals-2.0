@@ -1,4 +1,15 @@
+@font-face {
+    font-family: 'montserrat';
+    src: url("../../assets/fonts/montserrat.ttf");
+}
 
+@font-face {
+    font-family: 'bebas';
+    src: url("../../assets/fonts/bebas.ttf");
+}
+
+$primary-font:'montserrat';
+$secondary-font:'bebas';
 
 #searchComponentContainer{
     width: 100%;
@@ -33,7 +44,7 @@
                 padding: 0.4em;
                 width: 100%;
                 font-size: 1.2em;
-
+                font-family: $primary-font;
             }
             .css-1u3bzj6-MuiFormControl-root-MuiTextField-root{
                 width: 90%;
@@ -143,6 +154,7 @@
                             justify-content: center;
                             width: 55%;
                             color: navy;
+                            font-family: $secondary-font;
                         }
 
                 }
@@ -155,6 +167,17 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        h2{
+            font-family: $secondary-font;
+        }
+    }
+    #pagDiv{
+        width: 100vw;
+        margin-top: 1.5em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
     }
 }
 
@@ -233,6 +256,9 @@
                         #firstDiv{
                             width: 100%;
                             height: 10vh;
+                            #textDiv{
+                                padding-top: 1em;
+                            }
                         }
                     }
 

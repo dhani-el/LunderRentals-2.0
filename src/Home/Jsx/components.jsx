@@ -1,27 +1,31 @@
-import { useEffect, useLayoutEffect, useRef, useState} from 'react';
+import { useEffect, useLayoutEffect, useRef,useState} from 'react';
+import { flushSync } from 'react-dom';
 import { Button } from "@mui/material";
 import Swipe from "@mui/icons-material/Swipe";
-import { Canvas, useLoader} from '@react-three/fiber';
+import { Canvas, useLoader,useFrame} from '@react-three/fiber';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-import { OrbitControls, MeshReflectorMaterial, PerspectiveCamera } from '@react-three/drei';
+import { MeshReflectorMaterial, PerspectiveCamera } from '@react-three/drei';
 import {LinearEncoding, RepeatWrapping, TextureLoader} from 'three';
 import { useMediaQuery } from 'react-responsive';
-import LoadingBar from "react-top-loading-bar"
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import splashImage from "/one.png";
-
+import RoughTexture from "/texture/rough.jpg";
+import NormalTexture from "/texture/normal.jpg";
+import OneImage from "/images/1.0.jpeg"
+import TwoImage from "/images/2.0.jpeg"
+import FourImage from "/images/9.0.jpeg"
 
 
 export function AchivementText(){
     return <div id='acheivementDivContainer'>
             <span className='singleAchivement'>
                 <p className='number'>100+</p>
-                <p>Types of Cars</p>
+                <p> TYPES OF CARS</p>
             </span>
             <span className='singleAchivement'>
                 <p className='number'>7K+</p>
-                <p>Clients Served</p>
+                <p>CLIENTS SERVED</p>
             </span>
     </div>
 }
@@ -35,7 +39,7 @@ export function LargeText(){
 export function Paragraph(){
     return <div id = "paragraph" >
         <p>
-            we desire our customers to have a hassel free experience hence we make it easy to rent a car by providing a variety of cars, verified car owners and car rental delivery and pickup
+            WE DESIRE OUR CUSTOMERS TO HAVE A HASSEL FREE EXPERIENCE HENCE WE MAKE IT EASY TO RENT A CAR BY BY PROVIDING A VARIETY OF CARS, VERIFIED CAR OWNERS AND CAR RENTAL DELIVERY AND PICKUP 
         </p>
     </div>
 }
@@ -74,26 +78,32 @@ export function Modelo({setModelReady}){
 export function HomeCarModel({setModelReady}){
     const isLandScape  = useMediaQuery({query: '(orientation:landscape)'});
     const scale  = isLandScape ? ([0.005,0.005,0.005]) : ([0.0020,0.0020,0.0020]);
-    const position  = isLandScape ? ([0,0.68,0.5]) : ([1,0.68,1.4]);
+    const modelPosition  = isLandScape ? ([0,0.68,0.5]) : ([0,0.68,1.4]);
+    const rotationSpeed  = isLandScape ? 4 : 2;
+    const cameraPosition = isLandScape ? [0,1,6] : [0,0.7,6]
     const Scene = useLoader(GLTFLoader,'/lambo.glb');
+    const meshRef  = useRef(null);
 
     useLayoutEffect(function(){
         console.log("inside layout effect #1");
         setModelReady(true);
     },[]);
 
+    useFrame(function({clock}){
+        meshRef.current.rotation.y = clock.getElapsedTime() / rotationSpeed;
+    })
+
     return <>
-                <OrbitControls target={[0,0.35,0]}  maxPolarAngle={1.45} enablePan = {false} enableZoom = {false} />
-                <PerspectiveCamera makeDefault fov={50} position={[3,2,5]} />
+                <PerspectiveCamera makeDefault fov={50} zoom={isLandScape ? 1 : 2} position={cameraPosition} lookAt={modelPosition}/>
                 <color args={[0,0,0]} attach= 'background' />
-                <mesh receiveShadow = {true} castShadow={true} > 
-                    <primitive castShadow object={Scene.scene} rotation = {[0,2,0]} scale = {scale} position = {position}  receiveShadow = {true}  />
+                <mesh receiveShadow = {true} castShadow={true} ref={meshRef} > 
+                    <primitive castShadow object={Scene.scene}  scale = {scale} position = {modelPosition}  receiveShadow = {true}  />
                 </mesh>
             </>
 }
 
 export function Ground(){
-    const [normal, roughness] = useLoader(TextureLoader, ["/texture/rough.jpg","/texture/normal.jpg"]);
+    const [normal, roughness] = useLoader(TextureLoader, [RoughTexture,NormalTexture]);
 
     useEffect(function(){
         [normal,roughness].forEach(function(map){
@@ -113,19 +123,19 @@ export function Ground(){
                 roughnessMap={roughness}
                 dithering = {true}
                 color={[0.015,0.015,0.015]}
-                roughness={1}
+                roughness={1.2}
                 blur={[1000,400]}
                 mixBlur={30}
                 mixStrength={80}
                 mixContrast={1}
                 resolution={1024}
                 mirror={0}
-                depthScale={0.04}
+                depthScale={0.2}
                 minDepthThreshold={0.9}
                 debug = {0}
                 maxDepthThreshold={1}
                 depthToBlurRatioBias={0.25}
-                reflectorOffset={0.2}/>
+                reflectorOffset={0.8}/>
             </mesh>
 }
 
@@ -135,7 +145,6 @@ export function SplashScreen({displaySplash}){
           initial : {
             opacity:1,
             zindex:20,
-            duration:'2s',
         },
         animationOn:{
             opacity:1,
@@ -144,41 +153,148 @@ export function SplashScreen({displaySplash}){
         animationOff:{
             opacity:0,
             zindex:0,
-            duration:'2s',
-            display:"none",
+            delay:5,
+            duration:2,
+            transitionEnd:{
+                display:"none",
+            }
         }
     },
     image:{
         initial:{
             scaleX:1.0,
             scaleY:1.0,
-            duration:'1s'
         },
         animation:{
             scaleX:1.2,
             scaleY:1.2,
-            duration:'1s'
-        }
+            transition:{
+                repeat:"Infinity",
+                repeatType: "reverse",
+                repeatDelay: 0.5,
+                ease:"easeInOut",
+                duration:0.5
+            },
+        },
+
     }
 }
-    const LoadingBarRef = useRef(null);
+    // const LoadingBarRef = useRef(null);
 
-    useEffect(function(){
-        if (LoadingBarRef === null) {
-            return     
-        }
-        LoadingBarRef.current.continuousStart()
-    });
+    // useEffect(function(){
+    //     if (LoadingBarRef === null) {
+    //         return     
+    //     }
+    //     LoadingBarRef.current.continuousStart()
+    // });
 
-    useEffect(function(){
-        if ( displaySplash === false) {
-           LoadingBarRef.current.complete();
-        }
-    }, []);
+    // useEffect(function(){
+    //     if ( displaySplash === false) {
+    //        LoadingBarRef.current.complete();
+    //     }
+    // }, []);
 
-    return <motion.div id='mainSplashDiv' className={displaySplash? "displaySplash": "" } variants={animations.main} initial="initial" animate={displaySplash ? "animationOn" : "animationOff"} >
-                <motion.img src={splashImage} alt='lunder rentals splash screen image' variants={animations.image} initial="initial" animate={displaySplash ?"animation" : "initial"} />
-                <LoadingBar ref={LoadingBarRef} color='aquamarine' height="1em" />
+    return <motion.div id='mainSplashDiv'  variants={animations.main} initial="initial" animate={displaySplash ? "animationOn" : "animationOff"} >
+                <motion.img src={splashImage}  alt='lunder rentals splash screen image' />
+                <SplashProgressBar removeSplashScreen={!displaySplash}/>
             </motion.div>
 }
 
+function SplashProgressBar({removeSplashScreen}){
+    const [percentage,setPercentage] = useState(0);
+    const waitMax = 94;
+    const timeOutRef = useRef(null)
+    function generateProgress(){
+        timeOutRef.current = setTimeout(() => {
+            ProgressProcess()
+        }, 1670);
+    }
+    function ProgressProcess(){
+        let randomValue = GenerateRandomValue();
+        console.log("random value is : ", randomValue );
+        flushSync(()=>{
+            setPercentage(init=> init + randomValue <= waitMax ? init + randomValue : init )
+        })
+    }
+    function GenerateRandomValue(){
+        let multiplier = 7;
+        return Math.ceil(Math.random() * multiplier)
+    }
+
+    useEffect(function(){
+        percentage >= waitMax ? clearTimeout(timeOutRef) : generateProgress();
+        return ()=> clearTimeout(timeOutRef)
+    },[percentage])
+
+    useEffect(function(){
+        if (removeSplashScreen) {
+            setPercentage(init=>100)
+        }
+    },[removeSplashScreen])
+    return <motion.div id="SplashProgressBar" >
+                <motion.p id="pee">{percentage}</motion.p><motion.p>%</motion.p>
+            </motion.div>
+}
+
+export function BodyContent(){
+    return <motion.div id='bodyContentContainer'>
+                <First/>
+                <Second/>
+                <Third/>
+                <Fourth/>
+    </motion.div>
+}
+
+function First(){
+    return <motion.div id='firstContainer'>
+                <motion.div id='imageContainer'>
+                    <motion.img src={OneImage}/>
+                </motion.div>
+
+                <motion.div id='text'>
+                    <motion.p id='Title'>TOP OF THE SHELVE CARS</motion.p>
+                    <motion.div id='underline'></motion.div>
+                    <motion.p id='paragraph'>
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse sit voluptates voluptatibus. Error consequatur laborum, accusamus quidem ad ipsam sit nihil id commodi perspiciatis libero voluptates culpa iusto eius et odit ab voluptate debitis sint facere esse adipisci officiis placeat? Atque ipsum rerum incidunt dolorem! Temporibus optio ea eos aspernatur!
+                    </motion.p>
+                </motion.div>
+    </motion.div>
+}
+
+function Second(){
+    return <motion.div id='secondContainer'>
+                <motion.div id='text'>
+                    <motion.p id='Title'>AFFORDABLE YET EXCLUSIVE</motion.p>
+                    <motion.div id='underline'></motion.div>
+                    <motion.p id='paragraph'>
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse sit voluptates voluptatibus. Error consequatur laborum, accusamus quidem ad ipsam sit nihil id commodi perspiciatis libero voluptates culpa iusto eius et odit ab voluptate debitis sint facere esse adipisci officiis placeat? Atque ipsum rerum incidunt dolorem! Temporibus optio ea eos aspernatur!
+                    </motion.p>
+                </motion.div>
+
+                <motion.div id='imageContainer'>
+                    <motion.img src={TwoImage}/>
+                </motion.div>
+</motion.div>
+}
+
+function Third(){
+    return <motion.div>
+
+    </motion.div>
+}
+
+function Fourth(){
+    return <motion.div id='fourthContainer'>
+                <motion.div id='text'>
+                    <motion.p id='Title'>AFFORDABLE YET EXCLUSIVE</motion.p>
+                    <motion.div id='underline'></motion.div>
+                    <motion.p id='paragraph'>
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse sit voluptates voluptatibus. Error consequatur laborum, accusamus quidem ad ipsam sit nihil id commodi perspiciatis libero voluptates culpa iusto eius et odit ab voluptate debitis sint facere esse adipisci officiis placeat? Atque ipsum rerum incidunt dolorem! Temporibus optio ea eos aspernatur!
+                    </motion.p>
+                </motion.div>
+
+                <motion.div id='imageContainer'>
+                    <motion.img src={FourImage}/>
+                </motion.div>
+            </motion.div>
+}

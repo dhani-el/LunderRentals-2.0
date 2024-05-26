@@ -7,9 +7,6 @@ import { AuthContext } from "../../App";
 import { useQuery } from "@tanstack/react-query";
 
 
-
-const baseUrl = "http://localhost:3000/"
-
 export function Login(){
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
@@ -34,7 +31,7 @@ export function Login(){
         return fieldHealth.length
     }
     function logUserIn(){
-        axios.post(`${baseUrl}auth/login`,payload, {
+        axios.post(`/auth/login`,payload, {
             withCredentials:true,
         }).then(function(user){
             console.log("isd");
@@ -76,7 +73,7 @@ export function SignUp(){
 
     const {isFetching,data} = useQuery({
         queryKey:["signup"],
-        queryFn: ()=> axios.post(`${baseUrl}auth/signup`,payload)
+        queryFn: ()=> axios.post(`/auth/signup`,payload)
             .then(function(response){
                 setShouldSend(false);
                 resetUser();
@@ -110,10 +107,10 @@ export function SignUp(){
     }
 
     function resetUser(){
-        setFirstName('');
-        setLastname('');
-        setEmail('');
-        setPassword('');
+        setFirstName(initial => '');
+        setLastname(initial => '');
+        setEmail(initial => '');
+        setPassword(initial => '');
     }
 
     return <motion.div className="formDiv" id="signUpForm" >

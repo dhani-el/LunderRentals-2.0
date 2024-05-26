@@ -1,3 +1,19 @@
+@font-face {
+    font-family: 'montserrat';
+    src: url("../../assets/fonts/montserrat.ttf");
+}
+
+@font-face {
+    font-family: 'bebas';
+    src: url("../../assets/fonts/bebas.ttf");
+}
+
+$primary-font:'montserrat';
+$secondary-font:'bebas';
+
+*{
+    font-family: $primary-font;
+}
 
 $cartBackground-h2-p-bottom:3.2em;
 $cartBackground-800-h2-p-bottom:1em;
@@ -205,6 +221,29 @@ $cartBackground-300-mc-paymentBarMainDiv-button-font-size:0.8em;
         font-weight: 700;
        }
     
+    }
+
+    #listOcartSk{
+        display: flex;
+        flex-direction: column;
+        gap: 2vh;
+    }
+    #aSkeleton{
+        display: flex;
+        width: 100vw;
+        height: 10vh;
+        justify-content: space-between;
+        padding: 1rem 2.5rem;
+        align-items: center;
+        .css-ayl0v9-MuiSkeleton-root{
+            width: 20%;
+            height: 100%;
+        }
+        .css-wkdwxb-MuiSkeleton-root{
+            width: 2.5rem;
+            height: 2.5rem;
+        }
+
     }
 
     @media (max-width: '300px') {

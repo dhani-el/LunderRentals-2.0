@@ -8,7 +8,6 @@ import '../Styles/index.css'
 import { Button } from '@mui/material';
 import { useMediaQuery } from 'react-responsive';
 
-const baseUrl = "http://localhost:3000/"
 
 export function CarImage({image,logo,title,year}){
     return <div id="carImageDiv">
@@ -36,7 +35,6 @@ export function CarDescription({carFeatures,location}){
 
  function CarSpecification({features}){
     return <div id='carSpecificationDiv'>
-             {/* <h2>SPECIFICATION</h2> */}
              <Features features={features}/>
             </div>
 }
@@ -47,25 +45,25 @@ function Features({features}){
                 <Swiper spaceBetween={10} slidesPerView={isLandscape ?3.2 : 2.4} id='swipeRR'>
                     {features.map(function(feature){
                         return <SwiperSlide id='SwipeRslide'>
-                            <Feature Icon={feature.icon} featureValue={feature.description} optFeature={(feature.optFeature?feature.optFeature:null)} />
+                            <Feature featureData = {feature} />
                         </SwiperSlide>
                     })}
                 </Swiper>
             </div>
 }
 
-function Feature({Icon,featureValue,optFeature}){
+function Feature({featureData}){
     return <div id='singleFeature'>
-                <Iconverter iconString={"default"} />
+                <Iconverter iconString={featureData} />
                 <span id='featureValueSpan'>
-                    <p id='text'>{featureValue}{optFeature && <span>{optFeature}</span>}</p>
+                    <p id='text'>{IconPack[featureData].description}</p>
                 </span>
             </div>
 }
 
 function Iconverter({iconString}){
-    const Icon = IconPack[iconString] == null ? IconPack.default : IconPack[iconString];
-    return <Icon id= "icon" /> 
+    const Icon = IconPack[iconString].icon == null ? IconPack.default : IconPack[iconString].icon;
+    return <img src={Icon} id='icon' /> 
 }
 
 function CarLocation({meters,address}){
@@ -84,7 +82,7 @@ export function CarPrice({price,id}){
     const [isQueryEnabled, setIsQueryEnabled] = useState(false);
     const {data} = useQuery({
         queryKey:["addtocart"],
-        queryFn:()=> axios.post(`${baseUrl}data/api/cart`,{cartItem:id},{
+        queryFn:()=> axios.post(`/data/api/cart`,{cartItem:id},{
             headers:{
                 'Content-Type':'multipart/form-data,'
             },
@@ -102,7 +100,7 @@ export function CarPrice({price,id}){
         setIsQueryEnabled(true)
     }
     return  <div id='priceComponent'>
-                <div id='pricePDiv'><p>{price}</p><p>/PER DAY</p></div>
+                <div id='pricePDiv'><p>{price}</p><p>/DAY</p></div>
                 <Button variant='contained' onClick={()=> HandleAddtoCartClick()}>Add To Cart</Button>
             </div>
 }

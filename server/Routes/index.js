@@ -25,33 +25,46 @@ route.get("/brand/:brand", async function(req,res){
 });
 
 route.get("/cars", async function(req,res){
-    console.log(req.sessionID,"cookies");
-    const data = await CAR_DB.find().select('-address -meters -featureDescription -featureIcon');
+    const limit = 15;
+    const data = await CAR_DB.find().skip(req.query.page * limit ).limit(limit).select('-address -meters -featureDescription -featureIcon');
+    const count  = await CAR_DB.count() / limit ;
     for(const info of data){
         info.image = await fromS3(info.image);
     }
-    console.log(data);
-    res.json(data);
+    const addCount = {payload:data,count : Math.ceil(count)}
+    res.json(addCount);
 });
 
 route.get("/cars/:brand", async function(req,res){
-    const data = await CAR_DB.find().where("brand").equals(req.params.brand).select('-address -meters -featureDescription -featureIcon');
+    const limit = 15;
+    const data = await CAR_DB.find().where("brand").equals(req.params.brand)
+    .skip(req.query.page * limit ).limit(limit).select('-address -meters -featureDescription -featureIcon');
+    const count  = await CAR_DB.where("brand").equals(req.params.brand).count() / limit ;
     for(const info of data){
         info.image = await fromS3(info.image)
     }
-    res.json(data);
+    const addCount  = {payload:data,count:Math.ceil(count)}
+    res.json(addCount);
 });
 
 route.get("/car/:id", async function(req,res){
-    const data = await CAR_DB.findOne({_id:req.params.id})
+    const data = await CAR_DB.findOne({_id:req.params.id});
+    logoString = await BRAND_DB.findOne({name:data.brand}).select("logo");
+    data.logo = await fromS3(logoString.logo);
     data.image = await fromS3(data.image);
     res.json(data);
 });
 
 route.get("/cart", async function(req,res){
     try {
-        const cartItems = await USERDB.findOne({name:req.user._doc.name}).populate("cart").select("cart");
-        res.send(cartItems);
+        console.log("this is the request user object");
+        if(req.user != null){
+            const cartItems = await USERDB.findOne({name:req.user._doc.name}).populate("cart").select("cart");
+            res.send(cartItems);
+            return
+        }
+        res.send({cart:[]})
+
     } catch (error) {
         console.log(error);
     }
@@ -102,7 +115,10 @@ route.post("/car", upload.single("image"), async function(req,res){
                      price:body?.price,
                      address:body?.address,
                      meters:body.meters,
-                     features:req.body.features,});
+
+                     features:[req.body.features]});
+
+
     res.send('data has been entered')
 })
 

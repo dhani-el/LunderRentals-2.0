@@ -3,19 +3,16 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { motion } from "framer-motion";
 import { Close } from "@mui/icons-material";
-import productImage from "/imageOne.png";
-import { Button, TextField } from "@mui/material";
+import { Button, TextField, Skeleton } from "@mui/material";
 import MasterCard from "/masterCard.png";
 import { useMediaQuery } from "react-responsive";
 
 
-
-const baseUrl = "http://localhost:3000/"
-
-export function ListOfCartItems({cartItems}){
+export function ListOfCartItems({cartItems,notReady}){
     return <div id="cartItemsCard" >
         <ListHeader/>
-        {cartItems.map(function(item){
+        {notReady &&<ListOfCartSkeletons/>}
+        {!notReady && cartItems.map(function(item){
             return <SingleCartItem itemDetails={item}/>
         })}
     </div>
@@ -35,7 +32,7 @@ function SingleCartItem({itemDetails}){
     const [removeItem, setRemoveItem] = useState(false);
     const {data,isFetching} = useQuery({
         queryKey:["removeCartItem"],
-        queryFn: async ()=> await axios.delete(`${baseUrl}data/api/cart/${itemDetails._id}`, {withCredentials:true})
+        queryFn: async ()=> await axios.delete(`/data/api/cart/${itemDetails._id}`, {withCredentials:true})
         .then(function(response){
             setRemoveItem(false);
             return response
@@ -71,13 +68,45 @@ function Colour({color}){
     </div>
 }
 
-export function OrderSummary({summaryDetails,clickHandler}){
+function CartSkeleton(){
+    return <div id="aSkeleton"> 
+                <Skeleton animation = "wave" />
+                <Skeleton animation = "wave" />
+                <Skeleton variant="circular" animation = "pulse"/>
+                <Skeleton animation = "wave" />
+    </div>
+}
+
+function ListOfCartSkeletons(){
+    return <div id="listOcartSk">
+        
+        <CartSkeleton/>
+        <CartSkeleton/>
+        <CartSkeleton/>
+        <CartSkeleton/>
+
+    </div>
+}
+
+export function OrderSummary({summaryDetails,clickHandler,cartItems}){
+    const [cartCost,setCartCost] = useState(0);
+
+    function cartcost(cartItems){
+        let cost
+        cartItems.forEach(function(cartItem){
+            cost += cartItem.price
+        });
+        setCartCost(init => cost);
+    }
+    useEffect(function(){
+        cartcost(cartItems);
+    },[])
     return <div id="summaryContainer" >
         <h3>Order Summary</h3>
         <div>Cars : {summaryDetails.count}</div>
         <div>Tax : {summaryDetails.tax}%</div>
         <div>Shipping : {summaryDetails.shipping}</div>
-        <div>Total : {summaryDetails.total} N</div>
+        <div>Total : {cartCost} N</div>
         <Button variant="contained" onClick={clickHandler} >Checkout</Button>
     </div>
 }

@@ -6,8 +6,6 @@ import { ListOfCartItems, OrderSummary, PaymentBar} from "./component";
 import  "../Styles/index.css";
 
 
-const baseUrl = "http://localhost:3000/"
-
 const animations = {
     cartAnimation:{
         initial:{
@@ -24,7 +22,7 @@ function Cart(){
     const [toCheckout, setToCheckout] = useState(false);
     const {data,isFetching} = useQuery({
         queryKey:["fetchCartItems"],
-        queryFn: async ()=> await axios.get(`${baseUrl}data/api/cart`,{withCredentials:true})
+        queryFn: async ()=> await axios.get(`/data/api/cart`,{withCredentials:true})
         .then(function(response){ console.log(response); return response}),
         refetchOnWindowFocus:false,
         retry:0 
@@ -42,15 +40,13 @@ function Cart(){
         <h2>Shopping Car<span>t</span></h2>
         <div id="mostContent">
             <motion.div id="cartContent" variants={animations.cartAnimation} initial="initial" animate= {toCheckout ? "animation" : "initial"} >
-                {isFetching && <p>cart items are being fetched</p>}
-                {!isFetching &&<ListOfCartItems cartItems={(data?.data.cart == null)?[]:data?.data.cart} />}
-                {!isFetching &&<OrderSummary summaryDetails={{count:!isFetching ? data?.data.cart.length:"", tax:"5", shipping:"free",total:"40,500"}} clickHandler={handleOpenCheckout} />}
+                {/* {isFetching && <p>cart items are being fetched</p>} */}
+                <ListOfCartItems cartItems={(data?.data.cart == null)?[]:data?.data.cart} notReady={isFetching} />
+                {!isFetching &&<OrderSummary summaryDetails={{count:!isFetching ? data?.data.cart.length:"", tax:"5", shipping:"free"}} cartItems={(data?.data.cart == null)?[]:data?.data.cart} clickHandler={handleOpenCheckout} />}
             </motion.div>
             <PaymentBar slide= {toCheckout} handleClose = {handleCloseCheckout} />
         </div>
     </div>
 }
-
-
 
 export default Cart

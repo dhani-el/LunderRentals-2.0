@@ -7,6 +7,9 @@ const carSchema = new mongoose.Schema({
         type : String,
         required: true
     },
+    logo:{
+        type:String
+    },
    name:{
     type: String,
     required: true
@@ -32,7 +35,7 @@ const carSchema = new mongoose.Schema({
         required: true,
     },
     features:{
-        type:[{icon: String, description: String}],
+        type:Array,
         required:true
     },
     

@@ -1,7 +1,16 @@
+@font-face {
+  font-family: "montserrat";
+  src: url("../../assets/fonts/montserrat.ttf");
+}
+@font-face {
+  font-family: "bebas";
+  src: url("../../assets/fonts/bebas.ttf");
+}
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "montserrat";
 }
 
 #headerWrapper {
@@ -26,6 +35,9 @@
 #header #authButtonDiv {
   display: none;
 }
+#header #authButtonDiv a button {
+  font-family: "montserrat";
+}
 #header #menu #menuBody {
   display: none;
   opacity: 0;
@@ -48,10 +60,14 @@
 #header #menu .menuIcons {
   position: relative;
   z-index: 11;
-  color: rgb(154, 152, 152);
+  color: rgb(255, 255, 255);
 }
 #header #logo {
   width: 8em;
+}
+#header #logo a {
+  display: block;
+  width: 100%;
 }
 #header #logo img {
   width: 100%;
@@ -73,31 +89,102 @@
 }
 
 #footerContainer {
-  height: 35vh;
   width: 100vw;
-  background-color: rgb(28, 28, 28);
+  padding: 2rem 3rem;
+  background-color: rgb(15, 15, 15);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 #footerContainer #logo {
-  width: 8em;
-  margin-left: 0.5em;
+  width: 6rem;
+  padding-bottom: 1rem;
 }
 #footerContainer #logo img {
   width: 100%;
   height: auto;
-  opacity: 0.2;
 }
-#footerContainer #quickLinks {
-  display: grid;
+#footerContainer #quicknews {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 100%;
-  height: 70%;
-  grid-template-columns: 1fr 1fr;
-  padding-top: 2em;
+  border-bottom: 0.02rem white solid;
+  padding-bottom: 2rem;
+  gap: 1.5rem;
 }
-#footerContainer #quickLinks a {
-  color: rgb(170, 170, 170);
+#footerContainer #quicknews #quickLinks {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  align-items: center;
+}
+#footerContainer #quicknews #quickLinks a {
+  color: white;
   text-decoration: none;
+  font-size: 0.8rem;
+  padding-bottom: 0.5rem;
+}
+#footerContainer #quicknews #newsLetter {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+#footerContainer #quicknews #newsLetter #desc {
+  font-family: bebas;
+  font-size: 1.2rem;
+}
+#footerContainer #quicknews #newsLetter #muiDiv {
+  display: flex;
+}
+#footerContainer #quicknews #newsLetter #muiDiv .css-1d3z3hw-MuiOutlinedInput-notchedOutline {
+  border-color: white;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+#footerContainer #quicknews #newsLetter #muiDiv input, #footerContainer #quicknews #newsLetter #muiDiv button {
+  font-family: montserrat;
+  color: white;
+}
+#footerContainer #quicknews #newsLetter #muiDiv .css-3w2hyt-MuiButtonBase-root-MuiButton-root:hover {
+  border-color: white;
+}
+#footerContainer #boilerPlateterms {
+  width: 100%;
+  padding-top: 1rem;
+}
+#footerContainer #boilerPlateterms #boilerPlateContent {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+}
+#footerContainer #boilerPlateterms #boilerPlateContent .singleP {
+  display: block;
+  border-right: 0.06rem white solid;
+  width: 100%;
+  font-size: 0.5rem;
   text-align: center;
-  text-transform: uppercase;
+}
+#footerContainer #boilerPlateterms #boilerPlateContent #lastP {
+  border: none;
+}
+#footerContainer #boilerPlateterms #termsMedia {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  font-size: 0.6rem;
+  gap: 1rem;
+}
+#footerContainer #boilerPlateterms #termsMedia #socialMediaDiv {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+#footerContainer #boilerPlateterms #termsMedia #socialMediaDiv span svg {
+  width: 1rem;
+  height: 1rem;
 }
 
 #outletWrapper {
@@ -129,14 +216,13 @@
     gap: 1vw;
   }
   #header #authButtonDiv button {
-    font-size: 0.5em;
+    font-size: 0.6em;
     color: black;
     line-height: 0;
     text-transform: none;
     letter-spacing: 0;
     padding: 1.5em;
     font-weight: 900;
-    width: 2em;
     border-color: black;
     background-color: whitesmoke;
   }
@@ -160,7 +246,40 @@
   #header #menu {
     display: none;
   }
-  #footerContainer #quickLinks {
-    grid-template-columns: repeat(3, 1fr);
+  #footerContainer #logo {
+    width: 6rem;
+    padding-bottom: 1rem;
+  }
+  #footerContainer #logo img {
+    width: 100%;
+    height: auto;
+  }
+  #footerContainer #quicknews {
+    flex-direction: row;
+    gap: 0rem;
+  }
+  #footerContainer #quicknews #quickLinks {
+    width: 30%;
+    align-items: flex-start;
+  }
+  #footerContainer #quicknews #quickLinks a {
+    font-weight: 700;
+    padding-bottom: 0rem;
+  }
+  #footerContainer #boilerPlateterms #boilerPlateContent .singleP {
+    width: 80%;
+    font-size: 0.6rem;
+    text-align: left;
+  }
+  #footerContainer #boilerPlateterms #termsMedia {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 0rem;
+    font-size: 0.6rem;
+  }
+  #footerContainer #boilerPlateterms #termsMedia #socialMediaDiv {
+    gap: 0.5rem;
+    width: -moz-fit-content;
+    width: fit-content;
   }
 }/*# sourceMappingURL=index.css.map */

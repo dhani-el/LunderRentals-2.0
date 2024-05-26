@@ -1,4 +1,16 @@
 
+@font-face {
+    font-family: 'montserrat';
+    src: url("../../assets/fonts/montserrat.ttf");
+}
+
+@font-face {
+    font-family: 'bebas';
+    src: url("../../assets/fonts/bebas.ttf");
+}
+
+$primary-font:'montserrat';
+$secondary-font:'bebas';
 
 *{
     margin: 0;
@@ -30,12 +42,11 @@ $normal_formDiv_form_card_div_button_width:100%;
 $portrait_authSelector_Container_width :80%;
 
 $landscape_authSelector_Container_width :65%;
-$landscape_singleAuthSelector_button_font_size : 1.2em;
+$landscape_singleAuthSelector_button_font_size : 1em;
 $landscape_formDiv_form_width:65%;
 $landscape_formDiv_form_card_gap:2.5em;
-$landscape_formDiv_form_card_div_button_font-size:1.5em;
+$landscape_formDiv_form_card_div_button_font-size:1em;
 $landscape_formDiv_form_card_div_button_width:40%;
-
 
 #authPageContainer{
     width: 100vw;
@@ -58,7 +69,7 @@ $landscape_formDiv_form_card_div_button_width:40%;
                 width: 45%;
                 position: relative;
             button{
-                font-family: monospace,'Courier New', Courier;
+                font-family: $primary-font,'Courier New', Courier;
                 height: 100%;
                 width: 100%;
             }
@@ -70,7 +81,9 @@ $landscape_formDiv_form_card_div_button_width:40%;
         #signUpButtonSpan{
                 left: 10%;
             }
-
+            .css-1x51dt5-MuiInputBase-input-MuiInput-input{
+                font-family: $primary-font;
+            }
     }
 
     .formDiv{
@@ -90,10 +103,20 @@ $landscape_formDiv_form_card_div_button_width:40%;
                     display: block;
                     background-color: aquamarine;
                     color: navy;
-                    font-family: monospace;
+                    font-family: $primary-font;
                     width: $normal_formDiv_form_card_div_button_width;
                 }
             }
+                div{
+                    label{
+                        font-family: $primary-font;
+                    }
+                    div{
+                        input{
+                        font-family: $primary-font;
+                        }
+                    }
+                }
                 #formLinks{
                     display: flex;
                     flex-direction: column;
@@ -103,6 +126,10 @@ $landscape_formDiv_form_card_div_button_width:40%;
             }
         }
     }
+}
+
+input , button{
+    font-family: $primary-font;
 }
 
 @media (orientation:'portrait') and (max-width:'300px') {
@@ -203,7 +230,7 @@ $landscape_formDiv_form_card_div_button_width:40%;
                         align-items:center ;
                         justify-content: center;
                         button{
-                            font-size: 1.5em;
+                            font-size: 1em;
                             width: $landscape_formDiv_form_card_div_button_width;
                         }
                 }
