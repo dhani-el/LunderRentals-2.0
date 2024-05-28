@@ -198,7 +198,7 @@ function SplashProgressBar({removeSplashScreen}){
     useEffect(function(){
         if(isPresent){
             setPercentage(init=>100);
-            setTimeout(safeToRemove, 500)
+            flushSync(()=>safeToRemove)
         }
     },[isPresent])
     return <motion.div id="SplashProgressBar" >
