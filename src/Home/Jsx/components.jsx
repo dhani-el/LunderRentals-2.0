@@ -8,7 +8,7 @@ import { MeshReflectorMaterial, PerspectiveCamera } from '@react-three/drei';
 import {LinearEncoding, RepeatWrapping, TextureLoader} from 'three';
 import { useMediaQuery } from 'react-responsive';
 import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion,usePresence  } from 'framer-motion';
 import splashImage from "/one.png";
 import RoughTexture from "/texture/rough.jpg";
 import NormalTexture from "/texture/normal.jpg";
@@ -140,67 +140,30 @@ export function Ground(){
 }
 
 export function SplashScreen({displaySplash}){
-    const animations = {
-        main:{
-          initial : {
-            opacity:1,
-            zindex:20,
-        },
-        animationOn:{
-            opacity:1,
-            zindex:20,
-        },
-        animationOff:{
-            opacity:0,
-            zindex:0,
-            delay:5,
-            duration:2,
-            transitionEnd:{
-                display:"none",
-            }
-        }
-    },
-    image:{
+    const animationz = {
         initial:{
-            scaleX:1.0,
-            scaleY:1.0,
+            opacity:1,
+            display:"flex",
         },
-        animation:{
-            scaleX:1.2,
-            scaleY:1.2,
+        exit:{
+            opacity:0,
             transition:{
-                repeat:"Infinity",
-                repeatType: "reverse",
-                repeatDelay: 0.5,
-                ease:"easeInOut",
                 duration:0.5
             },
-        },
-
+            transitionEnd:{
+                display:"none"
+            }
+        }
     }
-}
-    // const LoadingBarRef = useRef(null);
 
-    // useEffect(function(){
-    //     if (LoadingBarRef === null) {
-    //         return     
-    //     }
-    //     LoadingBarRef.current.continuousStart()
-    // });
-
-    // useEffect(function(){
-    //     if ( displaySplash === false) {
-    //        LoadingBarRef.current.complete();
-    //     }
-    // }, []);
-
-    return <motion.div id='mainSplashDiv'  variants={animations.main} initial="initial" animate={displaySplash ? "animationOn" : "animationOff"} >
+    return <motion.div id='mainSplashDiv' variants={animationz} initial="initial" exit="exit"  >
                 <motion.img src={splashImage}  alt='lunder rentals splash screen image' />
-                <SplashProgressBar removeSplashScreen={!displaySplash}/>
+                <SplashProgressBar removeSplashScreen={displaySplash}/>
             </motion.div>
 }
 
 function SplashProgressBar({removeSplashScreen}){
+    const [isPresent, safeToRemove] = usePresence()
     const [percentage,setPercentage] = useState(0);
     const waitMax = 94;
     const timeOutRef = useRef(null)
@@ -231,6 +194,13 @@ function SplashProgressBar({removeSplashScreen}){
             setPercentage(init=>100)
         }
     },[removeSplashScreen])
+
+    useEffect(function(){
+        if(isPresent){
+            setPercentage(init=>100);
+            setTimeout(safeToRemove, 500)
+        }
+    },[isPresent])
     return <motion.div id="SplashProgressBar" >
                 <motion.p id="pee">{percentage}</motion.p><motion.p>%</motion.p>
             </motion.div>
