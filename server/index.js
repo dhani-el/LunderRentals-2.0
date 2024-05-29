@@ -11,7 +11,7 @@ const passport  = require("passport");
 const session = require("express-session");
 const MongoStore  = require("connect-mongo");
 
-require("../Utils/authUtils");
+require("./Utils/authUtils");
 
 mongoose.set('strictQuery', false);
 mongoose.connect(process.env.DATABASE_URL);
@@ -55,8 +55,8 @@ app.use(passport.session());
 
 
 
-const DataRoute = require("../Routes");
-const AuthRoute = require("../Routes/auth");
+const DataRoute = require("./Routes");
+const AuthRoute = require("./Routes/auth");
 
 app.use("/data/api",DataRoute);
 app.use("/auth",AuthRoute);
