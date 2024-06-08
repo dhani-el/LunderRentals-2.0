@@ -34,14 +34,18 @@ export function Login(){
         axios.post(`http://localhost:3000/auth/login`,payload, {
             withCredentials:true,
         }).then(function(user){
-            console.log("isd");
+            if(user.status == 400){
+                return
+            }
+            console.log(user);
             SaveLoggedInUser(user);
             contextFn((initial)=>({isloggedin:true,username:user.data}));
             return user
         })
     }
     function SaveLoggedInUser(user){
-        document.cookie = `user=${user.data};expires=${new Date(Date.now() + 1000*60*60)}`
+        localStorage.setItem("authStatus",true);
+        localStorage.setItem("user",user.data)
     }
     function indicateUserLoggedIn(){
         console.log('user logged in');

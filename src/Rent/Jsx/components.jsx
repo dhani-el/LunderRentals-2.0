@@ -1,5 +1,5 @@
 import { useEffect, useState} from 'react';
-import { TextField, Card, Skeleton, Pagination } from "@mui/material";
+import { TextField, Card, Skeleton, Pagination,Button } from "@mui/material";
 import { Search, Close } from "@mui/icons-material";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useNavigate } from 'react-router-dom';
@@ -146,9 +146,9 @@ function Car({car}){
                     <span id='priceSpan'>
                         <p id='price' >{car.price}</p><p >/day</p>
                     </span>
-                        <span id='detailsSpan' onClickCapture={e =>{e.stopPropagation(); useAddToCartClick() }} >
+                        <Button id='detailsSpan' onClickCapture={e =>{e.stopPropagation(); useAddToCartClick() }} >
                             ADD TO CART
-                        </span>
+                        </Button>
                     </div>
                 </Card>
     </div>

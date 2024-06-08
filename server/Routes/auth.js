@@ -15,10 +15,13 @@ passport.deserializeUser( function(username,done){
     return done(null,username);
 });
 
-route.post("/login",  passport.authenticate('local',{failureRedirect:"/login"}), function(req, res){
+route.post("/login",  passport.authenticate('local'), function(req, res){
  
     console.log(req.user,"and this");
     console.log(req.isAuthenticated(),"user is auth");
+    if(!req.isAuthenticated){
+        return res.sendStatus(400)
+    }
     res.send(req.user.name);
 });
 
