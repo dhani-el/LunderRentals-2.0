@@ -32,7 +32,7 @@ function SingleCartItem({itemDetails}){
     const [removeItem, setRemoveItem] = useState(false);
     const {data,isFetching} = useQuery({
         queryKey:["removeCartItem"],
-        queryFn: async ()=> await axios.delete(`/data/api/cart/${itemDetails._id}`, {withCredentials:true})
+        queryFn: async ()=> await axios.delete(`http://localhost:3000/data/api/cart/${itemDetails._id}`, {withCredentials:true})
         .then(function(response){
             setRemoveItem(false);
             return response

@@ -13,7 +13,7 @@ export default function SingleCar(){
     const {data, isFetching} = useQuery({
         queryKey:["singleData"],
         queryFn: async function(){
-            return await axios.get(`/data/api/car/${id}`);
+            return await axios.get(`http://localhost:3000/data/api/car/${id}`);
         },
         refetchOnWindowFocus:false,
         retry:0,
