@@ -7,7 +7,6 @@ import { Button, TextField, Skeleton } from "@mui/material";
 import MasterCard from "/masterCard.png";
 import { useMediaQuery } from "react-responsive";
 
-
 export function ListOfCartItems({cartItems,notReady}){
     return <div id="cartItemsCard" >
         <ListHeader/>
