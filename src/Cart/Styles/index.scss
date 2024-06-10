@@ -159,12 +159,13 @@ $cartBackground-300-mc-paymentBarMainDiv-button-font-size:0.8em;
         color: black;
         font-size: 0.8em;
         width: 100%;
-        grid-template-columns: 2fr 4.5fr 0.5fr;
+        grid-template-columns: 1fr 3fr 1fr;
         padding: 0em 0.5em;
         margin: 2em 0em;
         border-bottom: 0.02em aquamarine solid;
         border-top: 0.02em aquamarine solid;    
         justify-content: center;
+        align-items: center;
         #itemDetails{
             display: grid;
             width: 100%;
@@ -196,12 +197,11 @@ $cartBackground-300-mc-paymentBarMainDiv-button-font-size:0.8em;
             height: auto;
             img{
                 width: 100%;
-                height: 100%;
+                height: auto;
             }
         }
         #closeIcon{
-            width: 100%;
-            height: 100%;
+            font-size: 1rem;
             text-align: center;
         }
     }
@@ -418,14 +418,13 @@ $cartBackground-300-mc-paymentBarMainDiv-button-font-size:0.8em;
     }
     
     #singleCartItemCard{
-        display: flex;
+        display: grid;
         color: navy;
         align-items: center;
         padding: 1em 1.5em;
     
         #itemDetails{
             display: flex;
-            width: 60%;
             justify-content: space-between;
             p{
                 width: calc(100% / 3);
@@ -434,11 +433,11 @@ $cartBackground-300-mc-paymentBarMainDiv-button-font-size:0.8em;
                 width: calc(100% / 3);
             }
         }
-        #cartItemImage{
-            width: 20%;
-        }
+        // #cartItemImage{
+        //     width: 20%;
+        // }
         #closeIcon{
-            width: 2%;
+            font-size: 1rem;
         }
     }
     

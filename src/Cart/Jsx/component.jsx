@@ -55,11 +55,12 @@ function SingleCartItem({itemDetails}){
                 <Colour color={itemDetails.color} />
                 <p>₦{itemDetails.price}</p>
             </div>
-            <Close id = "closeIcon" onClick={function(){handleRemoveCartItem()}}/>
+            <p id = "closeIcon" onClick={function(){handleRemoveCartItem()}}>Remove</p>
+            {/* <Close id = "closeIcon" onClick={function(){handleRemoveCartItem()}}/> */}
     </div>
 }
 
-function Colour({color}){
+function Colour({color="black"}){
     return <div id="color"  >
         <div style={{background:color}}>
 
