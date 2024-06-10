@@ -192,6 +192,9 @@
   font-size: 1rem;
   text-align: center;
 }
+#singleCartItemCard #closeIcon:hover {
+  cursor: pointer;
+}
 
 #summaryContainer {
   width: 100%;

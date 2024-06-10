@@ -8,11 +8,31 @@ import MasterCard from "/masterCard.png";
 import { useMediaQuery } from "react-responsive";
 
 export function ListOfCartItems({cartItems,notReady}){
+    const [refinedCartItems,setRefinedCartItems] = useState([]);
+    const [popItem,setPopItem] = useState();
+
+    function reflectPop(data){
+        setPopItem(init=>data)
+    }
+
+    useEffect(function(){
+        if (cartItems.length>0) {
+            setRefinedCartItems(cartItems);
+        }
+    },[cartItems])
+
+    useEffect(function(){
+        const newData = refinedCartItems.filter(function(aCartItem){
+            return aCartItem.name !== popItem.name && aCartItem.price !== popItem.price && aCartItem.color !== popItem.color
+        })
+        setRefinedCartItems(newData)
+    },[popItem])
+
     return <div id="cartItemsCard" >
         <ListHeader/>
         {notReady &&<ListOfCartSkeletons/>}
-        {!notReady && cartItems.map(function(item){
-            return <SingleCartItem itemDetails={item}/>
+        {!notReady && refinedCartItems.map(function(item){
+            return <SingleCartItem itemDetails={item} handlepop={reflectPop} />
         })}
     </div>
 }
@@ -27,7 +47,7 @@ function ListHeader(){
     </div>
 }
 
-function SingleCartItem({itemDetails}){
+function SingleCartItem({itemDetails,handlepop}){
     const [removeItem, setRemoveItem] = useState(false);
     const {data,isFetching} = useQuery({
         queryKey:["removeCartItem"],
@@ -35,6 +55,11 @@ function SingleCartItem({itemDetails}){
         .then(function(response){
             setRemoveItem(false);
             return response
+        }).then(function(response){
+            if(response.status === 200){
+                console.log("handling pop from array data:",itemDetails);
+                handlepop(itemDetails)
+            }
         }),
         enabled:removeItem,
         retry:0,
