@@ -31,7 +31,7 @@ export function Login(){
         return fieldHealth.length
     }
     function logUserIn(){
-        axios.post(`http://localhost:3000/auth/login`,payload, {
+        axios.post(`/auth/login`,payload, {
             withCredentials:true,
         }).then(function(user){
             if(user.status == 400){

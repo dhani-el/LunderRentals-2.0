@@ -22,7 +22,7 @@ function Cart(){
     const [toCheckout, setToCheckout] = useState(false);
     const {data,isFetching} = useQuery({
         queryKey:["fetchCartItems"],
-        queryFn: async ()=> await axios.get(`http://localhost:3000/data/api/cart`,{withCredentials:true})
+        queryFn: async ()=> await axios.get(`/data/api/cart`,{withCredentials:true})
         .then(function(response){ console.log(response); return response}),
         refetchOnWindowFocus:false,
         retry:0 
