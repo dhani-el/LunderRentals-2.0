@@ -35,7 +35,13 @@ $secondary-font:'bebas';
         display: flex;
         align-items: center;
         gap: 1.5em;
+        #authenticator{
+            #userDiv{
+                display: none;
+            }
+        }
     }
+
     #authButtonDiv{
             display: none;
             a{

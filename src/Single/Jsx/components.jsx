@@ -42,7 +42,7 @@ export function CarDescription({carFeatures,location}){
 function Features({features}){
     const isLandscape = useMediaQuery({query:"(orientation: landscape)"})
     return <div id="featuresDiv">
-                <Swiper spaceBetween={10} slidesPerView={isLandscape ?3.2 : 2.4} id='swipeRR'>
+                <Swiper spaceBetween={15} centeredSlides = {true} slidesPerView={isLandscape ?3 : 2} id='swipeRR'>
                     {features.map(function(feature){
                         return <SwiperSlide id='SwipeRslide'>
                             <Feature featureData = {feature} />
@@ -100,7 +100,7 @@ export function CarPrice({price,id}){
         setIsQueryEnabled(true)
     }
     return  <div id='priceComponent'>
-                <div id='pricePDiv'><p>{price}</p><p>/DAY</p></div>
+                <div id='pricePDiv'>Price: <p>₦{price}/day</p></div>
                 <Button variant='contained' onClick={()=> HandleAddtoCartClick()}>Add To Cart</Button>
             </div>
 }

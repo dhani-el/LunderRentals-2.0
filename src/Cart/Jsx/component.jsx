@@ -53,7 +53,7 @@ function SingleCartItem({itemDetails}){
             <div id="itemDetails">
                 <p>{itemDetails.name}</p>
                 <Colour color={itemDetails.color} />
-                <p>{itemDetails.price}</p>
+                <p>₦{itemDetails.price}</p>
             </div>
             <Close id = "closeIcon" onClick={function(){handleRemoveCartItem()}}/>
     </div>
@@ -91,10 +91,11 @@ export function OrderSummary({summaryDetails,clickHandler,cartItems}){
     const [cartCost,setCartCost] = useState(0);
 
     function cartcost(cartItems){
-        let cost
-        cartItems.forEach(function(cartItem){
-            cost += cartItem.price
-        });
+        
+        let cost = cartItems.reduce(function(initial,cartItem){
+           return Number(initial) + Number(cartItem.price)
+        },0);
+        console.log(cost);
         setCartCost(init => cost);
     }
     useEffect(function(){
@@ -102,10 +103,10 @@ export function OrderSummary({summaryDetails,clickHandler,cartItems}){
     },[])
     return <div id="summaryContainer" >
         <h3>Order Summary</h3>
-        <div>Cars : {summaryDetails.count}</div>
-        <div>Tax : {summaryDetails.tax}%</div>
-        <div>Shipping : {summaryDetails.shipping}</div>
-        <div>Total : {cartCost} N</div>
+        <div>Car(s) : {summaryDetails.count}</div>
+        <div>Tax : ₦{cartCost * (5/100)}</div>
+        <div>Shipping : ₦{cartCost * (15/100)}</div>
+        <div>Total : ₦{cartCost + cartCost * (5/100) + cartCost * (15/100)}</div>
         <Button variant="contained" onClick={clickHandler} >Checkout</Button>
     </div>
 }

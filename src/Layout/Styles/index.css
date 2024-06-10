@@ -32,6 +32,9 @@
   align-items: center;
   gap: 1.5em;
 }
+#header #authNmenuDiv #authenticator #userDiv {
+  display: none;
+}
 #header #authButtonDiv {
   display: none;
 }

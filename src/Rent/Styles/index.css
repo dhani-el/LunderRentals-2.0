@@ -95,7 +95,7 @@
   margin-bottom: 1.5em;
 }
 #carsContainer #listOfCars {
-  width: 100vw;
+  width: 100%;
   display: grid;
   grid-template-columns: 1fr;
   gap: 3vh;

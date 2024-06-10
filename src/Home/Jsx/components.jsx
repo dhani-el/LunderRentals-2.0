@@ -148,7 +148,7 @@ export function SplashScreen({displaySplash}){
         exit:{
             opacity:0,
             transition:{
-                duration:0.5
+                duration:0.1
             },
             transitionEnd:{
                 display:"none"
@@ -190,7 +190,7 @@ function SplashProgressBar({removeSplashScreen}){
     },[percentage])
 
     useEffect(function(){
-        if (removeSplashScreen) {
+        if (!removeSplashScreen) {
             setPercentage(init=>100)
         }
     },[removeSplashScreen])

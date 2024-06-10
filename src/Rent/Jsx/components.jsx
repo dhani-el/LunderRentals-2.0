@@ -110,7 +110,7 @@ export function Cars({brand}){
         }
     },[pageNumber]);
 
-    return <div id='carsContainer'>
+    return <div id='carsContainer' style={{position:"relative"}}>
                 <h3  style={{color:"black"}} >AVAILABLE CARS</h3>
                 {isFetching && <Skeletors/>}
                 {!isFetching && (!!data?.data.payload.length ?
@@ -118,7 +118,7 @@ export function Cars({brand}){
                         {data?.data.payload.map((single)=><div key={single?._id} id='keyDivs' ><Car car = {single} handleAlert={handleAddtoCart} /></div>)}
                     </div>
                     : <NoCars brand = {brand} />)}
-                    <div id='cartAlert' style={{width:"100%",display:"flex",justifyContent:"center",zIndex:20}} >
+                    <div id='cartAlert' style={{position:"absolute" ,bottom:"55%",width:"100%",display:"flex",justifyContent:"center",zIndex:20}} >
                         {(showAlert && showSuccessAlert) && <Alert style={{width:"70%"}} severity='success' >Car Successfully added to cart</Alert>}
                         {(showAlert && !showSuccessAlert) && <Alert style={{width:"70%"}}  severity='error' >Car Was Not Added to cart</Alert>}
                     </div>
@@ -157,7 +157,7 @@ function Car({car,handleAlert}){
     }
 
     return <div id='Acar' onClick={()=>{qclient.resetQueries({queryKey:["singleData"],exact:true}); navigate(`${car.brand}?id=${car._id}`)}} >
-                <Card className='aCarCard'  >
+                <Card className='aCarCard' style={{display:"flex",flexDirection:"column", gap:"1rem"}}  >
                     <div id='firstDiv'>
                         <img src={car.image} /> 
                         <div id='textDiv'>
