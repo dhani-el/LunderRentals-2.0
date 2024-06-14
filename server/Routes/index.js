@@ -99,7 +99,8 @@ route.post("/cart",  async function(req,res){
     }
 }else{
 
-    res.send("please login to add to cart")
+    res.send(401);
+    return
 }
 })
 

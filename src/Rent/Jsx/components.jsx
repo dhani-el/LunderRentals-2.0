@@ -41,7 +41,7 @@ export function Brands({handleBrandChange}){
     const isLandscape = useMediaQuery({query:'(orientation:landscape)'});
     const {data} = useQuery({
         queryKey:["brandsQuery"],
-        queryFn: ()=> Axios.get(`/data/api/brands`).then(function(response){return response}),
+        queryFn: ()=> Axios.get(`http://localhost:3000/data/api/brands`).then(function(response){return response}),
         refetchOnWindowFocus:false,
         retry:0
     });
@@ -93,7 +93,7 @@ export function Cars({brand}){
     const [showSuccessAlert,setShowSuccessAlert] = useState(false);
     const {data, isFetching} = useQuery({
         queryKey:["carData"],
-        queryFn : ()=>  Axios.get(`/data/api/cars/${brand}?page=${pageNumber}`)
+        queryFn : ()=>  Axios.get(`http://localhost:3000/data/api/cars/${brand}?page=${pageNumber}`)
                         .then(function(result){ setInitialRender(false); return result}),
         enabled: initialRender,
         refetchOnWindowFocus:false,
@@ -120,7 +120,7 @@ export function Cars({brand}){
                     : <NoCars brand = {brand} />)}
                     <div id='cartAlert' style={{position:"absolute" ,bottom:"55%",width:"100%",display:"flex",justifyContent:"center",zIndex:20}} >
                         {(showAlert && showSuccessAlert) && <Alert style={{width:"70%"}} severity='success' >Car Successfully added to cart</Alert>}
-                        {(showAlert && !showSuccessAlert) && <Alert style={{width:"70%"}}  severity='error' >Car Was Not Added to cart</Alert>}
+                        {(showAlert && showSuccessAlert == false) && <Alert style={{width:"70%"}}  severity='error' >Car Was Not Added to cart(check login)</Alert>}
                     </div>
                 <Paginator pageNumberSetter={setPageNumber} count={data?.data.count} />
             </div>
@@ -131,26 +131,31 @@ function Car({car,handleAlert}){
     const navigate = useNavigate();
     const {isFetching} = useQuery({
         queryKey:["addToCartRent"],
-        queryFn:()=> Axios.post(`/data/api/cart`, {cartItem:car._id},{withCredentials:true}).then(function(response){
-                if (response.status != 200) {
-                    handleAlert(true,false)
-                    setTimeout(function(){
-                        handleAlert(false,false)
-                    },2000)
-                }else{
+        queryFn:()=> Axios.post(`http://localhost:3000/data/api/cart`, {cartItem:car._id},{withCredentials:true}).then(function(response){
+                
                     handleAlert(true,true);
                     setTimeout(function(){
                         handleAlert(false,false)
                     },2000)
-                }
                 setIsQueryEnabled(false);
                 return response
+            }).catch(function(error){
+                if (error.request.status === 401) {
+                    console.log("unauthorides cart adding");
+                    handleAlert(true,false)
+                    setTimeout(function(){
+                        handleAlert(false,false)
+                    },2000)
+                }
+                else{
+                    console.log(error);
+                }
             })
         ,
         enabled: isQueryEnabled,
         refetchOnWindowFocus:false,
         retry:0
-    });
+    })
     function useAddToCartClick(){
         handleAlert(false,false)
         setIsQueryEnabled(true);
