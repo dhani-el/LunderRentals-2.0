@@ -41,7 +41,7 @@ export function Brands({handleBrandChange}){
     const isLandscape = useMediaQuery({query:'(orientation:landscape)'});
     const {data} = useQuery({
         queryKey:["brandsQuery"],
-        queryFn: ()=> Axios.get(`http://localhost:3000/data/api/brands`).then(function(response){return response}),
+        queryFn: ()=> Axios.get(`/data/api/brands`).then(function(response){return response}),
         refetchOnWindowFocus:false,
         retry:0
     });
@@ -93,7 +93,7 @@ export function Cars({brand}){
     const [showSuccessAlert,setShowSuccessAlert] = useState(false);
     const {data, isFetching} = useQuery({
         queryKey:["carData"],
-        queryFn : ()=>  Axios.get(`http://localhost:3000/data/api/cars/${brand}?page=${pageNumber}`)
+        queryFn : ()=>  Axios.get(`/data/api/cars/${brand}?page=${pageNumber}`)
                         .then(function(result){ setInitialRender(false); return result}),
         enabled: initialRender,
         refetchOnWindowFocus:false,
@@ -131,7 +131,7 @@ function Car({car,handleAlert}){
     const navigate = useNavigate();
     const {isFetching} = useQuery({
         queryKey:["addToCartRent"],
-        queryFn:()=> Axios.post(`http://localhost:3000/data/api/cart`, {cartItem:car._id},{withCredentials:true}).then(function(response){
+        queryFn:()=> Axios.post(`/data/api/cart`, {cartItem:car._id},{withCredentials:true}).then(function(response){
                 
                     handleAlert(true,true);
                     setTimeout(function(){

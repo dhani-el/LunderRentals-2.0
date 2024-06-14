@@ -36,7 +36,7 @@ export function Login(){
         return fieldHealth.length
     }
     function logUserIn(){
-        axios.post(`http://localhost:3000/auth/login`,payload, {
+        axios.post(`/auth/login`,payload, {
             withCredentials:true,
         }).then(function(user){
             console.log(user);
@@ -102,7 +102,7 @@ export function SignUp({nav}){
 
     const {isFetching,data} = useQuery({
         queryKey:["signup"],
-        queryFn: ()=> axios.post(`http://localhost:3000/auth/signup`,payload)
+        queryFn: ()=> axios.post(`/auth/signup`,payload)
             .then(function(response){
                 setShouldSend(false);
                 resetUser();
