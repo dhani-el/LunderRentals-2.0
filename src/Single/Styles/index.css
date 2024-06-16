@@ -15,6 +15,7 @@
   position: relative;
   display: flex;
   align-items: center;
+  justify-content: center;
   width: 100%;
   height: 50vh;
   background-color: rgb(51, 51, 51);
@@ -23,14 +24,16 @@
 }
 #singleCarContainer #carImageDiv img {
   height: auto;
-  width: 100%;
+  width: 80%;
 }
 #singleCarContainer #carImageDiv #carImageTextSpan {
   position: absolute;
   display: flex;
+  gap: 0.75rem;
+  align-items: center;
   width: 70%;
   top: 5%;
-  left: 0;
+  left: 5%;
 }
 #singleCarContainer #carImageDiv #carImageTextSpan img {
   width: 30%;
@@ -51,6 +54,7 @@
   display: flex;
   flex-direction: column;
   gap: 6%;
+  padding: 0rem 1rem;
   margin-bottom: 2em;
 }
 #singleCarContainer #baseContainer #cartAndPay {
@@ -67,6 +71,8 @@
 }
 #singleCarContainer #baseContainer #cartAndPay #priceComponent {
   width: 100%;
+  flex-direction: column;
+  gap: 1rem;
 }
 #singleCarContainer #baseContainer #cartAndPay #priceComponent button {
   width: 45%;
@@ -75,12 +81,13 @@
 #singleCarContainer #baseContainer #cartAndPay #pricePDiv {
   font-size: 1.5em;
   border-radius: 0.5em;
-  background-color: rgb(233, 233, 233);
   padding: 0.5em;
+  gap: 0.25rem;
+  display: flex;
 }
 #singleCarContainer #baseContainer #cartAndPay button {
   background-color: aquamarine;
-  width: 90%;
+  width: 70%;
   color: black;
 }
 #singleCarContainer #baseContainer #descriptiveDiv {
@@ -172,16 +179,19 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   font-size: 1.2em;
+  font-family: "bebas";
   font-weight: 500;
 }
 #singleCarContainer #priceComponent {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  font-weight: 600;
+  color: black;
+  justify-content: center;
 }
-#singleCarContainer #priceComponent #pricePDiv {
-  display: flex;
-  color: rgb(67, 67, 67);
+#singleCarContainer #priceComponent p {
+  font-weight: 500;
+  font-size: 1.4rem;
 }
 
 @media (max-width: 300px) and (orientation: portrait) {
@@ -270,52 +280,99 @@
 }
 @media (orientation: landscape) {
   #singleCarContainer #baseContainer {
+    padding: 0rem 2rem;
     min-height: 45vh;
     width: 100vw;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
   }
   #singleCarContainer #baseContainer #descriptiveDiv {
-    width: 100%;
+    width: 70%;
+    height: -moz-max-content;
+    height: max-content;
+    gap: 2rem;
+  }
+  #singleCarContainer #baseContainer #descriptiveDiv #carLocationDiv {
+    display: flex;
+    flex-direction: row-reverse;
+    background-color: aliceblue;
   }
   #singleCarContainer #baseContainer #descriptiveDiv #carLocationDiv #locatinHeaderDiv {
-    width: 100%;
+    width: -moz-fit-content;
+    width: fit-content;
     padding: 0 5%;
     margin-bottom: 0em;
+  }
+  #singleCarContainer #baseContainer #descriptiveDiv #carLocationDiv #locatinHeaderDiv #leftOfLocation {
+    align-items: center;
   }
   #singleCarContainer #baseContainer #descriptiveDiv #carLocationDiv #actualLocationComponent {
     border-radius: 0;
   }
   #singleCarContainer #baseContainer #descriptiveDiv #carLocationDiv #actualLocationComponent p {
     font-size: 1.6em;
+    font-family: bebas;
   }
   #singleCarContainer #baseContainer #descriptiveDiv #carLocationDiv #actualLocationComponent svg {
     font-size: 1.6em;
   }
   #singleCarContainer #baseContainer #descriptiveDiv #carSpecificationDiv #featuresDiv #swipeRR #SwipeRslide #singleFeature {
-    width: 20vw;
+    width: -moz-max-content;
+    width: max-content;
+    padding: 1.2rem;
     font-size: 1.5em;
-    height: 96%;
+    height: 100%;
     border-radius: 0.5em;
   }
   #singleCarContainer #baseContainer #cartAndPay {
-    width: 100%;
-    padding: 0.5em;
+    width: 30%;
+    border-radius: 1.5rem;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
     margin: 0;
-    width: 90%;
+    align-items: flex-start;
+    padding-left: 2rem;
   }
   #singleCarContainer #baseContainer #cartAndPay #priceComponent {
+    flex-direction: column;
+    gap: 1rem;
+    height: 50%;
     margin-top: 0;
     width: 100%;
     border-radius: 0;
     border-bottom-left-radius: 1em;
     border-bottom-right-radius: 1em;
+    align-items: flex-start;
+  }
+  #singleCarContainer #baseContainer #cartAndPay #priceComponent button {
+    font-size: 1rem;
+    width: -moz-fit-content;
+    width: fit-content;
+    padding: 1rem;
+    font-weight: 600;
+  }
+  #singleCarContainer #baseContainer #cartAndPay #priceComponent #pricePDiv {
+    background-color: rgba(0, 0, 0, 0);
+    font-weight: 600;
+    color: black;
+    display: flex;
+    justify-content: center;
+    gap: 0.25rem;
+  }
+  #singleCarContainer #baseContainer #cartAndPay #priceComponent #pricePDiv p {
+    font-weight: 500;
+    font-size: 1.4rem;
   }
   #singleCarContainer #baseContainer #cartAndPay button {
-    width: 40%;
-    font-size: 1.4em;
+    font-size: 1rem;
+    width: -moz-fit-content;
+    width: fit-content;
+    padding: 1rem;
+    font-weight: 600;
   }
   #singleCarContainer #carImageDiv {
     height: 60vh;
@@ -326,7 +383,7 @@
   }
   #singleCarContainer #carImageDiv img {
     width: auto;
-    height: 95%;
+    height: 80%;
     justify-self: center;
   }
   #singleCarContainer #carImageDiv #carImageTextSpan {

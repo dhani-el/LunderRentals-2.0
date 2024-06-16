@@ -35,7 +35,14 @@ $secondary-font:'bebas';
         display: flex;
         align-items: center;
         gap: 1.5em;
+        #authenticator{
+            #userDiv{
+                display: none;
+
+            }
+        }
     }
+
     #authButtonDiv{
             display: none;
             a{
@@ -208,15 +215,19 @@ $secondary-font:'bebas';
 @media (orientation:'landscape'){
     #header{
         justify-content: space-between;
+        #authNmenuDiv{
         #authenticator{
             display: flex;
             gap: 1em;
+            align-items: flex-end;
             #userDiv{
                 display: flex;
                 flex-direction: column;
+                gap: 0.5rem;
                 align-items: center;
+                // font-size: 0.6rem;
                 p{
-                    width: 70%;
+                    width: 3rem;
                     text-overflow: ellipsis;
                     overflow: hidden;
                     text-wrap: nowrap;
@@ -224,6 +235,7 @@ $secondary-font:'bebas';
 
             }
         }
+    }
         #authButtonDiv{
             display: flex;
             align-items: center;

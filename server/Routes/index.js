@@ -60,6 +60,11 @@ route.get("/cart", async function(req,res){
         console.log("this is the request user object");
         if(req.user != null){
             const cartItems = await USERDB.findOne({name:req.user._doc.name}).populate("cart").select("cart");
+            for(const info of cartItems.cart){
+                info.image = await fromS3(info.image)
+            }
+            // data.image = await fromS3(data.image);
+            console.log("cartItems",cartItems?.cart)
             res.send(cartItems);
             return
         }
@@ -75,16 +80,28 @@ route.post("/cart",  async function(req,res){
     if(req.user != null){
     try{
         console.log(req.body);
-       const newCart =  await USERDB.findOneAndUpdate({name:req.user._doc.name},
-        {$push:{"cart":req.body.cartItem}},{new:true}).select("cart");
-        console.log("this is the result of the new cart",newCart);
-       res.send(newCart);
-       return
+        const cartItems = await USERDB.findOne({name:req.user._doc.name}).select("cart");
+        const itemExist = await cartItems?.cart?.find(function(anItem){
+            console.log("anItem",String(anItem));
+           return String(anItem) == req.body.cartItem
+        })
+        if (itemExist) {
+               return res.send(cartItems);
+        }else{
+            const newCart =  await USERDB.findOneAndUpdate({name:req.user._doc.name},
+             {$push:{"cart":req.body.cartItem}},{new:true}).select("cart");
+             console.log("this is the result of the new cart",newCart);
+            res.send(newCart);
+            return
+        }
     }catch(error){
      console.log(error);
     }
+}else{
+
+    res.send(401);
+    return
 }
-res.send("please login to add to cart")
 })
 
 route.post("/brand", upload.single("image"), async function(req,res){

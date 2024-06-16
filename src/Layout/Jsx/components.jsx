@@ -18,7 +18,7 @@ export function Header(){
              <Logo/>
              <NavBar/>
              <div id='authNmenuDiv'>
-             <Authenticator loggedIn = {authState.username != ''} username={authState.username} />
+             <Authenticator loggedIn = {authState.username} username={authState.username} />
              <Menu/>
              </div>
         </div>

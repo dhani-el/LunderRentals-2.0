@@ -32,6 +32,9 @@
   align-items: center;
   gap: 1.5em;
 }
+#header #authNmenuDiv #authenticator #userDiv {
+  display: none;
+}
 #header #authButtonDiv {
   display: none;
 }
@@ -195,17 +198,19 @@
   #header {
     justify-content: space-between;
   }
-  #header #authenticator {
+  #header #authNmenuDiv #authenticator {
     display: flex;
     gap: 1em;
+    align-items: flex-end;
   }
-  #header #authenticator #userDiv {
+  #header #authNmenuDiv #authenticator #userDiv {
     display: flex;
     flex-direction: column;
+    gap: 0.5rem;
     align-items: center;
   }
-  #header #authenticator #userDiv p {
-    width: 70%;
+  #header #authNmenuDiv #authenticator #userDiv p {
+    width: 3rem;
     text-overflow: ellipsis;
     overflow: hidden;
     text-wrap: nowrap;

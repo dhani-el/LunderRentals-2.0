@@ -1,17 +1,22 @@
 import { useState,useContext} from "react";
 import { motion } from "framer-motion" ;
-import { Box, TextField, Button, Card } from "@mui/material";
+import { Box, TextField, Button, Card, Alert } from "@mui/material";
 import formType from "../constant";
 import axios from "axios";
 import { AuthContext } from "../../App";
 import { useQuery } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
 
 
 export function Login(){
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
+    const [showAlert, setshowAlert] = useState(false);
+    const [AlertType, setAlertType] = useState("success");
+    const [AlertMessage, setAlertMessage] = useState("");
     const payload = {username : userName, password: password};
     const {authState,contextFn} = useContext(AuthContext);
+    const navigate = useNavigate()
 
     function handleInputChange(e, setFunc){
         if(e != null){
@@ -34,17 +39,37 @@ export function Login(){
         axios.post(`/auth/login`,payload, {
             withCredentials:true,
         }).then(function(user){
-            console.log("isd");
+            console.log(user);
             SaveLoggedInUser(user);
             contextFn((initial)=>({isloggedin:true,username:user.data}));
+            indicateUserLoggedIn("success","Login Successfull")
             return user
+        }).then(function(user){
+            setTimeout(() => {
+            navigate("/rent")
+            }, 3000);
+        }).catch(function(errorresponse){
+            console.log("errorresponse",errorresponse);
+            if(errorresponse.request.statusText === "Unauthorized"){
+                indicateUserLoggedIn("error","Your Username Or Password is incorrect")
+            }else{
+                indicateUserLoggedIn("error",errorresponse.request.responseText)
+            }
         })
     }
     function SaveLoggedInUser(user){
-        document.cookie = `user=${user.data};expires=${new Date(Date.now() + 1000*60*60)}`
+        localStorage.setItem("authStatus",true);
+        localStorage.setItem("user",user.data)
     }
-    function indicateUserLoggedIn(){
-        console.log('user logged in');
+    function indicateUserLoggedIn(alertType,alertMessage){
+        setAlertType(init=>alertType);
+        setAlertMessage(init=>alertMessage);
+        setshowAlert(init=>true);
+        setTimeout(() => {
+            setAlertType(init=>"success");
+            setAlertMessage(init=>"");
+            setshowAlert(init=>false);
+        }, 2000);
     }
 
     return <motion.div className="formDiv" id="logInForm" >
@@ -59,16 +84,20 @@ export function Login(){
                         </div>
                     </Card>
                 </Box>
+                {showAlert && <div style={{position:"absolute",top:"50vh",left:"0vh",width:"100%",display:"flex",justifyContent:"center"}} ><Alert color={AlertType}>{AlertMessage}</Alert></div>}
             </motion.div>
 
 }
 
-export function SignUp(){
+export function SignUp({nav}){
     const [firstName , setFirstName] = useState('');
     const [lastName , setLastname] = useState('');
     const [email , setEmail] = useState('');
     const [password , setPassword] = useState('');
     const [shouldSend , setShouldSend] = useState(false);
+    const [showAlert , setshowAlert] = useState(false);
+    const [AlertType , setAlertType] = useState("success");
+    const [AlertMessage , setAlertMessage] = useState("");
     const payload  = {name:`${firstName} ${lastName}`, email:email, password:password}
 
     const {isFetching,data} = useQuery({
@@ -77,8 +106,18 @@ export function SignUp(){
             .then(function(response){
                 setShouldSend(false);
                 resetUser();
+                indicateUserSignedIn("success","Sign Up Successfull")
                 console.log(response);
                 return response;
+            }).then(function(response){
+                setTimeout(() => {
+                    nav()
+                }, 3000);
+                return response
+            })
+            .catch(function(errorresponse){
+                indicateUserSignedIn("error",errorresponse.request.responseText)
+                return errorresponse
             })
         ,
         enabled: shouldSend,
@@ -112,7 +151,16 @@ export function SignUp(){
         setEmail(initial => '');
         setPassword(initial => '');
     }
-
+    function indicateUserSignedIn(alertType,alertMessage){
+        setAlertType(init=>alertType);
+        setAlertMessage(init=>alertMessage);
+        setshowAlert(init=>true);
+        setTimeout(() => {
+            setAlertType(init=>"success");
+            setAlertMessage(init=>"");
+            setshowAlert(init=>false);
+        }, 2000);
+    }
     return <motion.div className="formDiv" id="signUpForm" >
                 <Box component='form' className="form" >
                     <Card className="card" >
@@ -129,6 +177,8 @@ export function SignUp(){
                         </div>
                     </Card>
                 </Box>
+                {showAlert && <div style={{position:"absolute",top:"50vh",left:"0vh",width:"100%",display:"flex",justifyContent:"center"}} ><Alert color={AlertType}>{AlertMessage}</Alert></div>}
+
             </motion.div>
 }
 

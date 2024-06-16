@@ -1,10 +1,11 @@
 import { useEffect, useState} from 'react';
-import { TextField, Card, Skeleton, Pagination } from "@mui/material";
+import { TextField, Card, Skeleton, Pagination,Button } from "@mui/material";
 import { Search, Close } from "@mui/icons-material";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useNavigate } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 import { useQuery,useQueryClient } from '@tanstack/react-query';
+import Alert from '@mui/material/Alert';
 import Axios from 'axios';
 import 'swiper/css';
 import '../Styles/index.css';
@@ -88,6 +89,8 @@ export function Cars({brand}){
     const [initialRender,setInitialRender] = useState(true);
     const queryClient = useQueryClient();
     const [pageNumber,setPageNumber] = useState(0);
+    const [showAlert,setShowAlert] = useState(false);
+    const [showSuccessAlert,setShowSuccessAlert] = useState(false);
     const {data, isFetching} = useQuery({
         queryKey:["carData"],
         queryFn : ()=>  Axios.get(`/data/api/cars/${brand}?page=${pageNumber}`)
@@ -95,7 +98,11 @@ export function Cars({brand}){
         enabled: initialRender,
         refetchOnWindowFocus:false,
     });
-
+    function handleAddtoCart(show,isSuccess){
+        setShowAlert(init=>show);
+        setShowSuccessAlert(init=>isSuccess);
+        console.log("show",show,"isSuccess",isSuccess);
+    }
     useEffect(function(){
         if (!initialRender) {
             queryClient.invalidateQueries({queryKey:["carData"]});
@@ -103,38 +110,59 @@ export function Cars({brand}){
         }
     },[pageNumber]);
 
-    return <div id='carsContainer'>
+    return <div id='carsContainer' style={{position:"relative"}}>
                 <h3  style={{color:"black"}} >AVAILABLE CARS</h3>
                 {isFetching && <Skeletors/>}
                 {!isFetching && (!!data?.data.payload.length ?
                     <div id='listOfCars'>
-                        {data?.data.payload.map((single)=><div key={single?._id} id='keyDivs' ><Car car = {single} /></div>)}
+                        {data?.data.payload.map((single)=><div key={single?._id} id='keyDivs' ><Car car = {single} handleAlert={handleAddtoCart} /></div>)}
                     </div>
                     : <NoCars brand = {brand} />)}
+                    <div id='cartAlert' style={{position:"absolute" ,bottom:"55%",width:"100%",display:"flex",justifyContent:"center",zIndex:20}} >
+                        {(showAlert && showSuccessAlert) && <Alert style={{width:"70%"}} severity='success' >Car Successfully added to cart</Alert>}
+                        {(showAlert && showSuccessAlert == false) && <Alert style={{width:"70%"}}  severity='error' >Car Was Not Added to cart(check login)</Alert>}
+                    </div>
                 <Paginator pageNumberSetter={setPageNumber} count={data?.data.count} />
             </div>
 }
-function Car({car}){
+function Car({car,handleAlert}){
     const [isQueryEnabled, setIsQueryEnabled] = useState(false);
     const qclient  = useQueryClient()
     const navigate = useNavigate();
     const {isFetching} = useQuery({
         queryKey:["addToCartRent"],
         queryFn:()=> Axios.post(`/data/api/cart`, {cartItem:car._id},{withCredentials:true}).then(function(response){
+                
+                    handleAlert(true,true);
+                    setTimeout(function(){
+                        handleAlert(false,false)
+                    },2000)
                 setIsQueryEnabled(false);
                 return response
+            }).catch(function(error){
+                if (error.request.status === 401) {
+                    console.log("unauthorides cart adding");
+                    handleAlert(true,false)
+                    setTimeout(function(){
+                        handleAlert(false,false)
+                    },2000)
+                }
+                else{
+                    console.log(error);
+                }
             })
         ,
         enabled: isQueryEnabled,
         refetchOnWindowFocus:false,
         retry:0
-    });
+    })
     function useAddToCartClick(){
+        handleAlert(false,false)
         setIsQueryEnabled(true);
     }
 
     return <div id='Acar' onClick={()=>{qclient.resetQueries({queryKey:["singleData"],exact:true}); navigate(`${car.brand}?id=${car._id}`)}} >
-                <Card className='aCarCard'  >
+                <Card className='aCarCard' style={{display:"flex",flexDirection:"column", gap:"1rem"}}  >
                     <div id='firstDiv'>
                         <img src={car.image} /> 
                         <div id='textDiv'>
@@ -146,9 +174,9 @@ function Car({car}){
                     <span id='priceSpan'>
                         <p id='price' >{car.price}</p><p >/day</p>
                     </span>
-                        <span id='detailsSpan' onClickCapture={e =>{e.stopPropagation(); useAddToCartClick() }} >
+                        <Button id='detailsSpan' onClickCapture={e =>{e.stopPropagation(); useAddToCartClick() }} >
                             ADD TO CART
-                        </span>
+                        </Button>
                     </div>
                 </Card>
     </div>

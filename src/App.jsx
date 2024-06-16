@@ -57,6 +57,10 @@ const route  = createBrowserRouter([
 function App() {
   const [userLoggedIn, setUserLoggedin] = useState({isloggedin:false,username:''})
 
+  useEffect(function(){
+    setUserLoggedin({isloggedin:localStorage.getItem("authStatus"),username:localStorage.getItem("user")})
+  },[])
+
   return (
     <AuthContext.Provider value={{authState:userLoggedIn,contextFn:setUserLoggedin}}>
       <RouterProvider router={route} />

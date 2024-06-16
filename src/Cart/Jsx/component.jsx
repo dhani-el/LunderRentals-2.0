@@ -7,13 +7,32 @@ import { Button, TextField, Skeleton } from "@mui/material";
 import MasterCard from "/masterCard.png";
 import { useMediaQuery } from "react-responsive";
 
-
 export function ListOfCartItems({cartItems,notReady}){
+    const [refinedCartItems,setRefinedCartItems] = useState([]);
+    const [popItem,setPopItem] = useState();
+
+    function reflectPop(data){
+        setPopItem(init=>data)
+    }
+
+    useEffect(function(){
+        if (cartItems.length>0) {
+            setRefinedCartItems(cartItems);
+        }
+    },[cartItems])
+
+    useEffect(function(){
+        const newData = refinedCartItems.filter(function(aCartItem){
+            return aCartItem.name !== popItem.name && aCartItem.price !== popItem.price && aCartItem.color !== popItem.color
+        })
+        setRefinedCartItems(newData)
+    },[popItem])
+
     return <div id="cartItemsCard" >
         <ListHeader/>
         {notReady &&<ListOfCartSkeletons/>}
-        {!notReady && cartItems.map(function(item){
-            return <SingleCartItem itemDetails={item}/>
+        {!notReady && refinedCartItems.map(function(item){
+            return <SingleCartItem itemDetails={item} handlepop={reflectPop} />
         })}
     </div>
 }
@@ -28,7 +47,7 @@ function ListHeader(){
     </div>
 }
 
-function SingleCartItem({itemDetails}){
+function SingleCartItem({itemDetails,handlepop}){
     const [removeItem, setRemoveItem] = useState(false);
     const {data,isFetching} = useQuery({
         queryKey:["removeCartItem"],
@@ -36,6 +55,11 @@ function SingleCartItem({itemDetails}){
         .then(function(response){
             setRemoveItem(false);
             return response
+        }).then(function(response){
+            if(response.status === 200){
+                console.log("handling pop from array data:",itemDetails);
+                handlepop(itemDetails)
+            }
         }),
         enabled:removeItem,
         retry:0,
@@ -54,13 +78,14 @@ function SingleCartItem({itemDetails}){
             <div id="itemDetails">
                 <p>{itemDetails.name}</p>
                 <Colour color={itemDetails.color} />
-                <p>{itemDetails.price}</p>
+                <p>₦{itemDetails.price}</p>
             </div>
-            <Close id = "closeIcon" onClick={function(){handleRemoveCartItem()}}/>
+            <p id = "closeIcon" onClick={function(){handleRemoveCartItem()}}>Remove</p>
+            {/* <Close id = "closeIcon" onClick={function(){handleRemoveCartItem()}}/> */}
     </div>
 }
 
-function Colour({color}){
+function Colour({color="black"}){
     return <div id="color"  >
         <div style={{background:color}}>
 
@@ -92,10 +117,11 @@ export function OrderSummary({summaryDetails,clickHandler,cartItems}){
     const [cartCost,setCartCost] = useState(0);
 
     function cartcost(cartItems){
-        let cost
-        cartItems.forEach(function(cartItem){
-            cost += cartItem.price
-        });
+        
+        let cost = cartItems.reduce(function(initial,cartItem){
+           return Number(initial) + Number(cartItem.price)
+        },0);
+        console.log(cost);
         setCartCost(init => cost);
     }
     useEffect(function(){
@@ -103,10 +129,10 @@ export function OrderSummary({summaryDetails,clickHandler,cartItems}){
     },[])
     return <div id="summaryContainer" >
         <h3>Order Summary</h3>
-        <div>Cars : {summaryDetails.count}</div>
-        <div>Tax : {summaryDetails.tax}%</div>
-        <div>Shipping : {summaryDetails.shipping}</div>
-        <div>Total : {cartCost} N</div>
+        <div>Car(s) : {summaryDetails.count}</div>
+        <div>Tax : ₦{cartCost * (5/100)}</div>
+        <div>Shipping : ₦{cartCost * (15/100)}</div>
+        <div>Total : ₦{cartCost + cartCost * (5/100) + cartCost * (15/100)}</div>
         <Button variant="contained" onClick={clickHandler} >Checkout</Button>
     </div>
 }
